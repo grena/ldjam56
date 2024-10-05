@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=11 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
-[ext_resource type="PackedScene" uid="uid://byu5bl4jti2vl" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="5_nxqa3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
@@ -44,6 +45,7 @@ position = Vector2(9.215, 9.525)
 shape = SubResource("CapsuleShape2D_s76gh")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+offset = Vector2(500, 0)
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
 
@@ -59,4 +61,18 @@ position = Vector2(131, 162)
 offset_right = 40.0
 offset_bottom = 23.0
 text = "FUEL = 0"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -432.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("5_nxqa3")
+expand_mode = 3
+stretch_mode = 6
+
 [node name="Tubes" parent="." instance=ExtResource("3_ednm7")]

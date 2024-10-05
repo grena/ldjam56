@@ -15,6 +15,7 @@ func _ready() -> void:
 	# Activer cette caméra à la démarrage
 	$Camera2D.make_current()
 	original_scale = $Sprite2D.scale
+	
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
