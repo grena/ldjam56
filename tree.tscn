@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=13 format=3 uid="uid://cq42vmqlx4bkm"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
-[ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_52s5x"]
+[ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 35.0571
+radius = 46.2709
 
 [sub_resource type="QuadMesh" id="QuadMesh_oipee"]
 
@@ -36,8 +36,9 @@ size = Vector2(0.844788, 1)
 script = ExtResource("1_ha3jt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 1.73526)
-texture = ExtResource("2_52s5x")
+position = Vector2(5.895, -12.815)
+scale = Vector2(0.425087, 0.425087)
+texture = ExtResource("2_5gbys")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
