@@ -5,6 +5,7 @@ var FUEL = 0
 
 const SQUISH_AMOUNT = 0.8  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.2    # Temps pour animer le squish
+const ROTATION_AMOUNT = 0.1
 
 var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
@@ -38,9 +39,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0:
 		apply_squish_effect(delta)
 		handle_sprite_flip(velocity)
+		apply_rotation_effect(velocity)
 	else:
 		# Rétablir l'échelle originale quand le personnage ne bouge pas
 		reset_squish_effect(delta)
+		reset_rotation_effect(delta)
 	
 	# Déplacement du personnage et détection de collision
 	var collision = move_and_collide(velocity * delta)
@@ -107,5 +110,20 @@ func handle_sprite_flip(velocity: Vector2) -> void:
 	
 	# Si le personnage est immobile, conserver la dernière direction
 	if velocity.x == 0:
-		print_debug('RESETING')
 		sprite.scale.x = original_scale.x * -last_direction
+
+# Fonction pour appliquer la rotation légère pendant le déplacement
+func apply_rotation_effect(velocity: Vector2) -> void:
+	var sprite = $Sprite2D
+	
+	# Appliquer une légère rotation basée sur la direction horizontale
+	if velocity.x != 0:
+		sprite.rotation = lerp(sprite.rotation, ROTATION_AMOUNT * float(last_direction), 0.1)
+
+
+# Fonction pour rétablir la rotation lorsque le personnage s'arrête
+func reset_rotation_effect(delta: float) -> void:
+	var sprite = $Sprite2D
+	
+	# Réduire la rotation progressivement vers 0 (neutre)
+	sprite.rotation = lerp(sprite.rotation, float(0), 0.1)
