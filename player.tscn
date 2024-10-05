@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nb0tl4c0g03t"]
+[gd_scene load_steps=10 format=3 uid="uid://jx4rsroxw61c"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_pkhhj"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_svisb"]
@@ -40,6 +40,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s76gh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+metadata/_edit_group_ = true
 
 [node name="BruitDePasPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fvt2l")

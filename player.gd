@@ -167,3 +167,6 @@ func exit_minigame() -> void:
 
 func enter_minigame() -> void:
 	is_playing_mini_game = true
+
+func _process(delta: float) -> void:
+	$Camera2D.offset.x = 250
