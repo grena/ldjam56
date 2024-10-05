@@ -5,12 +5,7 @@ func _ready() -> void:
 	_generate_friskies()
 	_generate_trees()
 
-	# degueu mais marche
 	$MusicPlayerStep1.play()
-	#$MusicPlayerStep2.play()
-	#$MusicPlayerStep2.stop()
-	#$MusicPlayerStep3.play()
-	#$MusicPlayerStep3.stop()
 
 func _generate_friskies() -> void:
 	var frisky_model = preload("res://frisky.tscn")
