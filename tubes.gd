@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var TubeScene = preload("res://tube.tscn")
 
-const tubes_count = 20;
+const tubes_count = 100;
 var tubes: Array = [];
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +13,7 @@ func _ready() -> void:
 		var tube: Node2D = TubeScene.instantiate();
 		tube.position = Vector2(20, 0);
 		tubes.append(tube)
+		tube.rotation = 0.2 + randf_range(-0.2, 0.2);
 		previous.add_child(tube);
 		previous = tube;
 	tubes[tubes.size() - 1].set_visible(false)

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=11 format=3 uid="uid://6wiejoxkefau"]
+=======
+[gd_scene load_steps=10 format=3 uid="uid://6wiejoxkefau"]
+>>>>>>> aa59945 (100 tubesé)
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
