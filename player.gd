@@ -100,7 +100,7 @@ func check_collision_with_tree(collision) -> void:
 	
 func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie
-	var label = get_node("/root/Node2D/CanvasLayer/Label")
+	var label = get_parent().get_node("GUI").get_node("Label")
 	label.text = "FUEL = " + str(fuel_value)
 
 func apply_squish_effect(delta: float) -> void:

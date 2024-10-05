@@ -22,7 +22,6 @@ radius = 16.81
 height = 89.73
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-312, -88)
 floor_constant_speed = true
 script = ExtResource("1_pkhhj")
 

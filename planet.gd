@@ -11,6 +11,7 @@ func _ready() -> void:
 	$MusicPlayerStep3.volume_db = -10
 
 func _generate_friskies() -> void:
+	return
 	var nb_friskies = 20
 	for i in range(nb_friskies):
 		spawn_frisky(Vector2(randi() % 1000, randi() % 1000))
