@@ -163,3 +163,6 @@ func reset_rotation_effect(delta: float) -> void:
 
 func exit_minigame() -> void:
 	is_playing_mini_game = false
+
+func enter_minigame() -> void:
+	is_playing_mini_game = true
