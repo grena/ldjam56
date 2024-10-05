@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bynyx80wx2gp7"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_eu1bo"]
+size = Vector2(20, 5)
+
+[node name="Tube" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(10, 0)
+mesh = SubResource("QuadMesh_eu1bo")
