@@ -76,13 +76,20 @@ func check_collision_with_frisky(collision) -> void:
 
 	# Vérification si le parent est de type "Frisky"
 	if collider_parent is Frisky:
-		$AspirePetitPlayer.play()
+		# detecter l'upgrade de level
+		var level_precedent = get_parent()._get_level()
 		FUEL = FUEL + 1
+		var level_actuel = get_parent()._get_level()
+		if level_actuel > level_precedent:
+			get_parent().get_node("UpgradeLevelPlayer").play()
+		# ramassage de frisky
+		$AspirePetitPlayer.play()
 		print("Collision with a Frisky!")
 		# On détruit la Frisky
 		collider_parent.queue_free()
 		self.get_parent().find_child('Tubes').avale();
 		update_fuel_label(FUEL)
+		
 
 # Fonction dédiée à la reconnaissance de collision
 func check_collision_with_tree(collision) -> void:
@@ -99,7 +106,6 @@ func check_collision_with_tree(collision) -> void:
 		#collider_parent.queue_free()
 	
 func update_fuel_label(fuel_value: int) -> void:
-	return
 	# Accéder au Label à partir de la nouvelle hiérarchie
 	var label = get_parent().get_node("GUI").get_node("Label")
 	label.text = "FUEL = " + str(fuel_value)
