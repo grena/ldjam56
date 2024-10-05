@@ -66,3 +66,25 @@ func avale():
 		);
 		add_child(timer);
 		timer.start();
+	# cri de la mort
+	crie_bestiole()
+
+func crie_bestiole():	
+	var crie_level_2 = [$Level2Mort1Player, $Level2Mort2Player, $Level2Mort3Player]
+	var crie_level_3 = [$Level3Mort1Player, $Level3Mort2Player, $Level3Mort3Player, $Level3Mort4Player, $Level3Mort4Player, $Level3Mort5Player]
+	var level = get_parent().get_parent().get_parent()._get_level()
+	if level == 1:
+		return
+	var player = crie_level_2.pick_random()
+	if level == 3:
+		player = crie_level_3.pick_random()
+	var timer: Timer = Timer.new()
+	timer.wait_time = duration_to_arrive_to_fusee_in_seconds;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		player.play()
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
