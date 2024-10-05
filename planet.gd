@@ -27,12 +27,16 @@ func _generate_trees() -> void:
 		new_tree.set_difficulty(randi_range(1, 3))
 			# Connecter le signal 'minigame_finished' à une méthode dans ce script
 		new_tree.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
+		new_tree.connect("minigame_started", Callable(self, "_on_minigame_started"))
 		new_tree.connect("spawn_frisky", Callable(self, "_on_spawn_frisky"))
+		
 		self.add_child(new_tree)
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()
-	# Exécuter ici toute logique nécessaire
+	
+func _on_minigame_started():
+	$Player.enter_minigame()
 			
 func _on_spawn_frisky(pos):
 	print_debug('ON SPOWN DU FRISKY')

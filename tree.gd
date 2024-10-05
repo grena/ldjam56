@@ -3,21 +3,25 @@ extends Node2D
 class_name FriskyTree
 
 # Vitesse du curseur (peut être ajustée)
-var CURSOR_SPEED = 1.0
+var CURSOR_SPEED = 500.0
+var HEALTH = 3
 
 const SQUISH_AMOUNT = 0.45  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.150    # Temps pour animer le squish
 
 # Références vers les MeshInstance2D
-var cursor : MeshInstance2D
-var success_zone : MeshInstance2D
-var mini_jeu : MeshInstance2D
+var minigame : Node2D
+var minigame_tronconneuse : Sprite2D
+var minigame_treefull : Sprite2D
+var minigame_treemid : Sprite2D
+var minigame_treelow : Sprite2D
+
+var audio_engine : AudioStreamPlayer2D
+var audio_decoupe: AudioStreamPlayer2D
 
 var is_playing = false
 var moving_right = true
 var cursor_valid = false
-var nb_success_required = 3
-var nb_success = 0
 
 const duration_to_squish_in_seconds = 0.2
 var is_squishing = false
@@ -26,94 +30,112 @@ var squish_timer = 0.0
 
 var is_waiting_for_player_interaction = false
 
+signal minigame_started
 signal minigame_finished
 signal spawn_frisky
 
 func _ready() -> void:
-	cursor = $MiniJeu/Cursor
-	success_zone = $MiniJeu/SuccessZone
-	mini_jeu = $MiniJeu
 	original_scale = $Sprite2D.scale
+	minigame_tronconneuse = $MiniGame/Tronconneuse
+	minigame_treefull = $MiniGame/TreeFull
+	minigame_treemid = $MiniGame/TreeMid
+	minigame_treelow = $MiniGame/TreeLow
+	audio_engine = $MiniGame/AudioEngine
+	audio_decoupe = $MiniGame/AudioDecoupe
+	minigame = $MiniGame
+	minigame.visible = false
 	
 func _process(delta: float) -> void:
-	# Déplacer le curseur
-	move_cursor(delta)
-
+	# Déplacer la tronconneuse
+	if is_playing:
+		move_tronconneuse(delta)
+		update_tronc(delta)
+	
 	# Vérifier si l'utilisateur appuie sur "espace"
 	if Input.is_action_just_pressed("ui_accept"):
 		if is_playing:
 			check_success()
+		elif is_waiting_for_player_interaction:
+			activate_minigame()
 			
 	if is_squishing:
 		apply_squish_effect(delta)
 	else:
 		reset_squish_effect(delta)
 	
+func update_tronc(delta: float) -> void:
+	if cursor_valid:
+		minigame_treefull.modulate = Color(1.3, 1.3, 1.3, 1.0)
+		minigame_treemid.modulate = Color(1.3, 1.3, 1.3, 1.0)
+		minigame_treelow.modulate = Color(1.3, 1.3, 1.3, 1.0)
+	else:
+		minigame_treefull.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		minigame_treemid.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		minigame_treelow.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		
+	if HEALTH == 2 and !minigame_treemid.visible:
+		minigame_treemid.visible = true
+		minigame_treefull.visible = false
+	if HEALTH == 1 and !minigame_treelow.visible:
+		minigame_treelow.visible = true
+		minigame_treemid.visible = false
+		
+		
 func set_difficulty(diff: int) -> void:
-	cursor = $MiniJeu/Cursor
-	success_zone = $MiniJeu/SuccessZone
-	mini_jeu = $MiniJeu
-	mini_jeu.visible = false
-	
-	nb_success_required = diff
-	
 	if (diff == 1):
-		success_zone.scale.x = 0.40
-		CURSOR_SPEED = 1.0
+		CURSOR_SPEED = 500.0
 	elif (diff == 2):
-		success_zone.scale.x = 0.25
-		CURSOR_SPEED = 1.2
+		CURSOR_SPEED = 600.0
 	elif (diff == 3):
-		success_zone.scale.x = 0.20
-		CURSOR_SPEED = 1.4
+		CURSOR_SPEED = 700.0
 
 # Fonction pour déplacer le curseur de droite à gauche
-func move_cursor(delta: float) -> void:
-	var cursor_position = cursor.position
+func move_tronconneuse(delta: float) -> void:
+	var tronconneuse_position = minigame_tronconneuse.position
 
 	# Si le curseur va vers la droite
 	if moving_right:
-		cursor_position.x += CURSOR_SPEED * delta
+		tronconneuse_position.x += CURSOR_SPEED * delta
 		# Si le curseur atteint le bord droit du MiniJeu, changer de direction
-		if cursor_position.x >= 0.5:
+		if tronconneuse_position.x >= 248:
 			moving_right = false
 	# Si le curseur va vers la gauche
 	else:
-		cursor_position.x -= CURSOR_SPEED * delta
+		tronconneuse_position.x -= CURSOR_SPEED * delta
 		# Si le curseur atteint le bord gauche du MiniJeu, changer de direction
-		if cursor_position.x <= -0.5:
+		if tronconneuse_position.x <= -234:
 			moving_right = true
+			
+	if tronconneuse_position.x > -128 and tronconneuse_position.x < 126:
+		cursor_valid = true
+	else:
+		cursor_valid = false
 
 	# Appliquer la nouvelle position
-	cursor.position = cursor_position
+	minigame_tronconneuse.position = tronconneuse_position
 
 # Fonction pour vérifier si le curseur est dans la zone de succès
 func check_success() -> void:
 	if cursor_valid:
 		squish_tree()
-		nb_success += 1
-		if (nb_success == nb_success_required):
+		HEALTH -= 1      
+		audio_decoupe.play()
+		if (HEALTH == 0):
 			trigger_finish()
-			queue_free()
-		print('BRAVO !')
 	else:
 		print('NUL !')
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent() == cursor:
-		cursor_valid = true
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	if area.get_parent() == cursor:
-		cursor_valid = false
-		
 func activate_minigame() -> void:
+	emit_signal("minigame_started")
+	audio_engine.play()
 	is_playing = true
-	mini_jeu.visible = true
+	minigame.visible = true
 	
 func trigger_finish() -> void:
 	emit_signal("minigame_finished")
 	spawn_friskies()
+	is_playing = false
+	minigame.visible = false
 
 func spawn_friskies() -> void:
 	var spread_distance = 150
@@ -127,7 +149,6 @@ func apply_squish_effect(delta: float) -> void:
 	
 	# Compression sur l'axe Y et étirement sur l'axe X
 	var new_scale = original_scale
-	print_debug("DE " + str(original_scale.y) + " A " + str(SQUISH_AMOUNT))
 	new_scale.y = lerp(original_scale.y, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
 	new_scale.x = lerp(original_scale.x, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
 	
@@ -164,11 +185,11 @@ func squish_tree() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body.name == 'Player'):
-		toggle_wait_for_interaction() 
+		toggle_wait_for_interaction()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if (body.name == 'Player'):
-		toggle_wait_for_interaction() 
+		toggle_wait_for_interaction()
 
 func toggle_wait_for_interaction():
 	is_waiting_for_player_interaction = !is_waiting_for_player_interaction
