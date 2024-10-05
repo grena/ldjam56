@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var TubeScene = preload("res://tube.tscn")
 
-const tubes_count = 100;
+const tubes_count = 20;
 var tubes: Array = [];
 const tube_length = 60;
 const duration_to_arrive_to_fusee_in_seconds = 3.0
@@ -27,12 +27,20 @@ func _physics_process(delta: float) -> void:
 	var player_position: Vector2 = player.global_position;
 	var distance = _get_distance();
 	
+	const limit = 2.8
+	
 	var i = tubes.size() - 1;
 	while (distance > tube_length && i >= 0):
-		var ending_position: Vector2 = tubes[i].global_position;
-		var angle = ending_position.angle_to_point(player_position);
 		for x in range(i, tubes.size()):
-			tubes[x].global_rotation = angle;
+			var ending_position: Vector2 = tubes[i].global_position;
+			var angle = ending_position.angle_to_point(player_position);
+			var rotation = angle - tubes[x - 1].global_rotation;
+			rotation = fposmod(rotation + PI, 2 * PI) - PI;
+			#if rotation > limit:
+			#	rotation = limit
+			#if rotation < -limit:
+			#	rotation = -limit
+			tubes[x].rotation = rotation;
 		distance = _get_distance();
 		i = i - 1;
 		
