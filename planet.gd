@@ -1,5 +1,9 @@
 extends Node2D
 
+const radius_max_tree_generation = 1500
+const radius_min_tree_generation = 500
+const tree_count = 50
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_generate_friskies()
@@ -18,11 +22,10 @@ func _generate_friskies() -> void:
 		
 func _generate_trees() -> void:
 	var tree_model = preload("res://tree.tscn")
-	var nb_trees = 4
-	for i in range(nb_trees):
+	for i in range(tree_count):
 		var new_tree: FriskyTree = tree_model.instantiate()
-		new_tree.position.x = randi() % 1000
-		new_tree.position.y = randi() % 1000
+		var position = _get_new_tree_position();
+		new_tree.position = position
 		new_tree.set_z_index(new_tree.global_position.y / 10 + 2000)
 		new_tree.visible = true
 		new_tree.set_difficulty(randi_range(1, 3))
@@ -74,3 +77,28 @@ func spawn_frisky(pos) -> void:
 	new_frisky.position.y = pos.y
 	new_frisky.visible = true
 	self.add_child(new_frisky)
+
+func _get_new_tree_position():
+	var remaining_tests = 100
+	
+	while remaining_tests >= 0:
+		var radius = randf_range(radius_min_tree_generation, radius_max_tree_generation)
+		var angle = randf_range(0, 2*PI)
+		var position = Vector2(
+			sin(angle) * radius,
+			cos(angle) * radius
+		)
+		if !_is_too_close_from_existing_tree(position):
+			return position
+	
+	return position
+
+func _is_too_close_from_existing_tree(position: Vector2):
+	for child in get_children():
+		if child is FriskyTree:
+			var other_tree_position = child.position
+			var distance_to_position = other_tree_position.distance_to(position)
+			if distance_to_position <= 200:
+				return true
+	return false
+				
