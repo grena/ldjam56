@@ -17,8 +17,8 @@ colors = PackedColorArray(0, 0.395666, 4.81307e-07, 1)
 gradient = SubResource("Gradient_0wxny")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
-radius = 167.12
-height = 498.2
+radius = 34.24
+height = 103.95
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bv744")
@@ -36,10 +36,11 @@ script = ExtResource("1_w2unr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_jeoq6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(28.145, 36.735)
+position = Vector2(9.215, 9.525)
 shape = SubResource("CapsuleShape2D_s76gh")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]

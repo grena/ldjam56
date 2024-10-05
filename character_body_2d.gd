@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 var FUEL = 0
 
-const SQUISH_AMOUNT = 0.8  # Le facteur de squish (1.0 = normal, <1.0 = compression)
+const SQUISH_AMOUNT = 0.20  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.2    # Temps pour animer le squish
 const ROTATION_AMOUNT = 0.1
 
@@ -14,6 +14,7 @@ var last_direction = 1  # 1 = droite, -1 = gauche
 func _ready() -> void:
 	# Activer cette caméra à la démarrage
 	$Camera2D.make_current()
+	original_scale = $Sprite2D.scale
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO

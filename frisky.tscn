@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_xhn1v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 92.0217
+radius = 23.5113
 
 [node name="Frisky" type="Node2D"]
 position = Vector2(755, 242)
@@ -12,11 +12,12 @@ script = ExtResource("1_x0haf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(25.56, 0.46)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_xhn1v")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-5.49, 0)
 shape = SubResource("CircleShape2D_2761j")
