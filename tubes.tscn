@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://be81gjpeks074"]
+[gd_scene load_steps=11 format=3 uid="uid://be81gjpeks074"]
 
 [ext_resource type="Script" path="res://tubes.gd" id="1_0eq2n"]
 [ext_resource type="AudioStream" uid="uid://38c2fuo4m3hp" path="res://music/CANDYS PHASE 2 MORT 1.mp3" id="2_r0oak"]
+[ext_resource type="AudioStream" uid="uid://nxovip577gsw" path="res://music/BROYEUR-SOLO.mp3" id="2_tah1l"]
 [ext_resource type="AudioStream" uid="uid://b67hsr6u7ig6v" path="res://music/CANDYS PHASE 2 MORT 2.mp3" id="3_x37ht"]
 [ext_resource type="AudioStream" uid="uid://boub5bwwapqvn" path="res://music/CANDYS PHASE 2 MORT 3.mp3" id="4_p2kd3"]
 [ext_resource type="AudioStream" uid="uid://bbv67cdvtai67" path="res://music/CANDYS PHASE 3 MORT 1.mp3" id="5_utbx8"]
@@ -12,6 +13,9 @@
 
 [node name="Tubes" type="Node2D"]
 script = ExtResource("1_0eq2n")
+
+[node name="BroyeurPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tah1l")
 
 [node name="Level2Mort1Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_r0oak")
