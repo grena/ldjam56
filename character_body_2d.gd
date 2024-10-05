@@ -76,6 +76,7 @@ func check_collision_with_frisky(collision) -> void:
 
 	# Vérification si le parent est de type "Frisky"
 	if collider_parent is Frisky:
+		$AspirePetitPlayer.play()
 		FUEL = FUEL + 1
 		print("Collision with a Frisky!")
 		# On détruit la Frisky

@@ -1,13 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=17 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
-[ext_resource type="PackedScene" uid="uid://byu5bl4jti2vl" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="AudioStream" uid="uid://c3o18t16wnait" path="res://music/BRUITS-PAS.mp3" id="5_yqv81"]
 [ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="6_0i5ox"]
+[ext_resource type="AudioStream" uid="uid://bon7ibf04t7xc" path="res://music/ASPIRATION-PETITE-BULLE.mp3" id="7_640a3"]
 [ext_resource type="AudioStream" uid="uid://ccn5t36ytwwce" path="res://music/GAMEJAMMUSIQUE-STEP-1.mp3" id="7_ncl2f"]
 [ext_resource type="AudioStream" uid="uid://b6j1rljg21ele" path="res://music/GAMEJAMMUSIQUE-STEP-2.mp3" id="8_raq7u"]
 [ext_resource type="AudioStream" uid="uid://c3pvcanc2wdq7" path="res://music/GAMEJAMMUSIQUE-STEP-3.mp3" id="9_35q50"]
@@ -67,6 +68,10 @@ parameters/looping = true
 [node name="AspibroyeurPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("6_0i5ox")
 parameters/looping = true
+
+[node name="AspirePetitPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("7_640a3")
+parameters/looping = false
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
 
