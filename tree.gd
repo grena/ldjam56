@@ -142,6 +142,9 @@ func check_success() -> void:
 		print('NUL !')
 
 func activate_minigame() -> void:
+	if HEALTH == 0:
+		return
+	
 	emit_signal("minigame_started")
 	audio_engine.play()
 	is_playing = true
@@ -152,6 +155,7 @@ func trigger_finish() -> void:
 	spawn_friskies()
 	is_playing = false
 	minigame.visible = false
+	is_waiting_for_player_interaction = false
 	
 	tree_sprite.visible = false
 	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
