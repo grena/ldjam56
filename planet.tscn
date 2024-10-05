@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=13 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
+[ext_resource type="Script" path="res://floor.gd" id="2_62xmw"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="PackedScene" uid="uid://nb0tl4c0g03t" path="res://player.tscn" id="4_0ue51"]
@@ -14,7 +15,7 @@ size = Vector2(5100, 5100)
 
 [sub_resource type="Gradient" id="Gradient_0wxny"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.395666, 4.81307e-07, 1)
+colors = PackedColorArray(0.341176, 0.27451, 0.243137, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qjlxa"]
 gradient = SubResource("Gradient_0wxny")
@@ -23,6 +24,7 @@ gradient = SubResource("Gradient_0wxny")
 script = ExtResource("1_bv744")
 
 [node name="Floor" type="Node2D" parent="."]
+script = ExtResource("2_62xmw")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
 mesh = SubResource("QuadMesh_5ermm")
