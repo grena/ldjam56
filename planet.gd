@@ -35,10 +35,6 @@ func _generate_trees() -> void:
 		new_tree.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
 		self.add_child(new_tree)
 		
-func _process(delta):
-	if $MusicPlayer.playing == false:
-		$MusicPlayer.play()
-
 func _on_minigame_finished():
 	print("Le mini-jeu est terminé !")
 	$CharacterBody2D.exit_minigame()
