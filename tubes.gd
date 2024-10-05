@@ -4,6 +4,8 @@ extends Node2D
 
 const tubes_count = 100;
 var tubes: Array = [];
+const tube_length = 60;
+const duration_to_arrive_to_fusee_in_seconds = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +13,8 @@ func _ready() -> void:
 	var previous = self;
 	for x in range(0, tubes_count):
 		var tube: Node2D = TubeScene.instantiate();
-		tube.position = Vector2(20, 0);
+		tube.set_duration_of_avale_per_tube(duration_to_arrive_to_fusee_in_seconds / tubes_count);
+		tube.position = Vector2(tube_length, 0);
 		tubes.append(tube)
 		tube.rotation = 0.2 + randf_range(-0.2, 0.2);
 		previous.add_child(tube);
@@ -25,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	var distance = _get_distance();
 	
 	var i = tubes.size() - 1;
-	while (distance > 20 && i >= 0):
+	while (distance > tube_length && i >= 0):
 		var ending_position: Vector2 = tubes[i].global_position;
 		var angle = ending_position.angle_to_point(player_position);
 		for x in range(i, tubes.size()):
@@ -40,3 +43,18 @@ func _get_distance():
 	var ending_position: Vector2 = tubes[tubes.size() - 1].global_position;
 	
 	return ending_position.distance_to(player_position);
+
+
+func avale():
+	const durationn_per_tube = duration_to_arrive_to_fusee_in_seconds / tubes_count;
+	for x in range(0, tubes.size()):
+		var timer: Timer = Timer.new()
+		timer.wait_time = x * durationn_per_tube;
+		timer.one_shot = true;
+		timer.connect('timeout', func ():
+			tubes[tubes.size() - x - 1].run_avale_animation();
+			timer.stop();
+			timer.queue_free();
+		);
+		add_child(timer);
+		timer.start();

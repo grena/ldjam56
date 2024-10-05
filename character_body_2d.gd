@@ -66,6 +66,7 @@ func check_collision_with_frisky(collision) -> void:
 		print("Collision with a Frisky!")
 		# On détruit la Frisky
 		collider_parent.queue_free()
+		self.get_parent().find_child('Tubes').avale();
 		update_fuel_label(FUEL)
 
 # Fonction dédiée à la reconnaissance de collision
