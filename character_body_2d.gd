@@ -3,6 +3,13 @@ extends CharacterBody2D
 const SPEED = 300.0
 var FUEL = 0
 
+const SQUISH_AMOUNT = 0.8  # Le facteur de squish (1.0 = normal, <1.0 = compression)
+const SQUISH_TIME = 0.2    # Temps pour animer le squish
+
+var original_scale = Vector2(1, 1)
+var squish_timer = 0.0
+var last_direction = 1  # 1 = droite, -1 = gauche
+
 func _ready() -> void:
 	# Activer cette caméra à la démarrage
 	$Camera2D.make_current()
@@ -23,6 +30,17 @@ func _physics_process(delta: float) -> void:
 	# Appliquer le mouvement
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
+		
+	# Déplacement du personnage
+	move_and_collide(velocity * delta)
+	
+	# Si le personnage se déplace, appliquer l'effet de squish
+	if velocity.length() > 0:
+		apply_squish_effect(delta)
+		handle_sprite_flip(velocity)
+	else:
+		# Rétablir l'échelle originale quand le personnage ne bouge pas
+		reset_squish_effect(delta)
 	
 	# Déplacement du personnage et détection de collision
 	var collision = move_and_collide(velocity * delta)
@@ -48,3 +66,46 @@ func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie
 	var label = $Camera2D/UI/Label
 	label.text = "FUEL = " + str(fuel_value)
+
+func apply_squish_effect(delta: float) -> void:
+	squish_timer += delta
+	
+	# Compression sur l'axe Y et étirement sur l'axe X
+	var new_scale = original_scale
+	new_scale.y = lerp(original_scale.y, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
+	new_scale.x = lerp(original_scale.x, 1 / SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
+	
+	var sprite = $Sprite2D
+	sprite.scale = new_scale
+	
+	if squish_timer >= SQUISH_TIME:
+		squish_timer = 0.0  # Réinitialiser le timer pour répéter l'effet
+
+func reset_squish_effect(delta: float) -> void:
+	squish_timer += delta
+	
+	# Revenir à l'échelle normale
+	var sprite = $Sprite2D
+	var new_scale = sprite.scale
+	new_scale = original_scale
+	sprite.scale = new_scale
+	
+	if squish_timer >= SQUISH_TIME:
+		squish_timer = 0.0  # Réinitialiser le timer pour le squish suivant
+
+# Fonction pour gérer le flip horizontal du Sprite2D
+func handle_sprite_flip(velocity: Vector2) -> void:
+	var sprite = $Sprite2D
+	
+	# Détection de la direction du personnage
+	if velocity.x < 0:  # Si le personnage va vers la gauche
+		sprite.scale.x = -original_scale.x  # Inverser l'axe X
+		last_direction = -1  # Stocker la dernière direction (gauche)
+	elif velocity.x > 0:  # Si le personnage va vers la droite
+		sprite.scale.x = original_scale.x  # Restaurer l'axe X à sa valeur d'origine
+		last_direction = 1  # Stocker la dernière direction (droite)
+	
+	# Si le personnage est immobile, conserver la dernière direction
+	if velocity.x == 0:
+		print_debug('RESETING')
+		sprite.scale.x = original_scale.x * -last_direction

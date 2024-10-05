@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
+[ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
@@ -14,12 +15,8 @@ colors = PackedColorArray(0, 0.395666, 4.81307e-07, 1)
 gradient = SubResource("Gradient_0wxny")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
-radius = 27.91
-height = 88.66
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_go8aa"]
-radius = 27.388
-height = 87.404
+radius = 167.12
+height = 498.2
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,14 +27,17 @@ mesh = SubResource("QuadMesh_5ermm")
 texture = SubResource("GradientTexture1D_qjlxa")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-312, -88)
 floor_constant_speed = true
 script = ExtResource("1_w2unr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_jeoq6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(28.145, 36.735)
 shape = SubResource("CapsuleShape2D_s76gh")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterBody2D/CollisionShape2D"]
-mesh = SubResource("CapsuleMesh_go8aa")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
