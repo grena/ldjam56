@@ -8,6 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://ccn5t36ytwwce" path="res://music/GAMEJAMMUSIQUE-STEP-1.mp3" id="7_ncl2f"]
 [ext_resource type="AudioStream" uid="uid://b6j1rljg21ele" path="res://music/GAMEJAMMUSIQUE-STEP-2.mp3" id="8_raq7u"]
 [ext_resource type="AudioStream" uid="uid://c3pvcanc2wdq7" path="res://music/GAMEJAMMUSIQUE-STEP-3.mp3" id="9_35q50"]
+[ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" uid="uid://dyntlka7ahvkd" path="res://music/player.tscn" id="4_0ue51"]
+[ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
+[ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
+[ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
@@ -55,13 +60,13 @@ offset_bottom = 23.0
 text = "FUEL = 0"
 
 [node name="MusicPlayerStep1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ncl2f")
+stream = ExtResource("6_mcsfe")
 parameters/looping = true
 
 [node name="MusicPlayerStep2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_raq7u")
+stream = ExtResource("7_uwc50")
 parameters/looping = true
 
 [node name="MusicPlayerStep3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_35q50")
+stream = ExtResource("8_wrfyd")
 parameters/looping = true

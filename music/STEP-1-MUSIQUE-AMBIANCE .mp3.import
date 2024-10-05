@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b61hite3bih1d"
+path="res://.godot/imported/STEP-1-MUSIQUE-AMBIANCE .mp3-a4bc9f10387582a1cfc64c1017f9aff5.mp3str"
+
+[deps]
+
+source_file="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3"
+dest_files=["res://.godot/imported/STEP-1-MUSIQUE-AMBIANCE .mp3-a4bc9f10387582a1cfc64c1017f9aff5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
