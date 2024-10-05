@@ -19,9 +19,10 @@ func _generate_trees() -> void:
 	var tree_model = preload("res://tree.tscn")
 	var nb_trees = 4
 	for i in range(nb_trees):
-		var new_tree = tree_model.instantiate()
+		var new_tree: FriskyTree = tree_model.instantiate()
 		new_tree.position.x = randi() % 1000
 		new_tree.position.y = randi() % 1000
+		new_tree.set_z_index(new_tree.global_position.y / 10 + 2000)
 		new_tree.visible = true
 		new_tree.set_difficulty(randi_range(1, 3))
 			# Connecter le signal 'minigame_finished' à une méthode dans ce script
@@ -46,6 +47,7 @@ func _get_level() -> int:
 		return 1
 
 func _process(delta):
+	find_child('Fusee').set_z_index(find_child('Fusee').global_position.y / 10 + 2000)
 	var level = _get_level()
 	if level == 2 and $MusicPlayerStep2.playing == false:
 		$MusicPlayerStep1.stop()

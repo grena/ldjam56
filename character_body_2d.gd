@@ -67,6 +67,8 @@ func _physics_process(delta: float) -> void:
 		check_collision_with_frisky(collision)
 		check_collision_with_tree(collision)
 
+	self.set_z_index(self.global_position.y / 10 + 2000)
+
 # Fonction dédiée à la reconnaissance de collision
 func check_collision_with_frisky(collision) -> void:
 	var collider = collision.get_collider()

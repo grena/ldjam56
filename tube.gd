@@ -6,6 +6,9 @@ var duration_of_avale_per_tube;
 func set_duration_of_avale_per_tube(value):
 	find_child('Timer').wait_time = value / 4
 	
+func _process(delta: float) -> void:
+	self.set_z_index(self.global_position.y / 10 + 2000)
+	
 func _ready() -> void:
 	find_child('Sprite2D2').set_visible(false);
 	find_child('Sprite2D3').set_visible(false);
