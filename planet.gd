@@ -31,7 +31,7 @@ func _generate_trees() -> void:
 		self.add_child(new_tree)
 		
 func _on_minigame_finished():
-	$CharacterBody2D.exit_minigame()
+	$Player.exit_minigame()
 	# Exécuter ici toute logique nécessaire
 			
 func _on_spawn_frisky(pos):
@@ -39,9 +39,9 @@ func _on_spawn_frisky(pos):
 	spawn_frisky(pos)
 
 func _get_level() -> int:
-	if $CharacterBody2D.FUEL > 10:
+	if $Player.FUEL > 10:
 		return 3
-	elif $CharacterBody2D.FUEL > 5:
+	elif $Player.FUEL > 5:
 		return 2
 	else:
 		return 1

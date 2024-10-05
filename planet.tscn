@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
+[ext_resource type="Script" path="res://player.gd" id="1_w2unr"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
@@ -45,31 +45,31 @@ offset = Vector2(0, -200)
 [node name="Tubes" parent="Floor/Fusee" instance=ExtResource("3_ednm7")]
 scale = Vector2(3.96388, 3.72244)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-312, -88)
 floor_constant_speed = true
 script = ExtResource("1_w2unr")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_jeoq6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(9.215, 9.525)
 shape = SubResource("CapsuleShape2D_s76gh")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="BruitDePasPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+[node name="BruitDePasPlayer" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("5_yqv81")
 parameters/looping = true
 
-[node name="AspibroyeurPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+[node name="AspibroyeurPlayer" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_0i5ox")
 parameters/looping = true
 
-[node name="AspirePetitPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+[node name="AspirePetitPlayer" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("7_640a3")
 parameters/looping = false
 

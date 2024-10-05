@@ -23,7 +23,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var player = self.get_parent().get_parent().get_parent().find_child('CharacterBody2D');
+	var player = self.get_parent().get_parent().get_parent().find_child('Player');
 	var player_position: Vector2 = player.global_position;
 	var distance = _get_distance();
 	
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		
 	
 func _get_distance():
-	var player = self.get_parent().get_parent().get_parent().find_child('CharacterBody2D');
+	var player = self.get_parent().get_parent().get_parent().find_child('Player');
 	var player_position: Vector2 = player.global_position;
 	var ending_position: Vector2 = tubes[tubes.size() - 1].global_position;
 	
