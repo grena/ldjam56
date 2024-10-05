@@ -5,6 +5,9 @@ class_name FriskyTree
 # Vitesse du curseur (peut être ajustée)
 var CURSOR_SPEED = 1.0
 
+const SQUISH_AMOUNT = 0.45  # Le facteur de squish (1.0 = normal, <1.0 = compression)
+const SQUISH_TIME = 0.150    # Temps pour animer le squish
+
 # Références vers les MeshInstance2D
 var cursor : MeshInstance2D
 var success_zone : MeshInstance2D
@@ -16,6 +19,11 @@ var cursor_valid = false
 var nb_success_required = 3
 var nb_success = 0
 
+const duration_to_squish_in_seconds = 0.2
+var is_squishing = false
+var original_scale = Vector2(1, 1)
+var squish_timer = 0.0
+
 signal minigame_finished
 signal spawn_frisky
 
@@ -23,6 +31,7 @@ func _ready() -> void:
 	cursor = $MiniJeu/Cursor
 	success_zone = $MiniJeu/SuccessZone
 	mini_jeu = $MiniJeu
+	original_scale = $Sprite2D.scale
 	
 func _process(delta: float) -> void:
 	# Déplacer le curseur
@@ -32,7 +41,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if is_playing:
 			check_success()
-
+			
+	if is_squishing:
+		apply_squish_effect(delta)
+	else:
+		reset_squish_effect(delta)
+	
 func set_difficulty(diff: int) -> void:
 	cursor = $MiniJeu/Cursor
 	success_zone = $MiniJeu/SuccessZone
@@ -74,6 +88,7 @@ func move_cursor(delta: float) -> void:
 # Fonction pour vérifier si le curseur est dans la zone de succès
 func check_success() -> void:
 	if cursor_valid:
+		squish_tree()
 		nb_success += 1
 		if (nb_success == nb_success_required):
 			trigger_finish()
@@ -90,7 +105,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent() == cursor:
 		cursor_valid = false
 		
-
 func activate_minigame() -> void:
 	is_playing = true
 	mini_jeu.visible = true
@@ -105,3 +119,43 @@ func spawn_friskies() -> void:
 	for i in range(nb_friskies):
 		var frisk_pos = Vector2(position.x + randi_range(-spread_distance, spread_distance), position.y + randi_range(-spread_distance, spread_distance))
 		emit_signal("spawn_frisky", frisk_pos)
+
+func apply_squish_effect(delta: float) -> void:
+	squish_timer += delta
+	
+	# Compression sur l'axe Y et étirement sur l'axe X
+	var new_scale = original_scale
+	print_debug("DE " + str(original_scale.y) + " A " + str(SQUISH_AMOUNT))
+	new_scale.y = lerp(original_scale.y, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
+	new_scale.x = lerp(original_scale.x, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
+	
+	var sprite = $Sprite2D
+	sprite.scale = new_scale
+	
+	if squish_timer >= SQUISH_TIME:
+		squish_timer = 0.0  # Réinitialiser le timer pour répéter l'effet
+
+func reset_squish_effect(delta: float) -> void:
+	squish_timer += delta
+	
+	# Revenir à l'échelle normale
+	var sprite = $Sprite2D
+	var new_scale = sprite.scale
+	new_scale = original_scale
+	sprite.scale = new_scale
+	
+	if squish_timer >= SQUISH_TIME:
+		squish_timer = 0.0  # Réinitialiser le timer pour le squish suivant
+		
+func squish_tree() -> void:
+	is_squishing = true
+	var timer: Timer = Timer.new()
+	timer.wait_time = duration_to_squish_in_seconds
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		timer.stop();
+		timer.queue_free();
+		is_squishing = false
+	);
+	add_child(timer);
+	timer.start();

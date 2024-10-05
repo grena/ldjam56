@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
 
+
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
 

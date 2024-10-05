@@ -5,7 +5,7 @@ var FUEL = 0
 
 const SQUISH_AMOUNT = 0.15  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.2    # Temps pour animer le squish
-const ROTATION_AMOUNT = 0.2
+const ROTATION_AMOUNT = 0.15
 
 var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
