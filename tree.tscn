@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_52s5x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 23.5113
+radius = 35.0571
 
 [sub_resource type="QuadMesh" id="QuadMesh_oipee"]
 
@@ -33,11 +33,9 @@ gradient = SubResource("Gradient_we8b2")
 size = Vector2(0.844788, 1)
 
 [node name="Tree" type="Node2D"]
-position = Vector2(633, 321)
 script = ExtResource("1_ha3jt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -144.812)
 scale = Vector2(0.25, 1.73526)
 texture = ExtResource("2_52s5x")
 
@@ -45,11 +43,11 @@ texture = ExtResource("2_52s5x")
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-5.49, 0)
+position = Vector2(-1, 107)
 shape = SubResource("CircleShape2D_2761j")
 
 [node name="MiniJeu" type="MeshInstance2D" parent="."]
-position = Vector2(184.688, -69)
+position = Vector2(-3, -75)
 scale = Vector2(254.625, 13)
 mesh = SubResource("QuadMesh_oipee")
 metadata/_edit_group_ = true

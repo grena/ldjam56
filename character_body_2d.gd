@@ -10,6 +10,7 @@ const ROTATION_AMOUNT = 0.2
 var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
 var last_direction = 1  # 1 = droite, -1 = gauche
+var is_playing_mini_game = false
 
 func _ready() -> void:
 	# Activer cette caméra à la démarrage
@@ -19,6 +20,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
+	
+	if (is_playing_mini_game):
+		return
 	
 	# Gestion des déplacements avec ZQSD
 	if Input.is_action_pressed("ui_up"):
@@ -75,7 +79,9 @@ func check_collision_with_tree(collision) -> void:
 
 	# Vérification si le parent est de type "Frisky"
 	if collider_parent is FriskyTree:
-		print("Collision with a Tree!")
+		is_playing_mini_game = true
+		collider_parent.activate_minigame()
+		#print("Collision with a Tree!")
 		# On détruit la Frisky
 		#collider_parent.queue_free()
 
@@ -141,3 +147,6 @@ func reset_rotation_effect(delta: float) -> void:
 	
 	# Réduire la rotation progressivement vers 0 (neutre)
 	sprite.rotation = lerp(sprite.rotation, float(0), 0.1)
+
+func exit_minigame() -> void:
+	is_playing_mini_game = false
