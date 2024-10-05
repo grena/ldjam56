@@ -17,6 +17,7 @@ func _ready() -> void:
 	$Camera2D.make_current()
 	original_scale = $Sprite2D.scale
 	
+	$AspibroyeurPlayer.play()
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
@@ -34,6 +35,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += SPEED
 	
+	# Bruit de pas
+	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+		if $BruitDePasPlayer.playing == false:
+			$BruitDePasPlayer.play()
+	else:
+		$BruitDePasPlayer.stop()
+
 	# Appliquer le mouvement
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED

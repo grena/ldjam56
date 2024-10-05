@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=16 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
 [ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="AudioStream" uid="uid://c3o18t16wnait" path="res://music/BRUITS-PAS.mp3" id="5_yqv81"]
+[ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="6_0i5ox"]
 [ext_resource type="AudioStream" uid="uid://ccn5t36ytwwce" path="res://music/GAMEJAMMUSIQUE-STEP-1.mp3" id="7_ncl2f"]
 [ext_resource type="AudioStream" uid="uid://b6j1rljg21ele" path="res://music/GAMEJAMMUSIQUE-STEP-2.mp3" id="8_raq7u"]
 [ext_resource type="AudioStream" uid="uid://c3pvcanc2wdq7" path="res://music/GAMEJAMMUSIQUE-STEP-3.mp3" id="9_35q50"]
@@ -53,6 +55,14 @@ position = Vector2(9.215, 9.525)
 shape = SubResource("CapsuleShape2D_s76gh")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="BruitDePasPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("5_yqv81")
+parameters/looping = true
+
+[node name="AspibroyeurPlayer" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("6_0i5ox")
+parameters/looping = true
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
 

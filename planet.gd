@@ -4,8 +4,11 @@ extends Node2D
 func _ready() -> void:
 	_generate_friskies()
 	_generate_trees()
-
-	$MusicPlayerStep1.play()
+	
+	# reduce volume
+	$MusicPlayerStep1.volume_db = -10
+	$MusicPlayerStep2.volume_db = -10
+	$MusicPlayerStep3.volume_db = -10
 
 func _generate_friskies() -> void:
 	var frisky_model = preload("res://frisky.tscn")
