@@ -1,10 +1,36 @@
 [gd_scene load_steps=2 format=3 uid="uid://bd8g7h3ffwlyy"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_eu1bo"]
-size = Vector2(20, 5)
+[ext_resource type="Texture2D" uid="uid://quhkjl5jrot" path="res://assets/tuyau1.png" id="1_4o2kg"]
+[ext_resource type="Script" path="res://tube.gd" id="1_ovfjo"]
+[ext_resource type="Texture2D" uid="uid://cwslxlskv4b4g" path="res://assets/tuyau2.png" id="3_ae88u"]
+[ext_resource type="Texture2D" uid="uid://veuvsg8ynxlj" path="res://assets/tuyau3.png" id="4_124ij"]
+[ext_resource type="Texture2D" uid="uid://qxfvegh16e3l" path="res://assets/tuyau4.png" id="5_jkwcu"]
 
 [node name="Tube" type="Node2D"]
+script = ExtResource("1_ovfjo")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(10, 0)
-mesh = SubResource("QuadMesh_eu1bo")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30, -9.53674e-07)
+scale = Vector2(0.104617, 0.104617)
+texture = ExtResource("1_4o2kg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(30, -9.53674e-07)
+scale = Vector2(0.104617, 0.104617)
+texture = ExtResource("3_ae88u")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(30, -9.53674e-07)
+scale = Vector2(0.104617, 0.104617)
+texture = ExtResource("4_124ij")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(30, -9.53674e-07)
+scale = Vector2(0.104617, 0.104617)
+texture = ExtResource("5_jkwcu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
