@@ -1,10 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyntlka7ahvkd"]
+[gd_scene load_steps=10 format=3 uid="uid://nb0tl4c0g03t"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_pkhhj"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_svisb"]
 [ext_resource type="AudioStream" uid="uid://c3o18t16wnait" path="res://music/BRUITS-PAS.mp3" id="3_fvt2l"]
 [ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="4_doh38"]
 [ext_resource type="AudioStream" uid="uid://bon7ibf04t7xc" path="res://music/ASPIRATION-PETITE-BULLE.mp3" id="5_urbou"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4k4fp"]
+radius = 62.588
+height = 44.65
+
+[sub_resource type="Gradient" id="Gradient_h05s2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.141176)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_77tri"]
+gradient = SubResource("Gradient_h05s2")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
 radius = 34.24
@@ -14,7 +25,11 @@ height = 103.95
 position = Vector2(-312, -88)
 floor_constant_speed = true
 script = ExtResource("1_pkhhj")
-metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(9, 75)
+mesh = SubResource("SphereMesh_4k4fp")
+texture = SubResource("GradientTexture1D_77tri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.125)
