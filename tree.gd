@@ -17,6 +17,7 @@ var nb_success_required = 3
 var nb_success = 0
 
 signal minigame_finished
+signal spawn_frisky
 
 func _ready() -> void:
 	cursor = $MiniJeu/Cursor
@@ -96,3 +97,11 @@ func activate_minigame() -> void:
 	
 func trigger_finish() -> void:
 	emit_signal("minigame_finished")
+	spawn_friskies()
+
+func spawn_friskies() -> void:
+	var spread_distance = 150
+	var nb_friskies = randi_range(2, 4)
+	for i in range(nb_friskies):
+		var frisk_pos = Vector2(position.x + randi_range(-spread_distance, spread_distance), position.y + randi_range(-spread_distance, spread_distance))
+		emit_signal("spawn_frisky", frisk_pos)
