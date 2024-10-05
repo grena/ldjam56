@@ -1,7 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=8 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
+size = Vector2(5100, 5100)
+
+[sub_resource type="Gradient" id="Gradient_0wxny"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.395666, 4.81307e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qjlxa"]
+gradient = SubResource("Gradient_0wxny")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
 radius = 27.91
@@ -13,16 +23,32 @@ height = 87.404
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
+mesh = SubResource("QuadMesh_5ermm")
+texture = SubResource("GradientTexture1D_qjlxa")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 floor_constant_speed = true
 script = ExtResource("1_w2unr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(370, 174)
 shape = SubResource("CapsuleShape2D_s76gh")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterBody2D/CollisionShape2D"]
 mesh = SubResource("CapsuleMesh_go8aa")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="UI" type="Node2D" parent="CharacterBody2D/Camera2D"]
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D/UI"]
+offset_left = -558.0
+offset_top = -310.0
+offset_right = -493.0
+offset_bottom = -287.0
+text = "FUEL = 0"
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
 
@@ -31,12 +57,3 @@ position = Vector2(371, 449)
 
 [node name="Frisky3" parent="." instance=ExtResource("2_dw544")]
 position = Vector2(131, 162)
-
-[node name="UI" type="Node2D" parent="."]
-
-[node name="Label" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "FUEL = 0"
-
-[node name="Floor" type="Node2D" parent="."]

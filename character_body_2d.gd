@@ -3,6 +3,10 @@ extends CharacterBody2D
 const SPEED = 300.0
 var FUEL = 0
 
+func _ready() -> void:
+	# Activer cette caméra à la démarrage
+	$Camera2D.make_current()
+
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
 	
@@ -38,6 +42,9 @@ func check_collision_with_frisky(collision) -> void:
 		print("Collision with a Frisky!")
 		# On détruit la Frisky
 		collider_parent.queue_free()
-		# Mettre à jour le Label dans l'UI
-		var label = get_node("/root/Node2D/UI/Label")
-		label.text = "FUEL = " + str(FUEL)
+		update_fuel_label(FUEL)
+
+func update_fuel_label(fuel_value: int) -> void:
+	# Accéder au Label à partir de la nouvelle hiérarchie
+	var label = $Camera2D/UI/Label
+	label.text = "FUEL = " + str(fuel_value)
