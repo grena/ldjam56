@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=13 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
-[ext_resource type="PackedScene" uid="uid://1nva0jctkfg2" path="res://gui.tscn" id="10_d3lci"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
@@ -41,7 +40,7 @@ offset = Vector2(0, -200)
 scale = Vector2(3.96388, 3.72244)
 
 [node name="Player" parent="." instance=ExtResource("4_0ue51")]
-position = Vector2(0, 0)
+position = Vector2(-312, -88)
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
 
@@ -50,6 +49,13 @@ position = Vector2(371, 449)
 
 [node name="Frisky3" parent="." instance=ExtResource("2_dw544")]
 position = Vector2(131, 162)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FUEL = 0"
 
 [node name="MusicPlayerStep1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_mcsfe")
@@ -62,5 +68,3 @@ parameters/looping = true
 [node name="MusicPlayerStep3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_wrfyd")
 parameters/looping = true
-
-[node name="GUI" parent="." instance=ExtResource("10_d3lci")]

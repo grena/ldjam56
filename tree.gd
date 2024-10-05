@@ -15,6 +15,7 @@ var minigame_tronconneuse : Sprite2D
 var minigame_treefull : Sprite2D
 var minigame_treemid : Sprite2D
 var minigame_treelow : Sprite2D
+var world_tree_sprite : Sprite2D
 
 var audio_engine : AudioStreamPlayer2D
 var audio_decoupe: AudioStreamPlayer2D
@@ -44,6 +45,7 @@ func _ready() -> void:
 	audio_decoupe = $MiniGame/AudioDecoupe
 	minigame = $MiniGame
 	minigame.visible = false
+	world_tree_sprite = $Sprite2D
 	
 func _process(delta: float) -> void:
 	# Déplacer la tronconneuse
@@ -85,9 +87,9 @@ func set_difficulty(diff: int) -> void:
 	if (diff == 1):
 		CURSOR_SPEED = 500.0
 	elif (diff == 2):
-		CURSOR_SPEED = 600.0
-	elif (diff == 3):
 		CURSOR_SPEED = 700.0
+	elif (diff == 3):
+		CURSOR_SPEED = 900.0
 
 # Fonction pour déplacer le curseur de droite à gauche
 func move_tronconneuse(delta: float) -> void:
@@ -136,6 +138,10 @@ func trigger_finish() -> void:
 	spawn_friskies()
 	is_playing = false
 	minigame.visible = false
+	
+	$Sprite2D.visible = false
+	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
+	dead_sprites[randi_range(0, 2)].visible = true
 
 func spawn_friskies() -> void:
 	var spread_distance = 150

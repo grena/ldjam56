@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=19 format=3 uid="uid://bwufg82bvgwwu"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://tronconneuse.gd" id="7_t1ofq"]
 [ext_resource type="AudioStream" uid="uid://wbc26qcv684l" path="res://music/TRONCONNEUSE_MOTEUR.mp3" id="9_uiscd"]
 [ext_resource type="AudioStream" uid="uid://uw8fo2468lwh" path="res://music/TRONCONNEUSE_DECOUPE.mp3" id="10_pwffs"]
+[ext_resource type="Texture2D" uid="uid://cvxmmc51i4ql5" path="res://assets/deadtree1.png" id="11_wmlvv"]
+[ext_resource type="Texture2D" uid="uid://dofpybia6di36" path="res://assets/deadtree2.png" id="12_0vqg1"]
+[ext_resource type="Texture2D" uid="uid://dw6c0y4hwl1ju" path="res://assets/deadtree3.png" id="13_no2q2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvu6m"]
 radius = 53.21
@@ -96,6 +99,24 @@ parameters/looping = true
 
 [node name="AudioDecoupe" type="AudioStreamPlayer2D" parent="MiniGame"]
 stream = ExtResource("10_pwffs")
+
+[node name="SpriteDead1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-45, 101)
+scale = Vector2(0.527536, 0.527536)
+texture = ExtResource("11_wmlvv")
+
+[node name="SpriteDead2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(44, 98)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_0vqg1")
+
+[node name="SpriteDead3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-24, 100)
+scale = Vector2(0.440252, 0.440252)
+texture = ExtResource("13_no2q2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
