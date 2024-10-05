@@ -67,7 +67,7 @@ func check_collision_with_frisky(collision) -> void:
 
 func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie
-	var label = $Camera2D/UI/Label
+	var label = get_node("/root/Node2D/CanvasLayer/Label")
 	label.text = "FUEL = " + str(fuel_value)
 
 func apply_squish_effect(delta: float) -> void:
