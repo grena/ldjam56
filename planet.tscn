@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://6wiejoxkefau"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_w2unr"]
+[ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
+radius = 27.91
+height = 88.66
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_go8aa"]
+radius = 27.388
+height = 87.404
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+floor_constant_speed = true
+script = ExtResource("1_w2unr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(370, 174)
+shape = SubResource("CapsuleShape2D_s76gh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterBody2D/CollisionShape2D"]
+mesh = SubResource("CapsuleMesh_go8aa")
+
+[node name="Frisky" parent="." instance=ExtResource("2_dw544")]
+
+[node name="Frisky2" parent="." instance=ExtResource("2_dw544")]
+position = Vector2(371, 449)
+
+[node name="Frisky3" parent="." instance=ExtResource("2_dw544")]
+position = Vector2(131, 162)
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FUEL = 0"
+
+[node name="Floor" type="Node2D" parent="."]
