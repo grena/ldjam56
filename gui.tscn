@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://1nva0jctkfg2"]
+
+[ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 65.0
+offset_bottom = 23.0
+text = "FUEL = 0"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -451.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_tfyhi")
+expand_mode = 3

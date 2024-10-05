@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="PackedScene" uid="uid://jx4rsroxw61c" path="res://player.tscn" id="4_0ue51"]
 [ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
-[ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="7_a0wvq"]
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
+[ext_resource type="PackedScene" uid="uid://1nva0jctkfg2" path="res://gui.tscn" id="10_d3lci"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
@@ -63,20 +63,4 @@ parameters/looping = true
 stream = ExtResource("8_wrfyd")
 parameters/looping = true
 
-[node name="GUI" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="GUI"]
-offset_right = 65.0
-offset_bottom = 23.0
-text = "FUEL = 0"
-
-[node name="TextureRect" type="TextureRect" parent="GUI"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -451.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("7_a0wvq")
-expand_mode = 3
+[node name="GUI" parent="." instance=ExtResource("10_d3lci")]
