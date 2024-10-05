@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://b14dc1kdnux1n"]
 
 [ext_resource type="Script" path="res://frisky.gd" id="1_x0haf"]
-[ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_xhn1v"]
+[ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="2_nx3nc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 23.5113
+radius = 17.0294
 
 [node name="Frisky" type="Node2D"]
-position = Vector2(755, 242)
+position = Vector2(-14, -8)
 script = ExtResource("1_x0haf")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_xhn1v")
+position = Vector2(15, 5)
+scale = Vector2(0.415909, 0.415909)
+texture = ExtResource("2_nx3nc")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-5.49, 0)
+position = Vector2(15, 10)
 shape = SubResource("CircleShape2D_2761j")
