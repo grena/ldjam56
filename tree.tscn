@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=21 format=3 uid="uid://bwufg82bvgwwu"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
+[ext_resource type="Texture2D" uid="uid://b7yp56tye53cf" path="res://assets/ldjam_tree2.png" id="3_8fiv1"]
 [ext_resource type="Texture2D" uid="uid://c3ihi8v1q2xqh" path="res://assets/treecut0.png" id="3_etual"]
+[ext_resource type="Script" path="res://sprite_tree.gd" id="3_wf41c"]
 [ext_resource type="Texture2D" uid="uid://b5bes11srnmwp" path="res://assets/treecut1.png" id="4_53kqn"]
 [ext_resource type="Texture2D" uid="uid://dg2yhf21tfe7o" path="res://assets/treecut2.png" id="5_oycwc"]
 [ext_resource type="Texture2D" uid="uid://nslba22f7skl" path="res://assets/tronconneuse.png" id="6_riruh"]
@@ -34,10 +36,19 @@ gradient = SubResource("Gradient_v8o20")
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_ha3jt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.895, -12.815)
+[node name="SpriteAlive1" type="Sprite2D" parent="."]
+position = Vector2(9, 151)
 scale = Vector2(0.425087, 0.425087)
 texture = ExtResource("2_5gbys")
+offset = Vector2(0, -353.675)
+script = ExtResource("3_wf41c")
+
+[node name="SpriteAlive2" type="Sprite2D" parent="."]
+position = Vector2(1, 153)
+scale = Vector2(0.552268, 0.552268)
+texture = ExtResource("3_8fiv1")
+offset = Vector2(0, -272.36)
+script = ExtResource("3_wf41c")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0

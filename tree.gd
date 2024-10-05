@@ -5,6 +5,8 @@ class_name FriskyTree
 # Vitesse du curseur (peut être ajustée)
 var CURSOR_SPEED = 500.0
 var HEALTH = 3
+var HEIGHT_VARIATION = 0.30
+var COLOR_VARIATION = 0.3
 
 const SQUISH_AMOUNT = 0.45  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.150    # Temps pour animer le squish
@@ -15,7 +17,11 @@ var minigame_tronconneuse : Sprite2D
 var minigame_treefull : Sprite2D
 var minigame_treemid : Sprite2D
 var minigame_treelow : Sprite2D
-var world_tree_sprite : Sprite2D
+var tree_sprite_var1 : Sprite2D
+var tree_sprite_var2 : Sprite2D
+
+var tree_sprite : Sprite2D
+var original_color : Color
 
 var audio_engine : AudioStreamPlayer2D
 var audio_decoupe: AudioStreamPlayer2D
@@ -36,7 +42,6 @@ signal minigame_finished
 signal spawn_frisky
 
 func _ready() -> void:
-	original_scale = $Sprite2D.scale
 	minigame_tronconneuse = $MiniGame/Tronconneuse
 	minigame_treefull = $MiniGame/TreeFull
 	minigame_treemid = $MiniGame/TreeMid
@@ -45,7 +50,16 @@ func _ready() -> void:
 	audio_decoupe = $MiniGame/AudioDecoupe
 	minigame = $MiniGame
 	minigame.visible = false
-	world_tree_sprite = $Sprite2D
+	
+	var sprites = [$SpriteAlive1, $SpriteAlive2]
+	for i in sprites:
+		i.visible = false
+	tree_sprite = sprites[randi_range(0, 1)]
+	tree_sprite.visible = true
+	tree_sprite.scale.y += randf_range(0, HEIGHT_VARIATION)
+	original_color = Color(1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1.0)
+	tree_sprite.modulate = original_color
+	original_scale = tree_sprite.scale
 	
 func _process(delta: float) -> void:
 	# Déplacer la tronconneuse
@@ -139,7 +153,7 @@ func trigger_finish() -> void:
 	is_playing = false
 	minigame.visible = false
 	
-	$Sprite2D.visible = false
+	tree_sprite.visible = false
 	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
 	dead_sprites[randi_range(0, 2)].visible = true
 
@@ -155,10 +169,10 @@ func apply_squish_effect(delta: float) -> void:
 	
 	# Compression sur l'axe Y et étirement sur l'axe X
 	var new_scale = original_scale
-	new_scale.y = lerp(original_scale.y, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
-	new_scale.x = lerp(original_scale.x, SQUISH_AMOUNT, squish_timer / SQUISH_TIME)
+	new_scale.y = lerp(original_scale.y, original_scale.y-0.02, squish_timer / SQUISH_TIME)
+	new_scale.x = lerp(original_scale.x, original_scale.x-0.02, squish_timer / SQUISH_TIME)
 	
-	var sprite = $Sprite2D
+	var sprite = tree_sprite
 	sprite.scale = new_scale
 	
 	if squish_timer >= SQUISH_TIME:
@@ -168,7 +182,7 @@ func reset_squish_effect(delta: float) -> void:
 	squish_timer += delta
 	
 	# Revenir à l'échelle normale
-	var sprite = $Sprite2D
+	var sprite = tree_sprite
 	var new_scale = sprite.scale
 	new_scale = original_scale
 	sprite.scale = new_scale
@@ -201,7 +215,7 @@ func toggle_wait_for_interaction():
 	is_waiting_for_player_interaction = !is_waiting_for_player_interaction
 	
 	if (is_waiting_for_player_interaction):
-		$Sprite2D.modulate = Color(1.3, 1.3, 1.3, 1.0)  # Rendre le sprite plus clair
+		tree_sprite.modulate = Color(1.3, 1.3, 1.3, 1.0)  # Rendre le sprite plus clair
 		squish_tree()
 	else:
-		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 1.0)  # Revenir à la couleur normale
+		tree_sprite.modulate = original_color  # Revenir à la couleur normale
