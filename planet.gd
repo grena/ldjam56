@@ -13,3 +13,7 @@ func _generate_friskies() -> void:
 		new_frisky.position.y = randi() % 1000
 		new_frisky.visible = true
 		self.add_child(new_frisky)
+
+func _process(delta):
+	if $MusicPlayer.playing == false:
+		$MusicPlayer.play()
