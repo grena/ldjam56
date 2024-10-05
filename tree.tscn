@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=14 format=3 uid="uid://bwufg82bvgwwu"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 46.2709
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvu6m"]
+radius = 53.21
+height = 135.26
 
 [sub_resource type="QuadMesh" id="QuadMesh_oipee"]
 
@@ -32,6 +33,10 @@ gradient = SubResource("Gradient_we8b2")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atpo5"]
 size = Vector2(0.844788, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60wmt"]
+radius = 56.41
+height = 156.12
+
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_ha3jt")
 
@@ -44,8 +49,9 @@ texture = ExtResource("2_5gbys")
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-1, 107)
-shape = SubResource("CircleShape2D_2761j")
+position = Vector2(-2.37, 127.935)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fvu6m")
 
 [node name="MiniJeu" type="MeshInstance2D" parent="."]
 position = Vector2(-3, -75)
@@ -74,5 +80,15 @@ texture = SubResource("GradientTexture1D_tlm4p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiniJeu/Cursor/Area2D"]
 shape = SubResource("RectangleShape2D_atpo5")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 131.59)
+rotation = 1.5708
+scale = Vector2(1.41, 1.41)
+shape = SubResource("CapsuleShape2D_60wmt")
+
 [connection signal="area_entered" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

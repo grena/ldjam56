@@ -24,6 +24,8 @@ var is_squishing = false
 var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
 
+var is_waiting_for_player_interaction = false
+
 signal minigame_finished
 signal spawn_frisky
 
@@ -159,3 +161,20 @@ func squish_tree() -> void:
 	);
 	add_child(timer);
 	timer.start();
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if (body.name == 'Player'):
+		toggle_wait_for_interaction() 
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if (body.name == 'Player'):
+		toggle_wait_for_interaction() 
+
+func toggle_wait_for_interaction():
+	is_waiting_for_player_interaction = !is_waiting_for_player_interaction
+	
+	if (is_waiting_for_player_interaction):
+		$Sprite2D.modulate = Color(1.3, 1.3, 1.3, 1.0)  # Rendre le sprite plus clair
+		squish_tree()
+	else:
+		$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 1.0)  # Revenir à la couleur normale

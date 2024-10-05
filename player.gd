@@ -91,12 +91,13 @@ func check_collision_with_tree(collision) -> void:
 
 	# Vérification si le parent est de type "Frisky"
 	if collider_parent is FriskyTree:
+		return
 		is_playing_mini_game = true
 		collider_parent.activate_minigame()
 		#print("Collision with a Tree!")
 		# On détruit la Frisky
 		#collider_parent.queue_free()
-
+	
 func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie
 	var label = get_node("/root/Node2D/CanvasLayer/Label")

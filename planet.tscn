@@ -5,11 +5,10 @@
 [ext_resource type="Script" path="res://floor.gd" id="2_62xmw"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
 [ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
-[ext_resource type="PackedScene" uid="uid://nb0tl4c0g03t" path="res://player.tscn" id="4_0ue51"]
+[ext_resource type="PackedScene" uid="uid://jx4rsroxw61c" path="res://player.tscn" id="4_0ue51"]
 [ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
-
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
