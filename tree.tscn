@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=13 format=3 uid="uid://cq42vmqlx4bkm"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_52s5x"]
@@ -17,6 +17,9 @@ colors = PackedColorArray(0, 0.545098, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4l5no"]
 gradient = SubResource("Gradient_k3his")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77tvo"]
+size = Vector2(0.983799, 0.923077)
+
 [sub_resource type="QuadMesh" id="QuadMesh_kxxve"]
 
 [sub_resource type="Gradient" id="Gradient_we8b2"]
@@ -26,10 +29,12 @@ colors = PackedColorArray(0.929412, 0.87451, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tlm4p"]
 gradient = SubResource("Gradient_we8b2")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atpo5"]
+size = Vector2(0.844788, 1)
+
 [node name="Tree" type="Node2D"]
 position = Vector2(633, 321)
 script = ExtResource("1_ha3jt")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -144.812)
@@ -44,18 +49,31 @@ position = Vector2(-5.49, 0)
 shape = SubResource("CircleShape2D_2761j")
 
 [node name="MiniJeu" type="MeshInstance2D" parent="."]
-position = Vector2(144.625, 8.5)
-scale = Vector2(179.25, 13)
+position = Vector2(184.688, -69)
+scale = Vector2(254.625, 13)
 mesh = SubResource("QuadMesh_oipee")
+metadata/_edit_group_ = true
 
 [node name="SuccessZone" type="MeshInstance2D" parent="MiniJeu"]
-position = Vector2(-0.0620641, 0)
-scale = Vector2(0.13947, 1)
+scale = Vector2(0.25, 1)
 mesh = SubResource("QuadMesh_7cd3t")
 texture = SubResource("GradientTexture1D_4l5no")
 
+[node name="Area2D" type="Area2D" parent="MiniJeu/SuccessZone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniJeu/SuccessZone/Area2D"]
+shape = SubResource("RectangleShape2D_77tvo")
+
 [node name="Cursor" type="MeshInstance2D" parent="MiniJeu"]
-position = Vector2(-0.0620642, -0.0384622)
+position = Vector2(0.5, 0)
 scale = Vector2(0.0278936, 1.84615)
 mesh = SubResource("QuadMesh_kxxve")
 texture = SubResource("GradientTexture1D_tlm4p")
+
+[node name="Area2D" type="Area2D" parent="MiniJeu/Cursor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniJeu/Cursor/Area2D"]
+shape = SubResource("RectangleShape2D_atpo5")
+
+[connection signal="area_entered" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_exited"]

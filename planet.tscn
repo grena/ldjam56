@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_jeoq6"]
 [ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="AudioStream" uid="uid://ccn5t36ytwwce" path="res://music/GAMEJAMMUSIQUE-STEP-1.mp3" id="7_ncl2f"]
+[ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="5_nxqa3"]
+[ext_resource type="PackedScene" uid="uid://cq42vmqlx4bkm" path="res://tree.tscn" id="6_2okta"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
