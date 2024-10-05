@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	# Si une collision est détectée
 	if collision:
 		check_collision_with_frisky(collision)
+		check_collision_with_tree(collision)
 
 # Fonction dédiée à la reconnaissance de collision
 func check_collision_with_frisky(collision) -> void:
@@ -66,6 +67,17 @@ func check_collision_with_frisky(collision) -> void:
 		# On détruit la Frisky
 		collider_parent.queue_free()
 		update_fuel_label(FUEL)
+
+# Fonction dédiée à la reconnaissance de collision
+func check_collision_with_tree(collision) -> void:
+	var collider = collision.get_collider()
+	var collider_parent = collider.get_parent()
+
+	# Vérification si le parent est de type "Frisky"
+	if collider_parent is FriskyTree:
+		print("Collision with a Tree!")
+		# On détruit la Frisky
+		#collider_parent.queue_free()
 
 func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie

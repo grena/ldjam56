@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwufg82bvgwwu"]
+
+[ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
+[ext_resource type="Texture2D" uid="uid://bnbd3gv74mbiv" path="res://assets/ldjam56_frisky.png" id="2_52s5x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
+radius = 23.5113
+
+[node name="Tree" type="Node2D"]
+position = Vector2(760, 283)
+script = ExtResource("1_ha3jt")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -144.812)
+scale = Vector2(0.25, 1.73526)
+texture = ExtResource("2_52s5x")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-5.49, 0)
+shape = SubResource("CircleShape2D_2761j")
