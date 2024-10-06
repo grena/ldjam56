@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Bush
+
 var bush_sprite_var1 : Sprite2D
 var bush_sprite_var2 : Sprite2D
 var bush_sprite_var3 : Sprite2D
@@ -23,6 +25,18 @@ func _ready() -> void:
 	bush_sprite.modulate = original_color
 	original_scale = bush_sprite.scale
 
+func tu_moisis() -> void:
+   # Créer un Tween
+	var tween = create_tween()
+	var duration = 4.0
+	# Animer l'échelle (scale) vers zéro (ratatinement)
+	tween.tween_property(self, "scale", Vector2.ZERO, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	# Animer la transparence (modulate.a) vers zéro (disparition)
+	tween.tween_property(self, "modulate:a", 0.0, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "modulate", Color(0.55, 0.27, 0.07), duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		
+	# Optionnel : libérer le sprite une fois l'animation terminée
+	tween.tween_callback(Callable(self, "queue_free"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
