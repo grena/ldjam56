@@ -213,6 +213,7 @@ func decolle_batard():
 	get_parent().get_node("Player").visible = false
 	get_parent().get_node("Tubes").visible = false
 	get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
+	get_parent().get_node("Player").get_node("AspibroyeurPlayer").stop()
 	var magrossefuseeturgecente = get_parent().get_node("Fusee")
 	# son dcollage
 	magrossefuseeturgecente.get_node("DecollagePlayer").play()
@@ -227,7 +228,7 @@ func decolle_batard():
 			magrossefuseeturgecente,
 			"position",
 			magrossefuseeturgecente.position - Vector2(0, 1200),
-			3
+			10
 		)
 
 		timer.stop();
