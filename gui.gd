@@ -24,6 +24,12 @@ func _process(delta: float) -> void:
 	print(niveau_fuel.size.y)
 	niveau_fuel.position.y = position_origin - fuel_percentage * 100 
 
+	# fermer la fenetre
+	if Input.is_action_pressed("ui_accept"):
+		var panel_talk = get_node("TalkPanelRect")
+		if panel_talk.visible == true:
+			panel_talk.visible = false
+
 
 func _on_button_pressed_start_game() -> void:
 	#get_node("StartGameRect/IntroPlayer").play()
@@ -72,7 +78,8 @@ func demarre_sur_planete():
 	var texts = [
 		"\nJacques, we don't have any more fuel.\n",
 		"You can refill using purple stuff with your aspirator\n",
-		"Take care, legend tells huge creatures are around..."
+		"Take care, legend tells huge creatures are around...\n",
+		"(Press space to close)"
 	]
 	var cortana_voix = [
 		$TalkPanelRect/CortanaPlayer1,
@@ -109,14 +116,14 @@ func demarre_sur_planete():
 	add_child(timer);
 	timer.start();
 	# ferme le panneau
-	my_wait_time = my_wait_time + 1
-	var timer2: Timer = Timer.new()
-	timer2.wait_time = my_wait_time;
-	timer2.one_shot = true;
-	timer2.connect('timeout', func ():
-		get_node("TalkPanelRect").visible = false
-		timer2.stop();
-		timer2.queue_free();
-	);
-	add_child(timer2);
-	timer2.start();
+	#my_wait_time = my_wait_time + 1
+	#var timer2: Timer = Timer.new()
+	#timer2.wait_time = my_wait_time;
+	#timer2.one_shot = true;
+	#timer2.connect('timeout', func ():
+		#get_node("TalkPanelRect").visible = false
+		#timer2.stop();
+		#timer2.queue_free();
+	#);
+	#add_child(timer2);
+	#timer2.start();
