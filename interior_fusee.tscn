@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c33dhlmtkjl6n"]
+[gd_scene load_steps=15 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cv4nee3ned1pg" path="res://assets/gui_translator_on.png" id="6_sm55x"]
 [ext_resource type="Texture2D" uid="uid://dgtodbt3jlxvu" path="res://assets/gui_world_overlay.png" id="7_nvm45"]
 [ext_resource type="Texture2D" uid="uid://y8dcww7pnqcl" path="res://assets/gui_xray_on.png" id="8_gj0es"]
+[ext_resource type="Texture2D" uid="uid://cifstch33mkai" path="res://assets/xray_mid.png" id="12_6vuy1"]
+[ext_resource type="Texture2D" uid="uid://baeps0fr6pngy" path="res://assets/xray1.png" id="13_gyggj"]
+[ext_resource type="Texture2D" uid="uid://swdoox5m506e" path="res://assets/xray2.png" id="14_xg8gt"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
@@ -81,3 +84,43 @@ offset_top = -133.0
 offset_right = 136.0
 offset_bottom = 134.0
 texture = ExtResource("3_5y7bc")
+
+[node name="XRayMid" type="TextureRect" parent="Node2D"]
+offset_left = 99.0
+offset_top = 56.0
+offset_right = 834.0
+offset_bottom = 791.0
+rotation = -0.0129188
+scale = Vector2(0.436812, 0.436812)
+pivot_offset = Vector2(367, 367)
+texture = ExtResource("12_6vuy1")
+
+[node name="XRay1" type="TextureRect" parent="Node2D"]
+offset_left = 105.0
+offset_top = 66.0
+offset_right = 840.0
+offset_bottom = 801.0
+rotation = -0.0329641
+scale = Vector2(0.467781, 0.467781)
+pivot_offset = Vector2(367, 367)
+texture = ExtResource("13_gyggj")
+
+[node name="XRay2" type="TextureRect" parent="Node2D"]
+offset_left = 105.0
+offset_top = 66.0
+offset_right = 840.0
+offset_bottom = 801.0
+rotation = -0.0329641
+scale = Vector2(0.467781, 0.467781)
+pivot_offset = Vector2(367, 367)
+texture = ExtResource("14_xg8gt")
+
+[node name="XRayMidChange" type="Timer" parent="."]
+autostart = true
+
+[node name="XrayRemoveBlob" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="XRayMidChange" to="." method="_on_x_ray_mid_change_timeout"]
+[connection signal="timeout" from="XrayRemoveBlob" to="." method="_on_xray_remove_blob_timeout"]

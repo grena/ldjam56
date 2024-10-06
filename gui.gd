@@ -121,6 +121,7 @@ func passage_niveau_deux():
 	get_parent().get_node("MusicPlayerStep2").play()
 	get_parent().get_node("UpgradeLevelPlayer").play()
 	get_node("TextureRect").set_sound_on()
+	get_node("TextureRect").set_xray_on()
 	var texts = [
 		"\nFuel level 1 reached.\n",
 		"Chain saw enabled.\n",
