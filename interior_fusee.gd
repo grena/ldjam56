@@ -34,7 +34,5 @@ func _process(delta: float) -> void:
 	rota = rota + delta * 2
 	$Node2D/Fuel/Fuel.position.x = cos(rota) * 50
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		velocity += velocity_on_mixage
-		set_remplissage(1.0)
+func run_mixer():
+	velocity += velocity_on_mixage

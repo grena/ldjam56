@@ -80,24 +80,20 @@ func crie_bestiole():
 		var player = crie_level_2.pick_random()
 		if level == 3:
 			player = crie_level_3.pick_random()
-		var timer: Timer = Timer.new()
-		timer.wait_time = duration_to_arrive_to_fusee_in_seconds;
-		timer.one_shot = true;
-		timer.connect('timeout', func ():
-			player.play();
-			$BroyeurPlayer.play();
-			timer.stop();
-			timer.queue_free();
-		);
-		add_child(timer);
-		timer.start();
+		broyeur_solo(player)
 
-func broyeur_solo():
+func broyeur_solo(cri_player = null):
 	var timer: Timer = Timer.new()
 	timer.wait_time = duration_to_arrive_to_fusee_in_seconds;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
+		# des cris
+		if cri_player:
+			cri_player.play();
+		# du broyeur
 		$BroyeurPlayer.play()
+		get_parent().get_parent().get_parent().get_node("GUI/TextureRect").run_mixer()
+		
 		timer.stop();
 		timer.queue_free();
 	);
