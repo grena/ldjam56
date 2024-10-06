@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbv67cdvtai67"
+path="res://.godot/imported/CANDYS PHASE 3 MORT 1.mp3-0aff39d7d8bae3c8c166a976239eeade.mp3str"
+
+[deps]
+
+source_file="res://music/CANDYS PHASE 3 MORT 1.mp3"
+dest_files=["res://.godot/imported/CANDYS PHASE 3 MORT 1.mp3-0aff39d7d8bae3c8c166a976239eeade.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

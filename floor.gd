@@ -1,5 +1,8 @@
 extends Node2D
 
+const limit = 2000
+const asset_count = 300
+
 @onready var Floor0 = preload('res://assets/floor0.png')
 @onready var Floor1 = preload('res://assets/floor1.png')
 @onready var Floor2 = preload('res://assets/floor2.png')
@@ -16,14 +19,14 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for x in range(0, 100):
+	for x in range(0, asset_count):
 		var deco = Sprite2D.new();
 		var floors = [Floor0, Floor1, Floor2, Floor3, Floor4, Floor5, Floor6, Floor7, Floor8, Floor9, Floor10, Floor11, Floor12];
 		deco.texture = floors[randi_range(0, floors.size() - 1)];
 		deco.scale = Vector2(0.5, 0.5)
 		deco.global_position = Vector2(
-			randf_range(-1000, 1000),
-			randf_range(-1000, 1000)
+			randf_range(-limit, limit),
+			randf_range(-limit, limit)
 		);
 		add_child(deco);
 

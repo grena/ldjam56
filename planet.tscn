@@ -1,25 +1,34 @@
-[gd_scene load_steps=14 format=3 uid="uid://6wiejoxkefau"]
+[gd_scene load_steps=18 format=3 uid="uid://6wiejoxkefau"]
 
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
 [ext_resource type="Script" path="res://floor.gd" id="2_62xmw"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
-[ext_resource type="PackedScene" path="res://tubes.tscn" id="3_ednm7"]
-[ext_resource type="PackedScene" uid="uid://jx4rsroxw61c" path="res://player.tscn" id="4_0ue51"]
+[ext_resource type="PackedScene" uid="uid://be81gjpeks074" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" uid="uid://nb0tl4c0g03t" path="res://player.tscn" id="4_0ue51"]
 [ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
+[ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="10_1v4mo"]
 [ext_resource type="PackedScene" uid="uid://1nva0jctkfg2" path="res://gui.tscn" id="10_d3lci"]
+[ext_resource type="PackedScene" path="res://leaf.tscn" id="11_aykir"]
+[ext_resource type="AudioStream" uid="uid://7l3vtphnmcky" path="res://music/TRANSITION AMELIORATIONS.mp3" id="11_dg3yf"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
 
 [sub_resource type="Gradient" id="Gradient_0wxny"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.341176, 0.27451, 0.243137, 1)
+colors = PackedColorArray(0.301585, 0.241068, 0.212582, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qjlxa"]
 gradient = SubResource("Gradient_0wxny")
+
+[sub_resource type="Environment" id="Environment_sxjue"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.51
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bv744")
@@ -28,11 +37,12 @@ script = ExtResource("1_bv744")
 script = ExtResource("2_62xmw")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
+position = Vector2(-558, -270)
 mesh = SubResource("QuadMesh_5ermm")
 texture = SubResource("GradientTexture1D_qjlxa")
 
 [node name="Fusee" type="Sprite2D" parent="Floor"]
-position = Vector2(-557, -163)
+position = Vector2(-261, -9)
 scale = Vector2(0.252278, 0.268641)
 texture = ExtResource("2_4kd2f")
 offset = Vector2(0, -200)
@@ -41,9 +51,9 @@ offset = Vector2(0, -200)
 scale = Vector2(3.96388, 3.72244)
 
 [node name="Player" parent="." instance=ExtResource("4_0ue51")]
-position = Vector2(0, 0)
 
 [node name="Frisky" parent="." instance=ExtResource("2_dw544")]
+position = Vector2(251, 26)
 
 [node name="Frisky2" parent="." instance=ExtResource("2_dw544")]
 position = Vector2(371, 449)
@@ -63,4 +73,18 @@ parameters/looping = true
 stream = ExtResource("8_wrfyd")
 parameters/looping = true
 
+[node name="IntroPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1v4mo")
+parameters/looping = false
+
+[node name="UpgradeLevelPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dg3yf")
+parameters/looping = false
+
 [node name="GUI" parent="." instance=ExtResource("10_d3lci")]
+
+[node name="Leaf" parent="." instance=ExtResource("11_aykir")]
+position = Vector2(151, -61)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sxjue")

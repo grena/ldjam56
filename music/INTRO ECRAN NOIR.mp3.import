@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfv8m0hkbsp21"
+path="res://.godot/imported/INTRO ECRAN NOIR.mp3-192cf3bc72736a637615b6d690692044.mp3str"
+
+[deps]
+
+source_file="res://music/INTRO ECRAN NOIR.mp3"
+dest_files=["res://.godot/imported/INTRO ECRAN NOIR.mp3-192cf3bc72736a637615b6d690692044.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

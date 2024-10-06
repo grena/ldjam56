@@ -1,49 +1,54 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=21 format=3 uid="uid://bwufg82bvgwwu"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
+[ext_resource type="Texture2D" uid="uid://b7yp56tye53cf" path="res://assets/ldjam_tree2.png" id="3_8fiv1"]
+[ext_resource type="Texture2D" uid="uid://c3ihi8v1q2xqh" path="res://assets/treecut0.png" id="3_etual"]
+[ext_resource type="Script" path="res://sprite_tree.gd" id="3_wf41c"]
+[ext_resource type="Texture2D" uid="uid://b5bes11srnmwp" path="res://assets/treecut1.png" id="4_53kqn"]
+[ext_resource type="Texture2D" uid="uid://dg2yhf21tfe7o" path="res://assets/treecut2.png" id="5_oycwc"]
+[ext_resource type="Texture2D" uid="uid://nslba22f7skl" path="res://assets/tronconneuse.png" id="6_riruh"]
+[ext_resource type="Texture2D" uid="uid://l0bodcdj2nh7" path="res://assets/window.png" id="7_jb5y0"]
+[ext_resource type="Script" path="res://tronconneuse.gd" id="7_t1ofq"]
+[ext_resource type="AudioStream" uid="uid://wbc26qcv684l" path="res://music/TRONCONNEUSE_MOTEUR.mp3" id="9_uiscd"]
+[ext_resource type="AudioStream" uid="uid://uw8fo2468lwh" path="res://music/TRONCONNEUSE_DECOUPE.mp3" id="10_pwffs"]
+[ext_resource type="Texture2D" uid="uid://cvxmmc51i4ql5" path="res://assets/deadtree1.png" id="11_wmlvv"]
+[ext_resource type="Texture2D" uid="uid://dofpybia6di36" path="res://assets/deadtree2.png" id="12_0vqg1"]
+[ext_resource type="Texture2D" uid="uid://dw6c0y4hwl1ju" path="res://assets/deadtree3.png" id="13_no2q2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvu6m"]
 radius = 53.21
 height = 135.26
 
-[sub_resource type="QuadMesh" id="QuadMesh_oipee"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_7cd3t"]
-
-[sub_resource type="Gradient" id="Gradient_k3his"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.545098, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4l5no"]
-gradient = SubResource("Gradient_k3his")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_77tvo"]
-size = Vector2(0.983799, 0.923077)
-
-[sub_resource type="QuadMesh" id="QuadMesh_kxxve"]
-
-[sub_resource type="Gradient" id="Gradient_we8b2"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.929412, 0.87451, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tlm4p"]
-gradient = SubResource("Gradient_we8b2")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_atpo5"]
-size = Vector2(0.844788, 1)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60wmt"]
 radius = 56.41
 height = 156.12
 
+[sub_resource type="QuadMesh" id="QuadMesh_n5vmb"]
+
+[sub_resource type="Gradient" id="Gradient_v8o20"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jshdc"]
+gradient = SubResource("Gradient_v8o20")
+
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_ha3jt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.895, -12.815)
+[node name="SpriteAlive1" type="Sprite2D" parent="."]
+position = Vector2(9, 151)
 scale = Vector2(0.425087, 0.425087)
 texture = ExtResource("2_5gbys")
+offset = Vector2(0, -353.675)
+script = ExtResource("3_wf41c")
+
+[node name="SpriteAlive2" type="Sprite2D" parent="."]
+position = Vector2(1, 153)
+scale = Vector2(0.552268, 0.552268)
+texture = ExtResource("3_8fiv1")
+offset = Vector2(0, -272.36)
+script = ExtResource("3_wf41c")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -52,33 +57,7 @@ gravity_scale = 0.0
 position = Vector2(-2.37, 127.935)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fvu6m")
-
-[node name="MiniJeu" type="MeshInstance2D" parent="."]
-position = Vector2(-3, -75)
-scale = Vector2(254.625, 13)
-mesh = SubResource("QuadMesh_oipee")
-metadata/_edit_group_ = true
-
-[node name="SuccessZone" type="MeshInstance2D" parent="MiniJeu"]
-scale = Vector2(0.25, 1)
-mesh = SubResource("QuadMesh_7cd3t")
-texture = SubResource("GradientTexture1D_4l5no")
-
-[node name="Area2D" type="Area2D" parent="MiniJeu/SuccessZone"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniJeu/SuccessZone/Area2D"]
-shape = SubResource("RectangleShape2D_77tvo")
-
-[node name="Cursor" type="MeshInstance2D" parent="MiniJeu"]
-position = Vector2(0.5, 0)
-scale = Vector2(0.0278936, 1.84615)
-mesh = SubResource("QuadMesh_kxxve")
-texture = SubResource("GradientTexture1D_tlm4p")
-
-[node name="Area2D" type="Area2D" parent="MiniJeu/Cursor"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniJeu/Cursor/Area2D"]
-shape = SubResource("RectangleShape2D_atpo5")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -88,7 +67,80 @@ rotation = 1.5708
 scale = Vector2(1.41, 1.41)
 shape = SubResource("CapsuleShape2D_60wmt")
 
-[connection signal="area_entered" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="MiniJeu/SuccessZone/Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="MiniGame" type="Node2D" parent="."]
+visible = false
+z_index = 2000
+
+[node name="Background" type="MeshInstance2D" parent="MiniGame"]
+position = Vector2(-0.999999, 0.500001)
+scale = Vector2(584, 487)
+mesh = SubResource("QuadMesh_n5vmb")
+texture = SubResource("GradientTexture1D_jshdc")
+
+[node name="TreeFull" type="Sprite2D" parent="MiniGame"]
+position = Vector2(19.56, 1.175)
+scale = Vector2(0.449, 0.779)
+texture = ExtResource("3_etual")
+
+[node name="TreeMid" type="Sprite2D" parent="MiniGame"]
+visible = false
+position = Vector2(19.5, 10.1225)
+scale = Vector2(0.491404, 0.751886)
+texture = ExtResource("4_53kqn")
+
+[node name="TreeLow" type="Sprite2D" parent="MiniGame"]
+visible = false
+position = Vector2(20.9295, 10.123)
+scale = Vector2(0.486904, 0.752)
+texture = ExtResource("5_oycwc")
+
+[node name="Tronconneuse" type="Sprite2D" parent="MiniGame"]
+position = Vector2(126.195, 149)
+scale = Vector2(0.159041, 0.159041)
+texture = ExtResource("6_riruh")
+script = ExtResource("7_t1ofq")
+
+[node name="Cadre" type="Sprite2D" parent="MiniGame"]
+scale = Vector2(0.363, 0.413)
+texture = ExtResource("7_jb5y0")
+
+[node name="AudioEngine" type="AudioStreamPlayer2D" parent="MiniGame"]
+stream = ExtResource("9_uiscd")
+volume_db = 2.147
+parameters/looping = true
+
+[node name="AudioDecoupe" type="AudioStreamPlayer2D" parent="MiniGame"]
+stream = ExtResource("10_pwffs")
+
+[node name="SpriteDead1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-55, 118)
+scale = Vector2(0.608696, 0.608696)
+texture = ExtResource("11_wmlvv")
+
+[node name="SpriteDead2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(59, 106)
+scale = Vector2(0.603174, 0.603175)
+texture = ExtResource("12_0vqg1")
+
+[node name="SpriteDead3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-37, 111)
+scale = Vector2(0.534591, 0.534591)
+texture = ExtResource("13_no2q2")
+
+[node name="LeafSpots" type="Node2D" parent="."]
+position = Vector2(-1, -35)
+
+[node name="LeafSpot" type="Node2D" parent="LeafSpots"]
+position = Vector2(-66, -15)
+
+[node name="LeafSpot2" type="Node2D" parent="LeafSpots"]
+position = Vector2(53, -43)
+
+[node name="LeafSpot3" type="Node2D" parent="LeafSpots"]
+position = Vector2(46, 81)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
