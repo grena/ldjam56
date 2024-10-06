@@ -5,7 +5,7 @@ extends Node2D
 const tubes_count = 20;
 var tubes: Array = [];
 const tube_length = 60;
-const duration_to_arrive_to_fusee_in_seconds = 3.0
+const duration_to_arrive_to_fusee_in_seconds = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
