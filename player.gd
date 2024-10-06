@@ -6,6 +6,7 @@ var FUEL = 0
 const SQUISH_AMOUNT = 0.15  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.2    # Temps pour animer le squish
 const ROTATION_AMOUNT = 0.15
+const MAX_RADIUS = 1500
 
 var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
@@ -77,6 +78,11 @@ func _physics_process(delta: float) -> void:
 		check_collision_with_tree(collision)
 
 	self.set_z_index(self.global_position.y / 10 + 2000)
+	
+	var distance_to_center = self.global_position.distance_to(Vector2(0, 0))
+	if distance_to_center > MAX_RADIUS:
+		var new_position = self.global_position.normalized() * MAX_RADIUS
+		self.global_position = new_position
 
 # Fonction dédiée à la reconnaissance de collision
 func check_collision_with_frisky(collision) -> void:
