@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
+[gd_scene load_steps=13 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="PackedScene" path="res://interior_fusee.tscn" id="2_1v42l"]
@@ -12,17 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://cdjqi1yp4a7oi" path="res://music/VOIX CORTANA 3.mp3" id="8_qbjws"]
 [ext_resource type="AudioStream" uid="uid://cuh37pbwopwdk" path="res://music/VOIX CORTANA 4.mp3" id="9_qy2sc"]
 [ext_resource type="AudioStream" uid="uid://rtxtoq260x56" path="res://music/VOIX CORTANA 5.mp3" id="10_1pmal"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_fs7iw"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_ofj8h"]
-
-[sub_resource type="Gradient" id="Gradient_k3his"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.545098, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ibko"]
-gradient = SubResource("Gradient_k3his")
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_7anfd")
@@ -97,29 +86,6 @@ stream = ExtResource("9_qy2sc")
 
 [node name="CortanaPlayer5" type="AudioStreamPlayer" parent="TalkPanelRect"]
 stream = ExtResource("10_1pmal")
-
-[node name="Jauge" type="MeshInstance2D" parent="."]
-visible = false
-position = Vector2(1049.5, 430.5)
-scale = Vector2(75.0001, 69)
-mesh = SubResource("QuadMesh_fs7iw")
-
-[node name="NiveauFuel" type="MeshInstance2D" parent="Jauge"]
-position = Vector2(-0.00666618, -0.00396824)
-scale = Vector2(0.986666, 0.992063)
-mesh = SubResource("QuadMesh_ofj8h")
-texture = SubResource("GradientTexture1D_1ibko")
-
-[node name="JaugeFuel" type="ColorRect" parent="."]
-anchors_preset = -1
-anchor_left = 0.978
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -24.656
-grow_horizontal = 0
-grow_vertical = 0
-color = Color(0.129412, 1, 0.309804, 1)
 
 [node name="StartGameRect" type="ColorRect" parent="."]
 anchors_preset = 15
