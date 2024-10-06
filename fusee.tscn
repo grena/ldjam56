@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://draygko8epbm5"]
+[gd_scene load_steps=4 format=3 uid="uid://binblxroq7xii"]
 
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="1_uq2ol"]
 [ext_resource type="Script" path="res://fusee.gd" id="2_mmhxs"]

@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		reset_squish_effect(delta)
 		
 func get_in_fusee():
-	print_debug('JACQUES IN THE FUSEE')
+	get_parent().get_node("GUI").decolle_batard()
 
 func apply_squish_effect(delta: float) -> void:
 	squish_timer += delta

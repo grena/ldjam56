@@ -204,3 +204,6 @@ func affiche_dialogue(texts):
 	);
 	add_child(timer);
 	timer.start();
+
+func decolle_batard():
+	print("toltooto a decole")

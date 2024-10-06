@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c33dhlmtkjl6n"]
+[gd_scene load_steps=16 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
