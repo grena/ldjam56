@@ -11,7 +11,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var player = get_parent().get_node('Player')
 	var fuel_percentage = player.FUEL / MAX_FUEL # 200 fuel = 100% donc on calcule le pourcentage
+<<<<<<< HEAD
 	$TextureRect.set_remplissage(fuel_percentage)
+=======
+	# Appliquer la mise à jour de la taille (échelle) de la jauge en fonction de fuel_percentage
+	# On suppose ici que la hauteur de la jauge est liée à son échelle sur l'axe Y
+	#niveau_fuel.scale.y = fuel_percentage  # Ajuster l'échelle Y en fonction du pourcentage
+	#print('coucou', niveau_fuel.scale.y)
+	niveau_fuel.size.y = fuel_percentage * 100   # Ajuster l'échelle Y en fonction du pourcentage
+	niveau_fuel.position.y = position_origin - fuel_percentage * 100 
+>>>>>>> e6899ad0b375c91aabdba93485183bdecddcfb6e
 
 	# fermer la fenetre
 	if Input.is_action_pressed("ui_accept"):
@@ -63,6 +72,7 @@ func demarre_sur_planete():
 	get_node("IntroGameRect").visible = false
 	get_parent().get_node("MusicPlayerStep1").play()
 	get_node("TalkPanelRect").visible = true
+	get_node("TalkPanelRect/HBoxContainer/JackRect").visible = false
 	# affiche textes
 	var texts = [
 		"\nJacques, we don't have any more fuel.\n",
@@ -98,21 +108,10 @@ func demarre_sur_planete():
 	timer.wait_time = my_wait_time;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
+		get_node("TalkPanelRect/HBoxContainer/JackRect").visible = true
 		$TalkPanelRect/JackDitOkPlayer.play()
 		timer.stop();
 		timer.queue_free();
 	);
 	add_child(timer);
 	timer.start();
-	# ferme le panneau
-	#my_wait_time = my_wait_time + 1
-	#var timer2: Timer = Timer.new()
-	#timer2.wait_time = my_wait_time;
-	#timer2.one_shot = true;
-	#timer2.connect('timeout', func ():
-		#get_node("TalkPanelRect").visible = false
-		#timer2.stop();
-		#timer2.queue_free();
-	#);
-	#add_child(timer2);
-	#timer2.start();

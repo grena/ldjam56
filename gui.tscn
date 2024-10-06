@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="PackedScene" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
