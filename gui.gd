@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	#niveau_fuel.scale.y = fuel_percentage  # Ajuster l'échelle Y en fonction du pourcentage
 	#print('coucou', niveau_fuel.scale.y)
 	niveau_fuel.size.y = fuel_percentage * 100   # Ajuster l'échelle Y en fonction du pourcentage
-	print(niveau_fuel.size.y)
 	niveau_fuel.position.y = position_origin - fuel_percentage * 100 
 
 	# fermer la fenetre
@@ -74,6 +73,7 @@ func demarre_sur_planete():
 	get_node("IntroGameRect").visible = false
 	get_parent().get_node("MusicPlayerStep1").play()
 	get_node("TalkPanelRect").visible = true
+	get_node("TalkPanelRect/HBoxContainer/JackRect").visible = false
 	# affiche textes
 	var texts = [
 		"\nJacques, we don't have any more fuel.\n",
@@ -109,21 +109,10 @@ func demarre_sur_planete():
 	timer.wait_time = my_wait_time;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
+		get_node("TalkPanelRect/HBoxContainer/JackRect").visible = true
 		$TalkPanelRect/JackDitOkPlayer.play()
 		timer.stop();
 		timer.queue_free();
 	);
 	add_child(timer);
 	timer.start();
-	# ferme le panneau
-	#my_wait_time = my_wait_time + 1
-	#var timer2: Timer = Timer.new()
-	#timer2.wait_time = my_wait_time;
-	#timer2.one_shot = true;
-	#timer2.connect('timeout', func ():
-		#get_node("TalkPanelRect").visible = false
-		#timer2.stop();
-		#timer2.queue_free();
-	#);
-	#add_child(timer2);
-	#timer2.start();
