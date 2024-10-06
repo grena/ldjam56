@@ -2,10 +2,11 @@ extends Node2D
 
 @onready var TubeScene = preload("res://tube.tscn")
 
-const tubes_count = 20;
 var tubes: Array = [];
 const tube_length = 60;
+const max_length = 1500
 const duration_to_arrive_to_fusee_in_seconds = 1.0
+const tubes_count = max_length/tube_length;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +24,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var player = self.get_parent().get_parent().get_parent().find_child('Player');
+	var player = self.get_parent().find_child('Player');
 	var player_position: Vector2 = player.global_position;
 	var distance = _get_distance();
 	
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		
 	
 func _get_distance():
-	var player = self.get_parent().get_parent().get_parent().find_child('Player');
+	var player = self.get_parent().find_child('Player');
 	var player_position: Vector2 = player.global_position;
 	var ending_position: Vector2 = tubes[tubes.size() - 1].global_position;
 	
@@ -72,7 +73,7 @@ func avale():
 func crie_bestiole():	
 	var crie_level_2 = [$Level2Mort1Player, $Level2Mort2Player, $Level2Mort3Player]
 	var crie_level_3 = [$Level3Mort1Player, $Level3Mort2Player, $Level3Mort3Player, $Level3Mort4Player, $Level3Mort4Player, $Level3Mort5Player]
-	var level = get_parent().get_parent().get_parent()._get_level()
+	var level = get_parent()._get_level()
 	# juste le broyeur
 	if level == 1:
 		broyeur_solo()
@@ -92,7 +93,7 @@ func broyeur_solo(cri_player = null):
 			cri_player.play();
 		# du broyeur
 		$BroyeurPlayer.play()
-		get_parent().get_parent().get_parent().get_node("GUI/TextureRect").run_mixer()
+		get_parent().get_node("GUI/TextureRect").run_mixer()
 		
 		timer.stop();
 		timer.queue_free();

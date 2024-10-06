@@ -10,21 +10,25 @@
 script = ExtResource("1_ovfjo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
 position = Vector2(30, -9.53674e-07)
 scale = Vector2(0.104617, 0.104617)
 texture = ExtResource("1_4o2kg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(30, -9.53674e-07)
 scale = Vector2(0.104617, 0.104617)
 texture = ExtResource("3_ae88u")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(30, -9.53674e-07)
 scale = Vector2(0.104617, 0.104617)
 texture = ExtResource("4_124ij")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(30, -9.53674e-07)
 scale = Vector2(0.104617, 0.104617)
 texture = ExtResource("5_jkwcu")

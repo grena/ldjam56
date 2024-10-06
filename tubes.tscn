@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://be81gjpeks074"]
+[gd_scene load_steps=12 format=3 uid="uid://byu5bl4jti2vl"]
 
 [ext_resource type="Script" path="res://tubes.gd" id="1_0eq2n"]
 [ext_resource type="AudioStream" uid="uid://38c2fuo4m3hp" path="res://music/CANDYS PHASE 2 MORT 1.mp3" id="2_r0oak"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://coqrykmx51nrw" path="res://music/CANDYS PHASE 3 MORT 3.mp3" id="7_oyc4l"]
 [ext_resource type="AudioStream" uid="uid://bfis7dsh41dne" path="res://music/CANDYS PHASE 3 MORT 4.mp3" id="8_8n86b"]
 [ext_resource type="AudioStream" uid="uid://i3r3yac00dbg" path="res://music/CANDYS PHASE 3 MORT 5.mp3" id="9_iueu6"]
+[ext_resource type="PackedScene" uid="uid://bd8g7h3ffwlyy" path="res://tube.tscn" id="11_cdlu8"]
 
 [node name="Tubes" type="Node2D"]
 script = ExtResource("1_0eq2n")
@@ -41,3 +42,19 @@ stream = ExtResource("8_8n86b")
 
 [node name="Level3Mort5Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_iueu6")
+
+[node name="Tube" parent="." instance=ExtResource("11_cdlu8")]
+position = Vector2(-125, -3.99999)
+rotation = 0.581713
+
+[node name="Tube2" parent="." instance=ExtResource("11_cdlu8")]
+position = Vector2(-76, 27)
+rotation = 0.299477
+
+[node name="Tube3" parent="." instance=ExtResource("11_cdlu8")]
+position = Vector2(-23, 44)
+rotation = -0.294652
+
+[node name="Tube4" parent="." instance=ExtResource("11_cdlu8")]
+position = Vector2(17, 34)
+rotation = -0.584861

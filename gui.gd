@@ -77,8 +77,9 @@ func start_game():
 	toussoteTimer.one_shot = true;
 	toussoteTimer.connect('timeout', func ():
 		fusee.toussoter()
-		toussoteTimer.stop()
-		toussoteTimer.queue_free()
+		if toussoteTimer != null:
+			toussoteTimer.stop()
+			toussoteTimer.queue_free()
 	);
 	add_child(toussoteTimer);
 	toussoteTimer.start()
@@ -88,8 +89,9 @@ func start_game():
 	crashTimer.one_shot = true;
 	crashTimer.connect('timeout', func ():
 		fusee.crash()
-		crashTimer.stop()
-		crashTimer.queue_free()
+		if crashTimer != null:
+			crashTimer.stop()
+			crashTimer.queue_free()
 	);
 	add_child(crashTimer);
 	crashTimer.start()
