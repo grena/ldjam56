@@ -108,14 +108,14 @@ func start_game():
 	);
 	add_child(crashingTimer);
 	crashingTimer.start()
-	
+
 func demarre_sur_planete():
 	get_parent().get_node("MusicPlayerStep1").play()
 	var texts = [
-		"\nLanded in emergency.\n",
-		"No more fuel.\n",
-		"Refill with the vacuum.\n",
-		"(press space to close)"
+		"[center]\nLanded in emergency.\n[/center]",
+		"[center]No more fuel.\n[/center]",
+		"[center]Refill with the [color=yellow]vacuum[/color].[/center]\n",
+		"[center](press space to close)[/center]"
 	]
 	affiche_dialogue(texts)
 
@@ -126,10 +126,10 @@ func passage_niveau_deux():
 	get_node("TextureRect").set_sound_on()
 	get_node("TextureRect").set_xray_on()	
 	var texts = [
-		"\nFuel level 1 reached.\n",
-		"Chain saw enabled.\n",
-		"Sound in degraded mode.\n",
-		"(Press space to close)"
+		"\n[center]Fuel level 1 reached.[/center]\n",
+		"[center]Turning on basic features.[/center]\n",
+		"[center][color=yellow]Chain saw[/color] enabled.[/center]\n",
+		"[center](Press space to close)[/center]"
 	]
 	affiche_dialogue(texts)
 
@@ -140,10 +140,21 @@ func passage_niveau_trois():
 	get_node("TextureRect").set_translator_on()
 	get_node("TextureRect").set_display_blobs_in_xray()  
 	var texts = [
-		"\nFuel level 2 reached.\n",
-		"Flame thrower enabled.\n",
-		"Translator enabled.\n",
-		"(Press space to close)"
+		"\n[center]Fuel level 2 reached.[/center]\n",
+		"[center]Turning on advanced features.[/center]\n",
+		"[center][color=yellow]Flame thrower[/color] enabled.[/center]\n",
+		"[center](Press space to close)[/center]"
+	]
+	affiche_dialogue(texts)
+
+func le_vaisseau_est_pret():
+	get_parent().get_node("UpgradeLevelPlayer").play()
+	get_node("TextureRect").set_translator_on()
+	get_node("TextureRect").set_display_blobs_in_xray()  
+	var texts = [
+		"\n[center]Enough fuel to leave.[/center]\n",
+		"[center][color=yellow]Go back to the ship.[/color][/center]\n",
+		"[center](Press space to close)[/center]"
 	]
 	affiche_dialogue(texts)
 
