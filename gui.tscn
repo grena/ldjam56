@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="PackedScene" uid="uid://c33dhlmtkjl6n" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
 [ext_resource type="Script" path="res://fusee_espace.gd" id="2_bbocl"]
 [ext_resource type="Script" path="res://stars_particles.gd" id="2_wwod6"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
@@ -61,22 +61,25 @@ text = "FUEL = 0"
 [node name="TextureRect" parent="." instance=ExtResource("2_1v42l")]
 
 [node name="TalkPanelRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(700, 0)
-anchors_preset = 2
+custom_minimum_size = Vector2(0, 220)
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
-offset_right = 300.0
+grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
 [node name="FuseeRect" type="TextureRect" parent="TalkPanelRect"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
 offset_right = 200.0
-offset_bottom = 200.0
+grow_vertical = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 texture = ExtResource("3_6x1us")
@@ -84,30 +87,37 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Text" type="Label" parent="TalkPanelRect"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 26.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
 grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_7ayn1")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
+justification_flags = 227
 
 [node name="JackRect" type="TextureRect" parent="TalkPanelRect"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -200.0
-offset_bottom = 200.0
+offset_top = -200.0
 grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 texture = ExtResource("4_x2j87")
