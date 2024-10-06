@@ -7,7 +7,7 @@ const tube_length = 60;
 const max_length = 1500
 const duration_to_arrive_to_fusee_in_seconds = 1.0
 const tubes_count = max_length/tube_length + 2;
-
+   
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tubes = [];
