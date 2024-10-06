@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://1nva0jctkfg2"]
+[gd_scene load_steps=7 format=3 uid="uid://dlyt5y5u1y6wt"]
 
+[ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_fs7iw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ofj8h"]
+
+[sub_resource type="Gradient" id="Gradient_k3his"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.545098, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ibko"]
+gradient = SubResource("Gradient_k3his")
+
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_7anfd")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 65.0
@@ -14,8 +27,34 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -451.0
+offset_left = -453.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_tfyhi")
 expand_mode = 3
+
+[node name="Jauge" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2(1049.5, 430.5)
+scale = Vector2(75.0001, 69)
+mesh = SubResource("QuadMesh_fs7iw")
+
+[node name="NiveauFuel" type="MeshInstance2D" parent="Jauge"]
+position = Vector2(-0.00666618, -0.00396824)
+scale = Vector2(0.986666, 0.992063)
+mesh = SubResource("QuadMesh_ofj8h")
+texture = SubResource("GradientTexture1D_1ibko")
+
+[node name="JaugeFuel" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.978
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.656
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.129412, 1, 0.309804, 1)
