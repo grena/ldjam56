@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd8g7h3ffwlyy"]
+[gd_scene load_steps=6 format=3 uid="uid://cg4iokemufuig"]
 
 [ext_resource type="Texture2D" uid="uid://quhkjl5jrot" path="res://assets/tuyau1.png" id="1_4o2kg"]
 [ext_resource type="Script" path="res://tube.gd" id="1_ovfjo"]

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const MAX_FUEL = 80.0  # Le maximum de carburant correspondant à 100%
+const MAX_FUEL = 1.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
@@ -208,8 +208,32 @@ func affiche_dialogue(texts):
 
 func decolle_batard():
 	IS_DECOLLING = true
+	# tout masquer
 	get_node("TextureRect").visible = false
 	get_parent().get_node("Player").visible = false
 	get_parent().get_node("Tubes").visible = false
 	get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
+	var magrossefuseeturgecente = get_parent().get_node("Fusee")
+	# son dcollage
+	magrossefuseeturgecente.get_node("DecollagePlayer").play()
+	
+	var timer: Timer = Timer.new()
+	timer.wait_time = 5;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+
+		var tween = create_tween()
+		tween.tween_property(
+			magrossefuseeturgecente,
+			"position",
+			magrossefuseeturgecente.position - Vector2(0, 1200),
+			3
+		)
+
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+
 	
