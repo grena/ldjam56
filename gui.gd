@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 		if panel_talk.visible == true:
 			panel_talk.visible = false
 
-
 func stop_introduction():
 	fusee.emitting = false
 	etoiles.emitting = false
@@ -84,18 +83,34 @@ func start_game():
 	
 	
 func demarre_sur_planete():
-	# affiche panneau
-	get_node("IntroGameRect").visible = false
 	get_parent().get_node("MusicPlayerStep1").play()
-	get_node("TalkPanelRect").visible = true
-	get_node("TalkPanelRect/HBoxContainer/JackRect").visible = false
-	# affiche textes
 	var texts = [
-		"\nJacques, we don't have any more fuel.\n",
-		"You can refill using purple stuff with your aspirator\n",
-		"Take care, legend tells huge creatures are around...\n",
+		"\nLanded in emergency.\n",
+		"No more fuel.\n",
+		"Refill with the vacuum.\n",
+		"(press space to close)"
+	]
+	affiche_dialogue(texts)
+
+func passage_niveau_deux():
+	get_parent().get_node("MusicPlayerStep1").stop()
+	get_parent().get_node("MusicPlayerStep2").play()
+	get_parent().get_node("UpgradeLevelPlayer").play()
+	get_node("TextureRect").set_sound_on()
+	var texts = [
+		"\nFuel level 1 reached.\n",
+		"Chain saw enabled.\n",
+		"Sound in degraded mode.\n",
 		"(Press space to close)"
 	]
+	affiche_dialogue(texts)
+
+func affiche_dialogue(texts): 
+	# affiche panneau
+	get_node("IntroGameRect").visible = false
+	get_node("TalkPanelRect").visible = true
+	get_node("TalkPanelRect/JackRect").visible = false
+	# affiche textes
 	var cortana_voix = [
 		$TalkPanelRect/CortanaPlayer1,
 		$TalkPanelRect/CortanaPlayer2,
@@ -103,6 +118,7 @@ func demarre_sur_planete():
 		$TalkPanelRect/CortanaPlayer4,
 		$TalkPanelRect/CortanaPlayer5,
 	]
+	get_node("TalkPanelRect/Text").text = ""
 	var my_wait_time = 1
 	var voix_index = 0
 	for text in texts:
@@ -110,7 +126,7 @@ func demarre_sur_planete():
 		timer.wait_time = my_wait_time;
 		timer.one_shot = true;
 		timer.connect('timeout', func ():
-			get_node("TalkPanelRect/HBoxContainer/Text").text = get_node("TalkPanelRect/HBoxContainer/Text").text + text
+			get_node("TalkPanelRect/Text").text = get_node("TalkPanelRect/Text").text + text
 			cortana_voix[voix_index].play()
 			timer.stop();
 			timer.queue_free();
@@ -125,7 +141,7 @@ func demarre_sur_planete():
 	timer.wait_time = my_wait_time;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
-		get_node("TalkPanelRect/HBoxContainer/JackRect").visible = true
+		get_node("TalkPanelRect/JackRect").visible = true
 		$TalkPanelRect/JackDitOkPlayer.play()
 		timer.stop();
 		timer.queue_free();

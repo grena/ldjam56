@@ -87,8 +87,10 @@ func check_collision_with_frisky(collision) -> void:
 		var level_precedent = get_parent()._get_level()
 		FUEL = FUEL + 1
 		var level_actuel = get_parent()._get_level()
+		# passage niveau 2
 		if level_actuel > level_precedent:
-			get_parent().get_node("UpgradeLevelPlayer").play()
+			if level_actuel == 2:
+				get_parent().get_node("GUI").passage_niveau_deux()
 		# ramassage de frisky
 		$AspirePetitPlayer.play()
 		print("Collision with a Frisky!")

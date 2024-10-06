@@ -2,6 +2,8 @@ extends Node2D
 
 const radius_max_tree_generation = 1500
 const radius_min_tree_generation = 500
+const radius_max_frisky_generation = 500
+const radius_min_frisky_generation = 200
 const tree_count = 50
 const bush_count = 50
 
@@ -20,8 +22,9 @@ func _ready() -> void:
 func _generate_friskies() -> void:
 	var nb_friskies = 20
 	for i in range(nb_friskies):
-		spawn_frisky(Vector2(randi() % 1000, randi() % 1000))
-		
+		var pos = _get_new_frisky_position()
+		spawn_frisky(pos)
+
 func _generate_trees() -> void:
 	var tree_model = preload("res://tree.tscn")
 	for i in range(tree_count):
@@ -60,28 +63,15 @@ func _on_spawn_frisky(pos):
 	spawn_frisky(pos)
 
 func _get_level() -> int:
-	if $Player.FUEL > 10:
+	if $Player.FUEL > 80:
 		return 3
-	elif $Player.FUEL > 5:
+	elif $Player.FUEL > 15:
 		return 2
 	else:
 		return 1
 
 func _process(delta):
 	find_child('Fusee').set_z_index(find_child('Fusee').global_position.y / 10 + 2000)
-	var level = _get_level()
-	if level == 2 and $MusicPlayerStep2.playing == false:
-		$MusicPlayerStep1.stop()
-		$MusicPlayerStep2.play()
-		$MusicPlayerStep3.stop()
-	elif level == 3 and $MusicPlayerStep3.playing == false:
-		$MusicPlayerStep1.stop()
-		$MusicPlayerStep2.stop()
-		$MusicPlayerStep3.play()
-	elif level == 1 and $MusicPlayerStep1.playing == false:
-		#$MusicPlayerStep1.play()
-		$MusicPlayerStep2.stop()
-		$MusicPlayerStep3.stop()
 
 func spawn_frisky(pos) -> void:
 	var frisky_model = preload("res://frisky.tscn")
@@ -90,6 +80,21 @@ func spawn_frisky(pos) -> void:
 	new_frisky.position.y = pos.y
 	new_frisky.visible = true
 	self.add_child(new_frisky)
+
+func _get_new_frisky_position():
+	var remaining_tests = 100
+	
+	while remaining_tests >= 0:
+		var radius = randf_range(radius_min_frisky_generation, radius_max_frisky_generation)
+		var angle = randf_range(0, 2*PI)
+		var position = Vector2(
+			sin(angle) * radius,
+			cos(angle) * radius
+		)
+		if !_is_too_close_from_existing_tree(position):
+			return position
+	
+	return position
 
 func _get_new_tree_position():
 	var remaining_tests = 100
