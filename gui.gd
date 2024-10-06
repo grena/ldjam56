@@ -22,3 +22,8 @@ func _process(delta: float) -> void:
 	niveau_fuel.size.y = fuel_percentage * 100   # Ajuster l'échelle Y en fonction du pourcentage
 	print(niveau_fuel.size.y)
 	niveau_fuel.position.y = position_origin - fuel_percentage * 100 
+
+
+func _on_button_pressed_start_game() -> void:
+	get_node("StartGameRect/IntroPlayer").play()
+	get_node("StartGameRect").visible = false
