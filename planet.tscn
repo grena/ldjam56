@@ -10,8 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="10_1v4mo"]
-[ext_resource type="PackedScene" uid="uid://1nva0jctkfg2" path="res://gui.tscn" id="10_d3lci"]
-[ext_resource type="PackedScene" path="res://leaf.tscn" id="11_aykir"]
+[ext_resource type="PackedScene" path="res://gui.tscn" id="10_d3lci"]
+[ext_resource type="PackedScene" uid="uid://ccipvgdv7ak8a" path="res://leaf.tscn" id="11_aykir"]
 [ext_resource type="AudioStream" uid="uid://7l3vtphnmcky" path="res://music/TRANSITION AMELIORATIONS.mp3" id="11_dg3yf"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
