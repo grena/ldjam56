@@ -23,6 +23,8 @@ var tree_sprite_var2 : Sprite2D
 var tree_sprite : Sprite2D
 var original_color : Color
 
+var leaf_spots : Node2D
+
 var audio_engine : AudioStreamPlayer2D
 var audio_decoupe: AudioStreamPlayer2D
 
@@ -50,6 +52,7 @@ func _ready() -> void:
 	audio_decoupe = $MiniGame/AudioDecoupe
 	minigame = $MiniGame
 	minigame.visible = false
+	leaf_spots = $LeafSpots
 	
 	var sprites = [$SpriteAlive1, $SpriteAlive2]
 	for i in sprites:
@@ -134,7 +137,7 @@ func move_tronconneuse(delta: float) -> void:
 func check_success() -> void:
 	if cursor_valid:
 		squish_tree()
-		HEALTH -= 1      
+		HEALTH -= 1
 		audio_decoupe.play()
 		if (HEALTH == 0):
 			trigger_finish()
@@ -156,11 +159,36 @@ func trigger_finish() -> void:
 	is_playing = false
 	minigame.visible = false
 	is_waiting_for_player_interaction = false
+	audio_engine.stop()
 	
 	tree_sprite.visible = false
 	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
 	dead_sprites[randi_range(0, 2)].visible = true
+	
+	for child in leaf_spots.get_children():
+		if child is Node2D:  # Assurez-vous que l'enfant est bien un Node2D
+			instantiate_leaf_with_delay(child)
 
+func instantiate_leaf_with_delay(leaf_spot: Node2D) -> void:
+	# Générer un délai aléatoire entre 0.1 et 0.5 secondes
+	var delay = randf_range(0.1, 0.5)
+	
+	# Créer un timer pour ajouter le délai aléatoire
+	await get_tree().create_timer(delay).timeout
+	
+	var leaf_model = preload("res://leaf.tscn")
+	# Instancier la feuille après le délai
+	var new_leaf = leaf_model.instantiate()
+	
+	# Positionner la feuille à la même position que leaf_spot
+	new_leaf.position = leaf_spot.position
+	  # Flip horizontal aléatoire pour certaines feuilles
+	if randf() < 0.5:  # 50% de chance de flipper la feuille
+		new_leaf.get_node('Path2D/PathFollow2D/Sprite2D').flip_h = true  # Retourner la feuille horizontalement
+	
+	# Ajouter la feuille à la scène
+	add_child(new_leaf)
+	
 func spawn_friskies() -> void:
 	var spread_distance = 150
 	var nb_friskies = randi_range(2, 4)
