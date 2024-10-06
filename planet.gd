@@ -170,3 +170,12 @@ func _is_too_close_from_existing_static_tree(position: Vector2):
 				return true
 	return false
 				
+				
+func update_ramassed_fuel(fuel):
+	const max_fuel = 80
+	const max_glow = 2.0
+	$WorldEnvironment.environment.glow_intensity = max_glow - float(fuel) * max_glow / max_fuel
+	const max_modulate = 0.7
+	const max_color = 1.0
+	var modulate: float = max_color - float(fuel) * (max_color - max_modulate) / max_fuel
+	$Floor.modulate = Color(modulate, modulate, modulate, 1.0);
