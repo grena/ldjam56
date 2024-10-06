@@ -65,6 +65,7 @@ func _generate_buissons() -> void:
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()
+	$Floor.add_oil($Player.get_position())
 	
 func _on_minigame_started():
 	$Player.enter_minigame()
