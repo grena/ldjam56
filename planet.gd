@@ -63,28 +63,15 @@ func _on_spawn_frisky(pos):
 	spawn_frisky(pos)
 
 func _get_level() -> int:
-	if $Player.FUEL > 10:
+	if $Player.FUEL > 80:
 		return 3
-	elif $Player.FUEL > 5:
+	elif $Player.FUEL > 15:
 		return 2
 	else:
 		return 1
 
 func _process(delta):
 	find_child('Fusee').set_z_index(find_child('Fusee').global_position.y / 10 + 2000)
-	#var level = _get_level()
-	#if level == 2 and $MusicPlayerStep2.playing == false:
-		#$MusicPlayerStep1.stop()
-		#$MusicPlayerStep2.play()
-		#$MusicPlayerStep3.stop()
-	#elif level == 3 and $MusicPlayerStep3.playing == false:
-		#$MusicPlayerStep1.stop()
-		#$MusicPlayerStep2.stop()
-		#$MusicPlayerStep3.play()
-	#elif level == 1 and $MusicPlayerStep1.playing == false:
-		##$MusicPlayerStep1.play()
-		#$MusicPlayerStep2.stop()
-		#$MusicPlayerStep3.stop()
 
 func spawn_frisky(pos) -> void:
 	var frisky_model = preload("res://frisky.tscn")
