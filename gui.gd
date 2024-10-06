@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const MAX_FUEL = 200.0  # Le maximum de carburant correspondant à 100%
+const MAX_FUEL = 100.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
@@ -126,6 +126,19 @@ func passage_niveau_deux():
 		"\nFuel level 1 reached.\n",
 		"Chain saw enabled.\n",
 		"Sound in degraded mode.\n",
+		"(Press space to close)"
+	]
+	affiche_dialogue(texts)
+
+func passage_niveau_trois():
+	get_parent().get_node("MusicPlayerStep2").stop()
+	get_parent().get_node("MusicPlayerStep3").play()
+	get_parent().get_node("UpgradeLevelPlayer").play()
+	get_node("TextureRect").set_translator_on()
+	var texts = [
+		"\nFuel level 2 reached.\n",
+		"Flame thrower enabled.\n",
+		"Translator enabled.\n",
 		"(Press space to close)"
 	]
 	affiche_dialogue(texts)

@@ -63,7 +63,7 @@ func _on_spawn_frisky(pos):
 	spawn_frisky(pos)
 
 func _get_level() -> int:
-	if $Player.FUEL > 80:
+	if $Player.FUEL > 55:
 		return 3
 	elif $Player.FUEL > 15:
 		return 2
