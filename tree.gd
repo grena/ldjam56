@@ -269,6 +269,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		toggle_wait_for_interaction()
 
 func toggle_wait_for_interaction():
+	if get_parent()._get_level() < 2:
+		return
+	
 	is_waiting_for_player_interaction = !is_waiting_for_player_interaction
 	
 	if (is_waiting_for_player_interaction):
