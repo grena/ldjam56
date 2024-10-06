@@ -68,8 +68,10 @@ mesh = SubResource("SphereMesh_4k4fp")
 texture = SubResource("GradientTexture1D_77tri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 70.635)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_svisb")
+offset = Vector2(0, -546.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.99999, 65)

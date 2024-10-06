@@ -3,12 +3,14 @@ extends Node2D
 const radius_max_tree_generation = 1500
 const radius_min_tree_generation = 500
 const tree_count = 50
+const bush_count = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	_generate_friskies()
 	_generate_trees()
+	_generate_buissons()
 	
 	# reduce volume
 	$MusicPlayerStep1.volume_db = -10
@@ -27,7 +29,7 @@ func _generate_trees() -> void:
 		var new_tree: FriskyTree = tree_model.instantiate()
 		var position = _get_new_tree_position();
 		new_tree.position = position
-		new_tree.set_z_index(new_tree.global_position.y / 10 + 2000)
+		new_tree.set_z_index(new_tree.global_position.y / 10 + 2000 + 5)
 		new_tree.visible = true
 		new_tree.set_difficulty(randi_range(1, 3))
 			# Connecter le signal 'minigame_finished' à une méthode dans ce script
@@ -36,6 +38,17 @@ func _generate_trees() -> void:
 		new_tree.connect("spawn_frisky", Callable(self, "_on_spawn_frisky"))
 		
 		self.add_child(new_tree)
+
+func _generate_buissons() -> void:
+	var bush_model = preload("res://buisson.tscn")
+	for i in range(bush_count):
+		var new_bush = bush_model.instantiate()
+		var position = _get_new_tree_position();
+		new_bush.position = position
+		new_bush.set_z_index(new_bush.global_position.y / 10 + 2000 - 10)
+		new_bush.visible = true
+		
+		self.add_child(new_bush)
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()

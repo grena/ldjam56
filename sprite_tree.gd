@@ -1,7 +1,7 @@
 extends Sprite2D
 
 # Amplitude du balancement (en degrés)
-var wind_amplitude: float = 1.0
+@export var wind_amplitude: float = 1.0
 
 # Délai de démarrage pour que chaque arbre ait un cycle décalé
 var start_delay: float = 0.0
