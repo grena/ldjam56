@@ -2,6 +2,7 @@ extends CanvasLayer
 
 const MAX_FUEL = 200.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
+var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
@@ -37,10 +38,11 @@ func _process(delta: float) -> void:
 		stop_introduction()
 		
 	# fermer la fenetre
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept") and IS_DIALOG_OPENED:
 		var panel_talk = get_node("TalkPanelRect")
 		if panel_talk.visible == true:
 			panel_talk.visible = false
+			IS_DIALOG_OPENED = false
 
 func stop_introduction():
 	if toussoteTimer != null:
@@ -127,7 +129,9 @@ func passage_niveau_deux():
 	]
 	affiche_dialogue(texts)
 
-func affiche_dialogue(texts): 
+func affiche_dialogue(texts):
+	IS_DIALOG_OPENED = true
+	print(IS_DIALOG_OPENED)
 	# affiche panneau
 	get_node("IntroGameRect").visible = false
 	get_node("TalkPanelRect").visible = true

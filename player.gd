@@ -24,8 +24,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
-	
+
 	if (!get_parent().get_node('GUI').IS_GAME_STARTED):
+		return
+	
+	if (get_parent().get_node('GUI').IS_DIALOG_OPENED):
 		return
 	
 	if (is_playing_mini_game):
