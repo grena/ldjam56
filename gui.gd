@@ -2,11 +2,17 @@ extends CanvasLayer
 
 const MAX_FUEL = 200.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
+var IS_INTRO_LAUNCHED = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
 
 var fusee : CPUParticles2D
 var etoiles : CPUParticles2D
+
+#Timers
+var toussoteTimer: Timer
+var crashTimer: Timer
+var crashingTimer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +32,10 @@ func _process(delta: float) -> void:
 		fuel_percentage = 1
 	$TextureRect.set_remplissage(fuel_percentage)
 
+ 	#skip l'intro
+	if Input.is_action_pressed("ui_cancel") and IS_INTRO_LAUNCHED and !IS_GAME_STARTED  :
+		stop_introduction()
+		
 	# fermer la fenetre
 	if Input.is_action_pressed("ui_accept"):
 		var panel_talk = get_node("TalkPanelRect")
@@ -33,7 +43,19 @@ func _process(delta: float) -> void:
 			panel_talk.visible = false
 
 func stop_introduction():
+	if toussoteTimer != null:
+		toussoteTimer.stop()
+		toussoteTimer.queue_free()
+	if crashTimer != null:
+		crashTimer.stop()
+		crashTimer.queue_free()
+	if crashingTimer != null:
+		crashingTimer.stop()
+		crashingTimer.queue_free()
+		
+	get_node("StartGameRect/IntroPlayer").stop()
 	fusee.emitting = false
+	fusee.visible = false
 	etoiles.emitting = false
 	etoiles.visible = false
 	get_node("IntroGameRect").visible = false
@@ -41,13 +63,14 @@ func stop_introduction():
 	IS_GAME_STARTED = true
 
 func start_game():
+	IS_INTRO_LAUNCHED = true
 	get_node("StartGameRect/IntroPlayer").play()
 	$StartGameRect/MenuPlayer.stop()
 	get_node("IntroGameRect").visible = true
 	get_node("StartGameRect").visible = false
 
 	var my_wait_time = 8
-	var toussoteTimer: Timer = Timer.new()
+	toussoteTimer = Timer.new()
 	toussoteTimer.wait_time = 3;
 	toussoteTimer.one_shot = true;
 	toussoteTimer.connect('timeout', func ():
@@ -58,7 +81,7 @@ func start_game():
 	add_child(toussoteTimer);
 	toussoteTimer.start()
 	
-	var crashTimer: Timer = Timer.new()
+	crashTimer = Timer.new()
 	crashTimer.wait_time = 4.5;
 	crashTimer.one_shot = true;
 	crashTimer.connect('timeout', func ():
@@ -69,7 +92,7 @@ func start_game():
 	add_child(crashTimer);
 	crashTimer.start()
 	
-	var crashingTimer: Timer = Timer.new()
+	crashingTimer = Timer.new()
 	crashingTimer.wait_time = 13;
 	crashingTimer.one_shot = true;
 	crashingTimer.connect('timeout', func ():
@@ -80,7 +103,6 @@ func start_game():
 	);
 	add_child(crashingTimer);
 	crashingTimer.start()
-	
 	
 func demarre_sur_planete():
 	get_parent().get_node("MusicPlayerStep1").play()
