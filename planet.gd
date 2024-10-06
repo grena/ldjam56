@@ -74,11 +74,11 @@ func _on_spawn_frisky(pos):
 	spawn_frisky(pos)
 
 func _get_level() -> int:
-	if $Player.FUEL >= 15: #get_node("GUI").MAX_FUEL:
+	if $Player.FUEL >= get_node("GUI").MAX_FUEL:
 		return 4
-	elif $Player.FUEL >= 10:
+	elif $Player.FUEL >= 50:
 		return 3
-	elif $Player.FUEL >= 5:
+	elif $Player.FUEL >= 15:
 		return 2
 	else:
 		return 1
