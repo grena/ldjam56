@@ -4,6 +4,7 @@ const MAX_FUEL = 80.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
+var IS_DECOLLING = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
 
@@ -206,4 +207,9 @@ func affiche_dialogue(texts):
 	timer.start();
 
 func decolle_batard():
-	print("toltooto a decole")
+	IS_DECOLLING = true
+	get_node("TextureRect").visible = false
+	get_parent().get_node("Player").visible = false
+	get_parent().get_node("Tubes").visible = false
+	get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
+	
