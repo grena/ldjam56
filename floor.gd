@@ -17,6 +17,13 @@ const asset_count = 300
 @onready var Floor11 = preload('res://assets/floor11.png')
 @onready var Floor12 = preload('res://assets/floor12.png')
 
+@onready var Oil1 = preload('res://assets/oil1.png');
+@onready var Oil2 = preload('res://assets/oil2.png');
+@onready var Oil3 = preload('res://assets/oil3.png');
+@onready var Oil4 = preload('res://assets/oil4.png');
+@onready var Oil5 = preload('res://assets/oil5.png');
+@onready var Oil6 = preload('res://assets/oil6.png');
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for x in range(0, asset_count):
@@ -34,3 +41,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func add_oil(position) -> void:
+	var deco = Sprite2D.new();
+	var floors = [Oil1, Oil2, Oil3, Oil4, Oil5, Oil6];
+	deco.texture = floors[randi_range(0, floors.size() - 1)];
+	var scale = randf_range(1.0, 1.5)
+	deco.scale = Vector2(scale, scale)
+	deco.global_position = position + Vector2(0, 100);
+	deco.modulate.a = randf_range(0.8, 1.0)
+	add_child(deco);

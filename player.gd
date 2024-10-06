@@ -29,6 +29,9 @@ func _physics_process(delta: float) -> void:
 	
 	if (get_parent().get_node('GUI').IS_DIALOG_OPENED):
 		return
+
+	if (get_parent().get_node('GUI').IS_DECOLLING):
+		return
 	
 	if (is_playing_mini_game):
 		return
@@ -94,6 +97,7 @@ func check_collision_with_frisky(collision) -> void:
 		var level_precedent = get_parent()._get_level()
 		FUEL = FUEL + 1
 		var level_actuel = get_parent()._get_level()
+		get_parent().update_ramassed_fuel(FUEL)
 		# passage niveau 2
 		if level_actuel > level_precedent:
 			if level_actuel == 2:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://nb0tl4c0g03t"]
+[gd_scene load_steps=19 format=3 uid="uid://nb0tl4c0g03t"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_pkhhj"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_svisb"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="4_doh38"]
 [ext_resource type="AudioStream" uid="uid://b3l332qwmu1j8" path="res://music/ASPIRATION PETITE BULLE SOLO.mp3" id="5_2dwon"]
 [ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="6_0ppiq"]
+[ext_resource type="AudioStream" uid="uid://bxdqmw14bmu72" path="res://music/VOIX JACQUES 4.mp3" id="7_r5bf2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4k4fp"]
 radius = 62.588
@@ -102,3 +103,6 @@ process_material = SubResource("ParticleProcessMaterial_8g6i3")
 texture = ExtResource("6_0ppiq")
 lifetime = 0.2
 one_shot = true
+
+[node name="JackDitGoPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_r5bf2")

@@ -12,6 +12,8 @@ const tree_count = 50
 const nb_static_trees = 200
 const bush_count = 50
 
+var fireflies_alpha = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -65,6 +67,9 @@ func _generate_buissons() -> void:
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()
+	$Floor.add_oil($Player.get_position())
+	$Floor/Fireflies.color = Color((fireflies_alpha - 0.1), (fireflies_alpha - 0.1), 0.0, 1.0)
+	fireflies_alpha -= 0.1
 	
 func _on_minigame_started():
 	$Player.enter_minigame()
@@ -170,3 +175,12 @@ func _is_too_close_from_existing_static_tree(position: Vector2):
 				return true
 	return false
 				
+				
+func update_ramassed_fuel(fuel):
+	const max_fuel = 80
+	const max_glow = 2.0
+	$WorldEnvironment.environment.glow_intensity = max_glow - float(fuel) * max_glow / max_fuel
+	const max_modulate = 0.7
+	const max_color = 1.0
+	var modulate: float = max_color - float(fuel) * (max_color - max_modulate) / max_fuel
+	$Floor.modulate = Color(modulate, modulate, modulate, 1.0);

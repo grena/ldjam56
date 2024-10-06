@@ -100,3 +100,5 @@ func broyeur_solo(cri_player = null):
 	);
 	add_child(timer);
 	timer.start();
+
+	
