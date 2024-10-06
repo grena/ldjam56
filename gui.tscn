@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://1nva0jctkfg2"]
+[gd_scene load_steps=9 format=3 uid="uid://1nva0jctkfg2"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
+[ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fs7iw"]
@@ -79,6 +80,7 @@ grow_vertical = 2
 [node name="TitreLabel" type="Label" parent="StartGameRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 128
 text = "
 Titre du jeu"
@@ -86,6 +88,7 @@ horizontal_alignment = 1
 
 [node name="InstructionsLabel" type="Label" parent="StartGameRect/GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 30
 text = "
 
@@ -100,6 +103,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.463839, 0.635311, 1, 1)
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 40
 text = "Click to play
 "
