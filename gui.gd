@@ -11,16 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var player = get_parent().get_node('Player')
 	var fuel_percentage = player.FUEL / MAX_FUEL # 200 fuel = 100% donc on calcule le pourcentage
-<<<<<<< HEAD
 	$TextureRect.set_remplissage(fuel_percentage)
-=======
-	# Appliquer la mise à jour de la taille (échelle) de la jauge en fonction de fuel_percentage
-	# On suppose ici que la hauteur de la jauge est liée à son échelle sur l'axe Y
-	#niveau_fuel.scale.y = fuel_percentage  # Ajuster l'échelle Y en fonction du pourcentage
-	#print('coucou', niveau_fuel.scale.y)
-	niveau_fuel.size.y = fuel_percentage * 100   # Ajuster l'échelle Y en fonction du pourcentage
-	niveau_fuel.position.y = position_origin - fuel_percentage * 100 
->>>>>>> e6899ad0b375c91aabdba93485183bdecddcfb6e
 
 	# fermer la fenetre
 	if Input.is_action_pressed("ui_accept"):
