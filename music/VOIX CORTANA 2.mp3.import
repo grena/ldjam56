@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6rdw36pi5c5k"
+path="res://.godot/imported/VOIX CORTANA 2.mp3-8604685e124b27993f4bd33cb0da7192.mp3str"
+
+[deps]
+
+source_file="res://music/VOIX CORTANA 2.mp3"
+dest_files=["res://.godot/imported/VOIX CORTANA 2.mp3-8604685e124b27993f4bd33cb0da7192.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
