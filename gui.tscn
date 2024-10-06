@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="2_bk1we"]
+[ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
 [ext_resource type="Texture2D" uid="uid://dkhqdydcgjmdn" path="res://assets/jack.png" id="4_x2j87"]
@@ -31,19 +31,7 @@ offset_right = 65.0
 offset_bottom = 23.0
 text = "FUEL = 0"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -453.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = -2.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("2_bk1we")
-expand_mode = 3
+[node name="TextureRect" parent="." instance=ExtResource("2_1v42l")]
 
 [node name="TalkPanelRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(800, 150)
