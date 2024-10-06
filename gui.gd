@@ -11,6 +11,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var player = get_parent().get_node('Player')
 	var fuel_percentage = player.FUEL / MAX_FUEL # 200 fuel = 100% donc on calcule le pourcentage
+	if fuel_percentage > 1:
+		fuel_percentage = 1
 	$TextureRect.set_remplissage(fuel_percentage)
 
 	# fermer la fenetre
