@@ -8,6 +8,7 @@ const MAX_FUEL = 200.0  # Le maximum de carburant correspondant à 100%
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_node("IntroGameRect").visible = false
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,4 +27,36 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed_start_game() -> void:
 	get_node("StartGameRect/IntroPlayer").play()
+	get_node("IntroGameRect").visible = true
 	get_node("StartGameRect").visible = false
+	# affiche les textes un par un
+	var texts = [
+		get_node("IntroGameRect/GridContainer/Texte1"),
+		get_node("IntroGameRect/GridContainer/Texte2"),
+		get_node("IntroGameRect/GridContainer/Texte3"),
+		get_node("IntroGameRect/GridContainer/Texte4"),
+	]
+	var my_wait_time = 3
+	for text in texts:
+		var timer: Timer = Timer.new()
+		timer.wait_time = my_wait_time;
+		timer.one_shot = true;
+		timer.connect('timeout', func ():
+			text.visible = true
+			timer.stop();
+			timer.queue_free();
+		);
+		add_child(timer);
+		timer.start();
+		my_wait_time = my_wait_time + 3
+	# ferme la fenetre
+	var timer: Timer = Timer.new()
+	timer.wait_time = my_wait_time + 5;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		get_node("IntroGameRect").visible = false
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();

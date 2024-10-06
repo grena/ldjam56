@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
+[ext_resource type="Texture2D" uid="uid://dkhqdydcgjmdn" path="res://assets/jack.png" id="4_x2j87"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fs7iw"]
 
@@ -83,7 +84,7 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 128
 text = "
-Titre du jeu"
+Jacques Chibrax"
 horizontal_alignment = 1
 
 [node name="InstructionsLabel" type="Label" parent="StartGameRect/GridContainer"]
@@ -111,5 +112,75 @@ text = "Click to play
 [node name="IntroPlayer" type="AudioStreamPlayer" parent="StartGameRect"]
 stream = ExtResource("3_yw7e0")
 parameters/looping = false
+
+[node name="IntroGameRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GridContainer" type="GridContainer" parent="IntroGameRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="IntroGameRect/GridContainer"]
+layout_mode = 2
+text = "
+
+
+
+
+
+"
+
+[node name="JackRect" type="TextureRect" parent="IntroGameRect/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+texture = ExtResource("4_x2j87")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Texte1" type="Label" parent="IntroGameRect/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Argh, I'm running out of fuel...
+
+"
+horizontal_alignment = 1
+
+[node name="Texte2" type="Label" parent="IntroGameRect/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Let's land on this planet!
+
+"
+horizontal_alignment = 1
+
+[node name="Texte3" type="Label" parent="IntroGameRect/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Arf, this is X8911, the legends tells huge creatures are around...
+
+"
+horizontal_alignment = 1
+
+[node name="Texte4" type="Label" parent="IntroGameRect/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Let's find fuel and avoid to stick there for too long!
+"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="StartGameRect/GridContainer/Button" to="." method="_on_button_pressed_start_game"]
