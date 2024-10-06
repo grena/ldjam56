@@ -4,7 +4,12 @@ const radius_max_tree_generation = 1500
 const radius_min_tree_generation = 500
 const radius_max_frisky_generation = 500
 const radius_min_frisky_generation = 200
+
+const radius_max_static_tree_generation = 2500
+const radius_min_static_tree_generation = 1700
+
 const tree_count = 50
+const nb_static_trees = 200
 const bush_count = 50
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +17,7 @@ func _ready() -> void:
 	
 	_generate_friskies()
 	_generate_trees()
+	_generate_static_trees()
 	_generate_buissons()
 	
 	# reduce volume
@@ -24,6 +30,11 @@ func _generate_friskies() -> void:
 	for i in range(nb_friskies):
 		var pos = _get_new_frisky_position()
 		spawn_frisky(pos)
+		
+func _generate_static_trees() -> void:
+	for i in range(nb_static_trees):
+		var pos = _get_new_static_tree_position()
+		spawn_static_tree(pos)
 
 func _generate_trees() -> void:
 	var tree_model = preload("res://tree.tscn")
@@ -81,6 +92,16 @@ func spawn_frisky(pos) -> void:
 	new_frisky.position.x = pos.x
 	new_frisky.position.y = pos.y
 	new_frisky.visible = true
+	new_frisky.set_z_index(new_frisky.global_position.y / 10 + 2000 + 5)
+	self.add_child(new_frisky)
+	
+func spawn_static_tree(pos) -> void:
+	var frisky_model = preload("res://simple_tree.tscn")
+	var new_frisky = frisky_model.instantiate()
+	new_frisky.position.x = pos.x
+	new_frisky.position.y = pos.y
+	new_frisky.visible = true
+	new_frisky.set_z_index(new_frisky.global_position.y / 10 + 2000 + 5)
 	self.add_child(new_frisky)
 
 func _get_new_frisky_position():
@@ -95,6 +116,24 @@ func _get_new_frisky_position():
 		)
 		if !_is_too_close_from_existing_tree(position):
 			return position
+	
+	return position
+	
+func _get_new_static_tree_position():
+	var remaining_tests = 100	
+	
+	while remaining_tests >= 0:
+		var radius = randf_range(radius_min_static_tree_generation, radius_max_static_tree_generation)
+		var angle = randf_range(0, 2*PI)
+		var position = Vector2(
+			sin(angle) * radius,
+			cos(angle) * radius
+		)
+		if !_is_too_close_from_existing_static_tree(position):
+				return position
+	
+	return position
+
 	
 	return position
 
@@ -116,6 +155,15 @@ func _get_new_tree_position():
 func _is_too_close_from_existing_tree(position: Vector2):
 	for child in get_children():
 		if child is FriskyTree:
+			var other_tree_position = child.position
+			var distance_to_position = other_tree_position.distance_to(position)
+			if distance_to_position <= 200:
+				return true
+	return false
+	
+func _is_too_close_from_existing_static_tree(position: Vector2):
+	for child in get_children():
+		if child is SimpleTree:
 			var other_tree_position = child.position
 			var distance_to_position = other_tree_position.distance_to(position)
 			if distance_to_position <= 200:
