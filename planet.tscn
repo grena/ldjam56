@@ -57,6 +57,19 @@ position = Vector2(-345, 5)
 scale = Vector2(0.61, 0.61)
 texture = ExtResource("3_x7i40")
 
+[node name="Fireflies" type="CPUParticles2D" parent="Floor"]
+position = Vector2(-558, -270)
+amount = 300
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(2000, 2000)
+gravity = Vector2(0, -5)
+tangential_accel_min = -29.97
+tangential_accel_max = 24.46
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 1, 0.101961, 1)
+
 [node name="Fusee" parent="." instance=ExtResource("6_yma1i")]
 
 [node name="Player" parent="." instance=ExtResource("4_0ue51")]
