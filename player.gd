@@ -29,6 +29,9 @@ func _physics_process(delta: float) -> void:
 	
 	if (get_parent().get_node('GUI').IS_DIALOG_OPENED):
 		return
+
+	if (get_parent().get_node('GUI').IS_DECOLLING):
+		return
 	
 	if (is_playing_mini_game):
 		return

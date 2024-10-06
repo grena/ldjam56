@@ -67,6 +67,7 @@ func _generate_buissons() -> void:
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()
+	$Floor.add_oil($Player.get_position())
 	$Floor/Fireflies.color = Color((fireflies_alpha - 0.1), (fireflies_alpha - 0.1), 0.0, 1.0)
 	fireflies_alpha -= 0.1
 	
