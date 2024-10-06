@@ -176,7 +176,7 @@ func trigger_finish() -> void:
 		if child is Node2D:  # Assurez-vous que l'enfant est bien un Node2D
 			instantiate_leaf_with_delay(child)
 
-func shake_tronc(): 
+func shake_tronc():
 	minigame_treefull.start_shake()
 	minigame_treemid.start_shake()
 	minigame_treelow.start_shake()
