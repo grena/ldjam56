@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ovibch56y23"]
+
+[ext_resource type="Texture2D" uid="uid://pjmyied1oiwa" path="res://assets/ldjam_buisson1.png" id="1_k317c"]
+[ext_resource type="Script" path="res://buisson.gd" id="1_qht3b"]
+[ext_resource type="Texture2D" uid="uid://bv3jlfxlfavuo" path="res://assets/ldjam_buisson2.png" id="2_oey68"]
+[ext_resource type="Texture2D" uid="uid://dagjyk07co1yj" path="res://assets/ldjam_buisson3.png" id="3_ddgnd"]
+[ext_resource type="Script" path="res://sprite_tree.gd" id="3_inxgr"]
+
+[node name="Buisson" type="Node2D"]
+script = ExtResource("1_qht3b")
+metadata/_edit_group_ = true
+
+[node name="LdjamBuisson1" type="Sprite2D" parent="."]
+scale = Vector2(0.270833, 0.270833)
+texture = ExtResource("1_k317c")
+offset = Vector2(0, -182.86)
+script = ExtResource("3_inxgr")
+wind_amplitude = 0.75
+
+[node name="LdjamBuisson2" type="Sprite2D" parent="."]
+scale = Vector2(0.338235, 0.338235)
+texture = ExtResource("2_oey68")
+offset = Vector2(0, -115.93)
+script = ExtResource("3_inxgr")
+wind_amplitude = 0.75
+
+[node name="LdjamBuisson3" type="Sprite2D" parent="."]
+scale = Vector2(0.297297, 0.297297)
+texture = ExtResource("3_ddgnd")
+offset = Vector2(0, -156.485)
+script = ExtResource("3_inxgr")
+wind_amplitude = 0.75
