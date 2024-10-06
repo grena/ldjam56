@@ -6,6 +6,9 @@ const tree_count = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	$IntroPlayer.play()
+
 	_generate_friskies()
 	_generate_trees()
 	

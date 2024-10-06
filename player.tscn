@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_svisb"]
 [ext_resource type="AudioStream" uid="uid://c3o18t16wnait" path="res://music/BRUITS-PAS.mp3" id="3_fvt2l"]
 [ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="4_doh38"]
-[ext_resource type="AudioStream" uid="uid://bon7ibf04t7xc" path="res://music/ASPIRATION-PETITE-BULLE.mp3" id="5_urbou"]
+[ext_resource type="AudioStream" uid="uid://b3l332qwmu1j8" path="res://music/ASPIRATION PETITE BULLE SOLO.mp3" id="5_2dwon"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4k4fp"]
 radius = 62.588
@@ -51,5 +51,5 @@ stream = ExtResource("4_doh38")
 parameters/looping = true
 
 [node name="AspirePetitPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_urbou")
+stream = ExtResource("5_2dwon")
 parameters/looping = false
