@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://nb0tl4c0g03t"]
+[gd_scene load_steps=18 format=3 uid="uid://nb0tl4c0g03t"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_pkhhj"]
 [ext_resource type="Texture2D" uid="uid://cqf3lww08ty53" path="res://assets/ldjam56_face.png" id="2_svisb"]
 [ext_resource type="AudioStream" uid="uid://c3o18t16wnait" path="res://music/BRUITS-PAS.mp3" id="3_fvt2l"]
 [ext_resource type="AudioStream" uid="uid://c6om2mrbl1oxh" path="res://music/MOTEUR-ASPIBROYEUR.mp3" id="4_doh38"]
 [ext_resource type="AudioStream" uid="uid://b3l332qwmu1j8" path="res://music/ASPIRATION PETITE BULLE SOLO.mp3" id="5_2dwon"]
+[ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="6_0ppiq"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4k4fp"]
 radius = 62.588
@@ -20,6 +21,42 @@ gradient = SubResource("Gradient_h05s2")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s76gh"]
 radius = 16.81
 height = 89.73
+
+[sub_resource type="Gradient" id="Gradient_ni1xy"]
+colors = PackedColorArray(1, 1, 1, 1, 0.0962047, 0.0962048, 0.0962047, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wgfvm"]
+gradient = SubResource("Gradient_ni1xy")
+
+[sub_resource type="Curve" id="Curve_fx1gi"]
+_data = [Vector2(0, 0.450346), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_25p75"]
+curve = SubResource("Curve_fx1gi")
+
+[sub_resource type="Curve" id="Curve_cjxpb"]
+max_value = 3.0
+_data = [Vector2(0, 2.8885), 0.0, 0.0, 0, 0, Vector2(1, 0.376919), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xx10y"]
+curve = SubResource("Curve_cjxpb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8g6i3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.6
+angle_min = -122.2
+angle_max = 217.5
+gravity = Vector3(0, -82.41, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_25p75")
+scale_over_velocity_curve = SubResource("CurveTexture_xx10y")
+color_ramp = SubResource("GradientTexture1D_wgfvm")
 
 [node name="Player" type="CharacterBody2D"]
 floor_constant_speed = true
@@ -53,3 +90,12 @@ parameters/looping = true
 [node name="AspirePetitPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2dwon")
 parameters/looping = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(12, 66)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_8g6i3")
+texture = ExtResource("6_0ppiq")
+lifetime = 0.2
+one_shot = true

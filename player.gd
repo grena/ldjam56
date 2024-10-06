@@ -12,10 +12,13 @@ var squish_timer = 0.0
 var last_direction = 1  # 1 = droite, -1 = gauche
 var is_playing_mini_game = false
 
+var particles_loot : GPUParticles2D
+
 func _ready() -> void:
 	# Activer cette caméra à la démarrage
 	$Camera2D.make_current()
 	original_scale = $Sprite2D.scale
+	particles_loot = $GPUParticles2D
 	
 	$AspibroyeurPlayer.play()
 
@@ -76,6 +79,7 @@ func check_collision_with_frisky(collision) -> void:
 
 	# Vérification si le parent est de type "Frisky"
 	if collider_parent is Frisky:
+		particles_loot.emitting = true
 		# detecter l'upgrade de level
 		var level_precedent = get_parent()._get_level()
 		FUEL = FUEL + 1
