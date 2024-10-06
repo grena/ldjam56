@@ -17,6 +17,7 @@ script = ExtResource("1_0eq2n")
 
 [node name="BroyeurPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tah1l")
+volume_db = 10.0
 
 [node name="Level2Mort1Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_r0oak")

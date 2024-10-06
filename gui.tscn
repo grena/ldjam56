@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="PackedScene" uid="uid://c33dhlmtkjl6n" path="res://interior_fusee.tscn" id="2_1v42l"]
 [ext_resource type="Script" path="res://fusee_espace.gd" id="2_bbocl"]
 [ext_resource type="Script" path="res://stars_particles.gd" id="2_wwod6"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
