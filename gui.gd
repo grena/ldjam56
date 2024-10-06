@@ -55,6 +55,7 @@ func _on_button_pressed_start_game() -> void:
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
 		get_node("IntroGameRect").visible = false
+		get_parent().get_node("MusicPlayerStep1").play()
 		timer.stop();
 		timer.queue_free();
 	);

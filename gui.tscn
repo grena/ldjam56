@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1nva0jctkfg2"]
+[gd_scene load_steps=10 format=3 uid="uid://1nva0jctkfg2"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
@@ -151,6 +151,7 @@ stretch_mode = 4
 [node name="Texte1" type="Label" parent="IntroGameRect/GridContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 30
 text = "Argh, I'm running out of fuel...
 
@@ -160,6 +161,7 @@ horizontal_alignment = 1
 [node name="Texte2" type="Label" parent="IntroGameRect/GridContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 30
 text = "Let's land on this planet!
 
@@ -169,6 +171,7 @@ horizontal_alignment = 1
 [node name="Texte3" type="Label" parent="IntroGameRect/GridContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 30
 text = "Arf, this is X8911, the legends tells huge creatures are around...
 
@@ -178,6 +181,7 @@ horizontal_alignment = 1
 [node name="Texte4" type="Label" parent="IntroGameRect/GridContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ayn1")
 theme_override_font_sizes/font_size = 30
 text = "Let's find fuel and avoid to stick there for too long!
 "
