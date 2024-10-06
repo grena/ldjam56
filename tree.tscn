@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwufg82bvgwwu"]
+[gd_scene load_steps=22 format=3 uid="uid://bwufg82bvgwwu"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_ha3jt"]
 [ext_resource type="Texture2D" uid="uid://cv77pn858unrp" path="res://assets/ldjam_tree1.png" id="2_5gbys"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://sprite_tree.gd" id="3_wf41c"]
 [ext_resource type="Texture2D" uid="uid://b5bes11srnmwp" path="res://assets/treecut1.png" id="4_53kqn"]
 [ext_resource type="Texture2D" uid="uid://dg2yhf21tfe7o" path="res://assets/treecut2.png" id="5_oycwc"]
+[ext_resource type="Script" path="res://tronc.gd" id="6_22ok7"]
 [ext_resource type="Texture2D" uid="uid://nslba22f7skl" path="res://assets/tronconneuse.png" id="6_riruh"]
 [ext_resource type="Texture2D" uid="uid://l0bodcdj2nh7" path="res://assets/window.png" id="7_jb5y0"]
 [ext_resource type="Script" path="res://tronconneuse.gd" id="7_t1ofq"]
@@ -81,18 +82,21 @@ texture = SubResource("GradientTexture1D_jshdc")
 position = Vector2(19.56, 1.175)
 scale = Vector2(0.449, 0.779)
 texture = ExtResource("3_etual")
+script = ExtResource("6_22ok7")
 
 [node name="TreeMid" type="Sprite2D" parent="MiniGame"]
 visible = false
 position = Vector2(19.5, 10.1225)
 scale = Vector2(0.491404, 0.751886)
 texture = ExtResource("4_53kqn")
+script = ExtResource("6_22ok7")
 
 [node name="TreeLow" type="Sprite2D" parent="MiniGame"]
 visible = false
 position = Vector2(20.9295, 10.123)
 scale = Vector2(0.486904, 0.752)
 texture = ExtResource("5_oycwc")
+script = ExtResource("6_22ok7")
 
 [node name="Tronconneuse" type="Sprite2D" parent="MiniGame"]
 position = Vector2(126.195, 149)

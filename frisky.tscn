@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b14dc1kdnux1n"]
+[gd_scene load_steps=6 format=3 uid="uid://b14dc1kdnux1n"]
 
 [ext_resource type="Script" path="res://frisky.gd" id="1_x0haf"]
 [ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="2_nx3nc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
 radius = 17.0294
+
+[sub_resource type="Curve" id="Curve_r5o8w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.353375), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3enaj"]
+offsets = PackedFloat32Array(0.00178891, 1)
+colors = PackedColorArray(0.70674, 0.7836, 0.918732, 1, 1, 1, 1, 1)
 
 [node name="Frisky" type="Node2D"]
 position = Vector2(-14, -8)
@@ -22,3 +30,18 @@ gravity_scale = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(15, 10)
 shape = SubResource("CircleShape2D_2761j")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(14, 5)
+amount = 12
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(24.88, 11.79)
+gravity = Vector2(0, -30.225)
+radial_accel_min = 2.45
+radial_accel_max = 25.69
+scale_amount_min = 6.0
+scale_amount_max = 7.06
+scale_amount_curve = SubResource("Curve_r5o8w")
+color = Color(0.580346, 0.686366, 0.874449, 1)
+color_ramp = SubResource("Gradient_3enaj")

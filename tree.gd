@@ -136,7 +136,7 @@ func move_tronconneuse(delta: float) -> void:
 # Fonction pour vérifier si le curseur est dans la zone de succès
 func check_success() -> void:
 	if cursor_valid:
-		squish_tree()
+		shake_tronc()
 		HEALTH -= 1
 		audio_decoupe.play()
 		if (HEALTH == 0):
@@ -168,6 +168,11 @@ func trigger_finish() -> void:
 	for child in leaf_spots.get_children():
 		if child is Node2D:  # Assurez-vous que l'enfant est bien un Node2D
 			instantiate_leaf_with_delay(child)
+
+func shake_tronc(): 
+	minigame_treefull.start_shake()
+	minigame_treemid.start_shake()
+	minigame_treelow.start_shake()
 
 func instantiate_leaf_with_delay(leaf_spot: Node2D) -> void:
 	# Générer un délai aléatoire entre 0.1 et 0.5 secondes
