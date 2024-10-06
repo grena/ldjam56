@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 	self.set_z_index(self.global_position.y / 10 + 2000)
 	
 func _ready() -> void:
+	$Sprite2D.z_index = 1
 	find_child('Sprite2D2').set_visible(false);
 	find_child('Sprite2D3').set_visible(false);
 	find_child('Sprite2D4').set_visible(false);
