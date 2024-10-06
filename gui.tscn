@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlyt5y5u1y6wt"]
+[gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="PackedScene" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="Script" path="res://fusee_espace.gd" id="2_bbocl"]
+[ext_resource type="Script" path="res://stars_particles.gd" id="2_wwod6"]
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
@@ -9,24 +11,13 @@
 [ext_resource type="AudioStream" uid="uid://buqg5bmaems1r" path="res://music/VOIX JACQUES 2.mp3" id="6_4a82t"]
 [ext_resource type="AudioStream" uid="uid://bmhechelkdau" path="res://music/VOIX CORTANA 1.mp3" id="6_nmvrw"]
 [ext_resource type="AudioStream" uid="uid://6rdw36pi5c5k" path="res://music/VOIX CORTANA 2.mp3" id="7_gl6qa"]
+[ext_resource type="AudioStream" uid="uid://br4uxhvc8dojj" path="res://music/MENU.mp3" id="7_rufd3"]
 [ext_resource type="AudioStream" uid="uid://cdjqi1yp4a7oi" path="res://music/VOIX CORTANA 3.mp3" id="8_qbjws"]
 [ext_resource type="AudioStream" uid="uid://cuh37pbwopwdk" path="res://music/VOIX CORTANA 4.mp3" id="9_qy2sc"]
 [ext_resource type="AudioStream" uid="uid://rtxtoq260x56" path="res://music/VOIX CORTANA 5.mp3" id="10_1pmal"]
-[ext_resource type="AudioStream" uid="uid://br4uxhvc8dojj" path="res://music/MENU.mp3" id="7_rufd3"]
 
 [sub_resource type="Gradient" id="Gradient_bjwqd"]
 colors = PackedColorArray(1, 0.337255, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_fs7iw"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_ofj8h"]
-
-[sub_resource type="Gradient" id="Gradient_k3his"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.545098, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ibko"]
-gradient = SubResource("Gradient_k3his")
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_7anfd")
@@ -68,6 +59,7 @@ offset_bottom = 23.0
 text = "FUEL = 0"
 
 [node name="TextureRect" parent="." instance=ExtResource("2_1v42l")]
+visible = false
 
 [node name="TalkPanelRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(900, 150)
@@ -165,7 +157,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="StartGameRect/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_7ayn1")
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 176
 
 [node name="RichTextLabel" type="RichTextLabel" parent="StartGameRect/GridContainer"]
 layout_mode = 2
@@ -175,15 +167,11 @@ theme_override_fonts/normal_font = ExtResource("3_7ayn1")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "
-
-
-
-
 [center][color=gray]Turn up your sound and use a headset for a better experience[/color]
 
 Move with [color=yellow]arrows[/color] - Interact with [color=yellow]space bar[/color]
-
-[color=yellow]Space bar to continue[/color]
+[color=yellow]
+Space bar to continue[/color]
 [/center]"
 
 [node name="IntroPlayer" type="AudioStreamPlayer" parent="StartGameRect"]
@@ -221,16 +209,6 @@ text = "
 
 
 "
-
-[node name="JackRect" type="TextureRect" parent="IntroGameRect/GridContainer"]
-visible = false
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 0
-texture = ExtResource("4_x2j87")
-expand_mode = 1
-stretch_mode = 4
 
 [node name="Texte1" type="Label" parent="IntroGameRect/GridContainer"]
 visible = false

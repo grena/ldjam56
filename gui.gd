@@ -4,8 +4,6 @@ const MAX_FUEL = 200.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
-@onready var niveau_fuel = $JaugeFuel #$Jauge.find_child('NiveauFuel')
-@onready var position_origin = niveau_fuel.position.y
 
 var fusee : CPUParticles2D
 var etoiles : CPUParticles2D
@@ -72,6 +70,19 @@ func start_game():
 	add_child(crashTimer);
 	crashTimer.start()
 	
+	var crashingTimer: Timer = Timer.new()
+	crashingTimer.wait_time = 13;
+	crashingTimer.one_shot = true;
+	crashingTimer.connect('timeout', func ():
+		stop_introduction()
+		crashingTimer.stop()
+		crashingTimer.queue_free()
+		
+	);
+	add_child(crashingTimer);
+	crashingTimer.start()
+	
+	
 func demarre_sur_planete():
 	# affiche panneau
 	get_node("IntroGameRect").visible = false
@@ -114,7 +125,6 @@ func demarre_sur_planete():
 	timer.wait_time = my_wait_time;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
-		stop_introduction()
 		get_node("TalkPanelRect/HBoxContainer/JackRect").visible = true
 		$TalkPanelRect/JackDitOkPlayer.play()
 		timer.stop();
