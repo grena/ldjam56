@@ -57,6 +57,7 @@ gravity_scale = 0.0
 position = Vector2(-2.37, 127.935)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fvu6m")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -113,21 +114,33 @@ stream = ExtResource("10_pwffs")
 
 [node name="SpriteDead1" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-45, 101)
-scale = Vector2(0.527536, 0.527536)
+position = Vector2(-55, 118)
+scale = Vector2(0.608696, 0.608696)
 texture = ExtResource("11_wmlvv")
 
 [node name="SpriteDead2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(44, 98)
-scale = Vector2(0.5, 0.5)
+position = Vector2(59, 106)
+scale = Vector2(0.603174, 0.603175)
 texture = ExtResource("12_0vqg1")
 
 [node name="SpriteDead3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-24, 100)
-scale = Vector2(0.440252, 0.440252)
+position = Vector2(-37, 111)
+scale = Vector2(0.534591, 0.534591)
 texture = ExtResource("13_no2q2")
+
+[node name="LeafSpots" type="Node2D" parent="."]
+position = Vector2(-1, -35)
+
+[node name="LeafSpot" type="Node2D" parent="LeafSpots"]
+position = Vector2(-66, -15)
+
+[node name="LeafSpot2" type="Node2D" parent="LeafSpots"]
+position = Vector2(53, -43)
+
+[node name="LeafSpot3" type="Node2D" parent="LeafSpots"]
+position = Vector2(46, 81)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
