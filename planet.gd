@@ -12,6 +12,8 @@ const tree_count = 50
 const nb_static_trees = 200
 const bush_count = 50
 
+var fireflies_alpha = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -65,6 +67,8 @@ func _generate_buissons() -> void:
 		
 func _on_minigame_finished():
 	$Player.exit_minigame()
+	$Floor/Fireflies.color = Color((fireflies_alpha - 0.1), (fireflies_alpha - 0.1), 0.0, 1.0)
+	fireflies_alpha -= 0.1
 	
 func _on_minigame_started():
 	$Player.enter_minigame()

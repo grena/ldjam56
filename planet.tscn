@@ -3,16 +3,16 @@
 [ext_resource type="Script" path="res://planet.gd" id="1_bv744"]
 [ext_resource type="Script" path="res://floor.gd" id="2_62xmw"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
-[ext_resource type="PackedScene" uid="uid://byu5bl4jti2vl" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" uid="uid://be81gjpeks074" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="Texture2D" uid="uid://cg4wy3bafgfno" path="res://assets/ours.png" id="3_nwlpy"]
 [ext_resource type="Texture2D" uid="uid://drtf1ni3nv8we" path="res://assets/fuseequisepose.png" id="3_x7i40"]
 [ext_resource type="PackedScene" uid="uid://nb0tl4c0g03t" path="res://player.tscn" id="4_0ue51"]
 [ext_resource type="AudioStream" uid="uid://b61hite3bih1d" path="res://music/STEP-1-MUSIQUE-AMBIANCE .mp3" id="6_mcsfe"]
-[ext_resource type="PackedScene" path="res://fusee.tscn" id="6_yma1i"]
+[ext_resource type="PackedScene" uid="uid://draygko8epbm5" path="res://fusee.tscn" id="6_yma1i"]
 [ext_resource type="AudioStream" uid="uid://b5gnsrcvyo6n3" path="res://music/STEP-2-MUSIQUE-AMBIANCE.mp3" id="7_uwc50"]
 [ext_resource type="AudioStream" uid="uid://mulhwugqed7s" path="res://music/STEP-3-MUSIQUE-AMBIANCE .mp3" id="8_wrfyd"]
 [ext_resource type="PackedScene" uid="uid://dlyt5y5u1y6wt" path="res://gui.tscn" id="10_d3lci"]
-[ext_resource type="PackedScene" path="res://leaf.tscn" id="11_aykir"]
+[ext_resource type="PackedScene" uid="uid://ccipvgdv7ak8a" path="res://leaf.tscn" id="11_aykir"]
 [ext_resource type="AudioStream" uid="uid://7l3vtphnmcky" path="res://music/TRANSITION AMELIORATIONS.mp3" id="11_dg3yf"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
@@ -60,7 +60,7 @@ texture = ExtResource("3_x7i40")
 
 [node name="Fireflies" type="CPUParticles2D" parent="Floor"]
 position = Vector2(-558, -270)
-amount = 300
+amount = 600
 lifetime = 5.0
 emission_shape = 3
 emission_rect_extents = Vector2(2000, 2000)
@@ -69,7 +69,7 @@ tangential_accel_min = -29.97
 tangential_accel_max = 24.46
 scale_amount_min = 3.0
 scale_amount_max = 5.0
-color = Color(1, 1, 0.101961, 1)
+color = Color(1.5, 1.5, 0, 1)
 
 [node name="Fusee" parent="." instance=ExtResource("6_yma1i")]
 modulate = Color(0.775063, 0.775063, 0.775063, 1)
