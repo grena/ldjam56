@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlyt5y5u1y6wt"]
+[gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="PackedScene" path="res://interior_fusee.tscn" id="2_1v42l"]
+[ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
 [ext_resource type="Texture2D" uid="uid://dkhqdydcgjmdn" path="res://assets/jack.png" id="4_x2j87"]
@@ -34,7 +35,7 @@ text = "FUEL = 0"
 [node name="TextureRect" parent="." instance=ExtResource("2_1v42l")]
 
 [node name="TalkPanelRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(800, 150)
+custom_minimum_size = Vector2(900, 150)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -47,8 +48,26 @@ color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TalkPanelRect"]
 layout_mode = 1
-offset_right = 608.0
+offset_left = -1.0
+offset_right = 907.0
 offset_bottom = 200.0
+
+[node name="FuseeRect" type="TextureRect" parent="TalkPanelRect/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+texture = ExtResource("3_6x1us")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="TalkPanelRect/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_7ayn1")
+theme_override_font_sizes/font_size = 24
 
 [node name="JackRect" type="TextureRect" parent="TalkPanelRect/HBoxContainer"]
 custom_minimum_size = Vector2(200, 200)
@@ -58,14 +77,6 @@ size_flags_vertical = 0
 texture = ExtResource("4_x2j87")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="Text" type="Label" parent="TalkPanelRect/HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_7ayn1")
-theme_override_font_sizes/font_size = 24
 
 [node name="JackDitOkPlayer" type="AudioStreamPlayer" parent="TalkPanelRect"]
 stream = ExtResource("6_4a82t")
