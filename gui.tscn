@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://1nva0jctkfg2"]
+[gd_scene load_steps=10 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
-[ext_resource type="Texture2D" uid="uid://r6pdu3bu5pwg" path="res://assets/ldjam56_interior.png" id="1_tfyhi"]
+[ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="2_bk1we"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
 [ext_resource type="Texture2D" uid="uid://dkhqdydcgjmdn" path="res://assets/jack.png" id="4_x2j87"]
@@ -36,7 +36,7 @@ offset_right = -2.0
 offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("1_tfyhi")
+texture = ExtResource("2_bk1we")
 expand_mode = 3
 
 [node name="Jauge" type="MeshInstance2D" parent="."]
