@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="2_4kd2f"]
 [ext_resource type="Script" path="res://floor.gd" id="2_62xmw"]
 [ext_resource type="PackedScene" uid="uid://b14dc1kdnux1n" path="res://frisky.tscn" id="2_dw544"]
-[ext_resource type="PackedScene" uid="uid://be81gjpeks074" path="res://tubes.tscn" id="3_ednm7"]
+[ext_resource type="PackedScene" uid="uid://byu5bl4jti2vl" path="res://tubes.tscn" id="3_ednm7"]
 [ext_resource type="Texture2D" uid="uid://cg4wy3bafgfno" path="res://assets/ours.png" id="3_nwlpy"]
 [ext_resource type="Texture2D" uid="uid://drtf1ni3nv8we" path="res://assets/fuseequisepose.png" id="3_x7i40"]
 [ext_resource type="PackedScene" uid="uid://nb0tl4c0g03t" path="res://player.tscn" id="4_0ue51"]
@@ -33,6 +33,9 @@ glow_hdr_scale = 1.51
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bv744")
+
+[node name="Tubes" parent="." instance=ExtResource("3_ednm7")]
+position = Vector2(-120, 0)
 
 [node name="Floor" type="Node2D" parent="."]
 script = ExtResource("2_62xmw")
@@ -94,6 +97,3 @@ position = Vector2(151, -61)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sxjue")
-
-[node name="Tubes" parent="." instance=ExtResource("3_ednm7")]
-position = Vector2(-120, 0)

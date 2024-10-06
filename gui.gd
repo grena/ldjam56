@@ -101,8 +101,9 @@ func start_game():
 	crashingTimer.one_shot = true;
 	crashingTimer.connect('timeout', func ():
 		stop_introduction()
-		crashingTimer.stop()
-		crashingTimer.queue_free()
+		if crashingTimer != null:
+			crashingTimer.stop()
+			crashingTimer.queue_free()
 		
 	);
 	add_child(crashingTimer);
