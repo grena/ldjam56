@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cylef1b4syv3r"]
+
+[ext_resource type="Script" path="res://simple_tree.gd" id="1_nraik"]
+[ext_resource type="Texture2D" uid="uid://c24g474opktlw" path="res://assets/treev2.png" id="2_eesqv"]
+[ext_resource type="Script" path="res://sprite_tree.gd" id="3_fl4xf"]
+
+[node name="Tree" type="Node2D"]
+script = ExtResource("1_nraik")
+
+[node name="SpriteAlive1" type="Sprite2D" parent="."]
+position = Vector2(9, 151)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_eesqv")
+offset = Vector2(0, -353.675)
+script = ExtResource("3_fl4xf")
