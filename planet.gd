@@ -92,7 +92,7 @@ func spawn_frisky(pos) -> void:
 	new_frisky.position.x = pos.x
 	new_frisky.position.y = pos.y
 	new_frisky.visible = true
-	new_frisky.set_z_index(new_frisky.global_position.y / 10 + 2000 + 5)
+	#new_frisky.set_z_index(new_frisky.global_position.y / 10 + 2000 + 5)
 	self.add_child(new_frisky)
 	
 func spawn_static_tree(pos) -> void:

@@ -110,6 +110,7 @@ func start_game():
 	crashingTimer.start()
 
 func demarre_sur_planete():
+	get_parent().get_node('Player/AspibroyeurPlayer').play()
 	get_parent().get_node("MusicPlayerStep1").play()
 	var texts = [
 		"[center]\nLanded in emergency.\n[/center]",

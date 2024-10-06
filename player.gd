@@ -20,8 +20,6 @@ func _ready() -> void:
 	$Camera2D.make_current()
 	original_scale = $Sprite2D.scale
 	particles_loot = $GPUParticles2D
-	
-	$AspibroyeurPlayer.play()
 
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2.ZERO
