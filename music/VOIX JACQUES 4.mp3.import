@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxdqmw14bmu72"
+path="res://.godot/imported/VOIX JACQUES 4.mp3-f514a1f3783837f2bc3720ba99a763d2.mp3str"
+
+[deps]
+
+source_file="res://music/VOIX JACQUES 4.mp3"
+dest_files=["res://.godot/imported/VOIX JACQUES 4.mp3-f514a1f3783837f2bc3720ba99a763d2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
