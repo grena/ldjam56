@@ -86,6 +86,7 @@ offset_bottom = 134.0
 texture = ExtResource("3_5y7bc")
 
 [node name="XRayMid" type="TextureRect" parent="Node2D"]
+visible = false
 offset_left = 99.0
 offset_top = 56.0
 offset_right = 834.0
@@ -96,6 +97,7 @@ pivot_offset = Vector2(367, 367)
 texture = ExtResource("12_6vuy1")
 
 [node name="XRay1" type="TextureRect" parent="Node2D"]
+visible = false
 offset_left = 105.0
 offset_top = 66.0
 offset_right = 840.0
@@ -106,6 +108,7 @@ pivot_offset = Vector2(367, 367)
 texture = ExtResource("13_gyggj")
 
 [node name="XRay2" type="TextureRect" parent="Node2D"]
+visible = false
 offset_left = 105.0
 offset_top = 66.0
 offset_right = 840.0

@@ -6,7 +6,7 @@ var velocity = velocity_min
 
 var rota = 0
 var max_y = 12
-var shouldDisplayXRay = true
+var shouldDisplayXRay = false
 var remplissage
 
 func set_remplissage(percentage: float):
@@ -25,6 +25,9 @@ func set_xray_on():
 	$Node2D/XRayOn.set_visible(true)
 	$Node2D/XRayMid.set_visible(true)
 	
+func set_display_blobs_in_xray():
+	shouldDisplayXRay = true
+		
 func _ready() -> void:
 	$Node2D/Fuel/ColorRect.position.y = 150
 	$Node2D/Fuel/ColorRect.position.x = 50
@@ -39,7 +42,7 @@ func _process(delta: float) -> void:
 
 func run_mixer():
 	velocity += velocity_on_mixage
-	if remplissage > 0.75:
+	if shouldDisplayXRay:
 		display_blob()
 
 func display_blob():
