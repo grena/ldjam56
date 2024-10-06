@@ -167,6 +167,7 @@ func trigger_finish() -> void:
 	minigame.visible = false
 	is_waiting_for_player_interaction = false
 	audio_engine.stop()
+	kill_some_bushes()
 	
 	tree_sprite.visible = false
 	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
@@ -175,6 +176,18 @@ func trigger_finish() -> void:
 	for child in leaf_spots.get_children():
 		if child is Node2D:  # Assurez-vous que l'enfant est bien un Node2D
 			instantiate_leaf_with_delay(child)
+			
+
+func kill_some_bushes():
+	var bushes = []
+	for child in get_parent().get_children():
+		if child is Bush:  # Filtrer les enfants dont le nom commence par "Bush"
+			bushes.append(child)
+	
+	var bush_count_to_remove = randi_range(2, 4  )
+	for i in range(min(bush_count_to_remove, bushes.size())):
+		var random_bush = bushes[randi() % bushes.size()]
+		random_bush.tu_moisis()
 
 func shake_tronc():
 	minigame_treefull.start_shake()
