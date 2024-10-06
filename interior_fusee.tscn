@@ -1,17 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck5nhuxh5p4rv"]
+[gd_scene load_steps=11 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
+[ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_xmxie"]
+[ext_resource type="Texture2D" uid="uid://cbiei0aj4gyvc" path="res://assets/gui_fuel_overlay.png" id="2_q5ray"]
+[ext_resource type="Texture2D" uid="uid://dxwo1gct2tii5" path="res://assets/gui_mixer.png" id="3_5y7bc"]
+[ext_resource type="Texture2D" uid="uid://c7fxwn4t7xxml" path="res://assets/gui_mixer_on.png" id="4_mk27l"]
+[ext_resource type="Texture2D" uid="uid://cqh0ym42ibwqj" path="res://assets/gui_sound_on.png" id="5_3r0ar"]
+[ext_resource type="Texture2D" uid="uid://cv4nee3ned1pg" path="res://assets/gui_translator_on.png" id="6_sm55x"]
+[ext_resource type="Texture2D" uid="uid://dgtodbt3jlxvu" path="res://assets/gui_world_overlay.png" id="7_nvm45"]
+[ext_resource type="Texture2D" uid="uid://y8dcww7pnqcl" path="res://assets/gui_xray_on.png" id="8_gj0es"]
 
-[node name="InteriorFusee" type="TextureRect"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -453.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = -2.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_tcvro")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_xmxie")
+
+[node name="Gui" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
 texture = ExtResource("1_gleva")
-expand_mode = 3
+
+[node name="FuelOverlay" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("2_q5ray")
+
+[node name="MixerOn" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("4_mk27l")
+
+[node name="SoundOn" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("5_3r0ar")
+
+[node name="TranslatorOn" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("6_sm55x")
+
+[node name="WorldOverlay" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("7_nvm45")
+
+[node name="XRayOn" type="TextureRect" parent="Node2D"]
+offset_right = 2304.0
+offset_bottom = 3608.0
+texture = ExtResource("8_gj0es")
+
+[node name="MixerCenter" type="Node2D" parent="Node2D"]
+
+[node name="FuelMixer" type="TextureRect" parent="Node2D/MixerCenter"]
+offset_left = -131.0
+offset_top = -133.0
+offset_right = 136.0
+offset_bottom = 134.0
+texture = ExtResource("3_5y7bc")
