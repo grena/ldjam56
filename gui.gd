@@ -15,6 +15,9 @@ var LEVEL4_UPGRADED = false
 var fusee : CPUParticles2D
 var etoiles : CPUParticles2D
 
+# position toyo origine pour eviter le declage avec les shake successifs
+var toyo_position_origin
+
 #Timers
 var toussoteTimer: Timer
 var crashTimer: Timer
@@ -25,6 +28,7 @@ func _ready() -> void:
 	get_node("IntroGameRect").visible = false
 	fusee = $CPUParticles2DFusee
 	etoiles = $CPUParticles2D
+	toyo_position_origin = get_node("TextureRect/Node2D/Toyo").position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -237,13 +241,41 @@ func shake_cabine_when_upgrade():
 			tween.tween_property(
 				cabine_fusee,
 				"position",
-				cabine_fusee.position - Vector2(randi_range(5, 25), 0),
+				cabine_fusee.position - Vector2(randi_range(2, 8), 0),
 				0.05
 			)
 			tween.tween_property(
 				cabine_fusee,
 				"position",
-				cabine_fusee.position - Vector2(randi_range(-25, -5), 0),
+				cabine_fusee.position - Vector2(randi_range(-8, -2), 0),
+				0.05
+			)
+		# end shake shake shake
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+
+func shake_toyo_when_aspire():
+	var timer: Timer = Timer.new()
+	timer.wait_time = 0.1;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		# shake shake shake
+		var toyo = get_node("TextureRect/Node2D/Toyo")
+		var tween = create_tween()
+		for shake in range(0, 6):
+			tween.tween_property(
+				toyo,
+				"position",
+				toyo_position_origin - Vector2(randi_range(5, 15), randi_range(5, 15)),
+				0.05
+			)
+			tween.tween_property(
+				toyo,
+				"position",
+				toyo_position_origin - Vector2(randi_range(-15, -5), randi_range(-15, -5)),
 				0.05
 			)
 		# end shake shake shake
