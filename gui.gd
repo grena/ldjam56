@@ -17,6 +17,9 @@ var LEVEL4_UPGRADED = false
 var fusee : CPUParticles2D
 var etoiles : CPUParticles2D
 
+# position toyo origine pour eviter le declage avec les shake successifs
+var toyo_position_origin
+
 #Timers
 var toussoteTimer: Timer
 var crashTimer: Timer
@@ -27,6 +30,7 @@ func _ready() -> void:
 	get_node("IntroGameRect").visible = false
 	fusee = $CPUParticles2DFusee
 	etoiles = $CPUParticles2D
+	toyo_position_origin = get_node("TextureRect/Node2D/Toyo").position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -145,6 +149,7 @@ func passage_niveau_deux():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func passage_niveau_trois():
 	if LEVEL3_UPGRADED == false:
@@ -162,6 +167,7 @@ func passage_niveau_trois():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func le_vaisseau_est_pret():
 	if LEVEL4_UPGRADED == false:
@@ -176,6 +182,7 @@ func le_vaisseau_est_pret():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func affiche_dialogue(texts):
 	IS_DIALOG_OPENED = true
@@ -224,6 +231,62 @@ func affiche_dialogue(texts):
 	add_child(timer);
 	timer.start();
 
+func shake_cabine_when_upgrade():
+	var timer: Timer = Timer.new()
+	timer.wait_time = 6;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		# shake shake shake
+		var cabine_fusee = get_node("TextureRect/Node2D")
+		var tween = create_tween()
+		for shake in range(0, 50):
+			tween.tween_property(
+				cabine_fusee,
+				"position",
+				cabine_fusee.position - Vector2(randi_range(2, 8), 0),
+				0.05
+			)
+			tween.tween_property(
+				cabine_fusee,
+				"position",
+				cabine_fusee.position - Vector2(randi_range(-8, -2), 0),
+				0.05
+			)
+		# end shake shake shake
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+
+func shake_toyo_when_aspire():
+	var timer: Timer = Timer.new()
+	timer.wait_time = 0.1;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		# shake shake shake
+		var toyo = get_node("TextureRect/Node2D/Toyo")
+		var tween = create_tween()
+		for shake in range(0, 6):
+			tween.tween_property(
+				toyo,
+				"position",
+				toyo_position_origin - Vector2(randi_range(5, 15), randi_range(5, 15)),
+				0.05
+			)
+			tween.tween_property(
+				toyo,
+				"position",
+				toyo_position_origin - Vector2(randi_range(-15, -5), randi_range(-15, -5)),
+				0.05
+			)
+		# end shake shake shake
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+
 func decolle_batard():
 	if IS_DECOLLING == false:
 		IS_DECOLLING = true
@@ -231,6 +294,7 @@ func decolle_batard():
 		var outro = Outro.instantiate()
 		get_parent().add_child(outro)
 		outro.launch_outro()
+
 
 func has_cut_tree():
 	$TextureRect.has_cut_tree();

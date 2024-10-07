@@ -1,20 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlyt5y5u1y6wt"]
+[gd_scene load_steps=10 format=3 uid="uid://dlyt5y5u1y6wt"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_7anfd"]
 [ext_resource type="PackedScene" uid="uid://ck5nhuxh5p4rv" path="res://interior_fusee.tscn" id="2_1v42l"]
 [ext_resource type="Script" path="res://fusee_espace.gd" id="2_bbocl"]
 [ext_resource type="Script" path="res://stars_particles.gd" id="2_wwod6"]
-[ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="3_6x1us"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
-[ext_resource type="Texture2D" uid="uid://dkhqdydcgjmdn" path="res://assets/jack.png" id="4_x2j87"]
-[ext_resource type="AudioStream" uid="uid://buqg5bmaems1r" path="res://music/VOIX JACQUES 2.mp3" id="6_4a82t"]
-[ext_resource type="AudioStream" uid="uid://bmhechelkdau" path="res://music/VOIX CORTANA 1.mp3" id="6_nmvrw"]
-[ext_resource type="AudioStream" uid="uid://6rdw36pi5c5k" path="res://music/VOIX CORTANA 2.mp3" id="7_gl6qa"]
+[ext_resource type="PackedScene" uid="uid://chmp5kgk584wv" path="res://talk_panel.tscn" id="5_eraxd"]
 [ext_resource type="AudioStream" uid="uid://br4uxhvc8dojj" path="res://music/MENU.mp3" id="7_rufd3"]
-[ext_resource type="AudioStream" uid="uid://cdjqi1yp4a7oi" path="res://music/VOIX CORTANA 3.mp3" id="8_qbjws"]
-[ext_resource type="AudioStream" uid="uid://cuh37pbwopwdk" path="res://music/VOIX CORTANA 4.mp3" id="9_qy2sc"]
-[ext_resource type="AudioStream" uid="uid://rtxtoq260x56" path="res://music/VOIX CORTANA 5.mp3" id="10_1pmal"]
 
 [sub_resource type="Gradient" id="Gradient_bjwqd"]
 colors = PackedColorArray(1, 0.337255, 0, 1, 1, 1, 1, 1)
@@ -60,108 +53,7 @@ text = "FUEL = 0"
 
 [node name="TextureRect" parent="." instance=ExtResource("2_1v42l")]
 
-[node name="TalkPanelRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(0, 220)
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-
-[node name="FuseeRect" type="TextureRect" parent="TalkPanelRect"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -200.0
-offset_right = 200.0
-grow_vertical = 0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-texture = ExtResource("3_6x1us")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Text" type="RichTextLabel" parent="TalkPanelRect"]
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_right = 0.5
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("3_7ayn1")
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-
-[node name="Text2" type="Label" parent="TalkPanelRect"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_7ayn1")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-justification_flags = 227
-
-[node name="JackRect" type="TextureRect" parent="TalkPanelRect"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -200.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-texture = ExtResource("4_x2j87")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="JackDitOkPlayer" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("6_4a82t")
-volume_db = -10.0
-parameters/looping = false
-
-[node name="CortanaPlayer1" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("6_nmvrw")
-
-[node name="CortanaPlayer2" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("7_gl6qa")
-
-[node name="CortanaPlayer3" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("8_qbjws")
-
-[node name="CortanaPlayer4" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("9_qy2sc")
-
-[node name="CortanaPlayer5" type="AudioStreamPlayer" parent="TalkPanelRect"]
-stream = ExtResource("10_1pmal")
+[node name="TalkPanelRect" parent="." instance=ExtResource("5_eraxd")]
 
 [node name="StartGameRect" type="ColorRect" parent="."]
 anchors_preset = 15

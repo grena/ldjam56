@@ -110,6 +110,9 @@ func check_collision_with_frisky(collision) -> void:
 		# ramassage de frisky
 		var bruits_aspiro = [$AspirePetitPlayer, $AspireGrosPlayer]
 		bruits_aspiro.pick_random().play()
+		# vibrage de toyo
+		get_parent().get_node("GUI").shake_toyo_when_aspire()
+
 		# On détruit la Frisky
 		collider_parent.queue_free()
 		self.get_parent().find_child('Tubes').avale();
