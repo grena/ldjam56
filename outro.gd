@@ -1,11 +1,21 @@
 extends Node2D
 
+var is_launched = false
+
 func _ready() -> void:
 	pass
 	#launch_outro()
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_text_delete"):
+		launch_outro()
 
 # Called when the node enters the scene tree for the first time.
 func launch_outro() -> void:
+	if is_launched:
+		return
+		
+	is_launched = true
 	var tween_fade_in = create_tween()
 	
 	var UI_fusee = get_parent().get_node('GUI').get_node('TextureRect')

@@ -10,6 +10,9 @@ var original_scale:  Vector2
 var squish_timer = 0.0
 var original_color : Color
 
+var repeat_fuel_count = 0
+var max_fuel_repeats = 5
+
 func _ready() -> void:
 	original_color = Color(1.0, 1.0, 1.0, 1.0)
 	original_scale = self.scale
@@ -92,6 +95,15 @@ func decollage() -> void:
 	$DecollagePlayer.play()
 	$ParticlesFumee.emitting = true
 	
+	# on lui fait cracher du fuel toutes les 800ms
+	var fuelTimer = Timer.new()
+	fuelTimer.wait_time = 0.650
+	fuelTimer.one_shot = false  # Le timer se répète
+	fuelTimer.connect("timeout",Callable(self, "_on_fuel_timeout"))
+	fuelTimer.name = "FuelTimer"
+	add_child(fuelTimer)
+	fuelTimer.start()
+	
 	var start_fire = 4.5
 	
 	var timer: Timer = Timer.new()
@@ -111,3 +123,11 @@ func decollage() -> void:
 	add_child(timer)
 	timer.start()
 	
+func _on_fuel_timeout() -> void:
+	var spread = 20
+	if repeat_fuel_count < max_fuel_repeats:
+		var randPos = Vector2(get_position().x + randi_range(-spread, spread), get_position().y + randi_range(-spread, spread))
+		get_parent().get_node('Floor').add_oil(randPos)
+		repeat_fuel_count += 1
+	else:
+		get_node("FuelTimer").stop()
