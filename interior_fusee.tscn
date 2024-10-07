@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dkttgd6uecj1h" path="res://assets/wall.png" id="16_4srh4"]
 [ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
 
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
 

@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://frisky.gd" id="1_x0haf"]
 [ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="2_nx3nc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
-radius = 33.541
-
 [sub_resource type="Curve" id="Curve_r5o8w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.353375), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -14,22 +11,19 @@ point_count = 2
 offsets = PackedFloat32Array(0.00178891, 1)
 colors = PackedColorArray(0.70674, 0.7836, 0.918732, 1, 1, 1, 1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2761j"]
+radius = 33.541
+
 [node name="Frisky" type="Node2D"]
 position = Vector2(-14, -8)
 script = ExtResource("1_x0haf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1.5, 1, 1.5, 1)
-position = Vector2(15, 5)
+position = Vector2(15, 23.52)
 scale = Vector2(0.415909, 0.415909)
 texture = ExtResource("2_nx3nc")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(15, 10)
-shape = SubResource("CircleShape2D_2761j")
+offset = Vector2(0, -38.235)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(14, 5)
@@ -45,3 +39,9 @@ scale_amount_max = 7.06
 scale_amount_curve = SubResource("Curve_r5o8w")
 color = Color(0.580346, 0.686366, 0.874449, 1)
 color_ramp = SubResource("Gradient_3enaj")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(15, 10)
+shape = SubResource("CircleShape2D_2761j")
