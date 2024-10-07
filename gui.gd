@@ -148,7 +148,7 @@ func passage_niveau_deux():
 		var texts = [
 			"\nFuel level 1 reached.\n",
 			"Turning on basic features.\n",
-			"*Chain saw+ enabled.\n",
+			"*Chainsaw+ enabled.\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
