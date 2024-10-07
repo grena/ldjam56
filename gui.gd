@@ -148,7 +148,7 @@ func passage_niveau_deux():
 		var texts = [
 			"\nFuel level 1 reached.\n",
 			"Turning on basic features.\n",
-			"[color=yellow]Chain saw[/color] enabled.\n",
+			"*Chain saw+ enabled.\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
@@ -166,7 +166,7 @@ func passage_niveau_trois():
 		var texts = [
 			"\nFuel level 2 reached.\n",
 			"Turning on advanced features.\n",
-			"[color=yellow]Flame thrower[/color] enabled.\n",
+			"*Flame thrower+ enabled.\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
@@ -181,7 +181,7 @@ func le_vaisseau_est_pret():
 		get_node("TextureRect").set_display_blobs_in_xray()  
 		var texts = [
 			"\nEnough fuel to leave.\n",
-			"[color=yellow]Go back to the ship.[/color]\n",
+			"*Go back to the ship.+\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
