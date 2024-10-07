@@ -8,7 +8,7 @@ const radius_min_frisky_generation = 200
 const radius_max_static_tree_generation = 2500
 const radius_min_static_tree_generation = 1700
 
-const tree_count = 50
+const tree_count = 35
 const nb_static_trees = 200
 const bush_count = 50
 
