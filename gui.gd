@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var Outro = preload("res://outro.tscn")
 
-const MAX_FUEL = 2.0  # Le maximum de carburant correspondant à 100%
+const MAX_FUEL = 80.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
