@@ -9,6 +9,24 @@ var max_y = 12
 var shouldDisplayXRay = false
 var remplissage
 
+func led_is_blinking_when_starting(led):
+	var number_of_blinks = 19
+	var duration_blink = 0.2
+	var blink_visible = true
+	for x in number_of_blinks:
+		# blink light
+		var timer: Timer = Timer.new()
+		timer.wait_time = duration_blink * x;
+		timer.one_shot = true;
+		timer.connect('timeout', func ():
+			led.set_visible(blink_visible)
+			timer.stop();
+			timer.queue_free();
+		);
+		add_child(timer);
+		timer.start();
+		blink_visible = !blink_visible
+
 func set_remplissage(percentage: float):
 	remplissage = percentage
 	$Node2D/Fuel/Fuel.position.y = -300 * percentage
@@ -16,14 +34,14 @@ func set_remplissage(percentage: float):
 	($Node2D/Fuel/ColorRect as ColorRect)._set_size(Vector2(2000, 250 * percentage))
 
 func set_sound_on():
-	$Node2D/SoundOn.set_visible(true)
-
+	led_is_blinking_when_starting($Node2D/SoundOn)
+ 
 func set_translator_on():
-	$Node2D/TranslatorOn.set_visible(true)
+	led_is_blinking_when_starting($Node2D/TranslatorOn)
 	
 func set_xray_on():
-	$Node2D/XRayOn.set_visible(true)
-	$Node2D/XRayMid.set_visible(true)
+	led_is_blinking_when_starting($Node2D/XRayOn)
+	led_is_blinking_when_starting($Node2D/XRayMid)
 	
 func set_display_blobs_in_xray():
 	shouldDisplayXRay = true
