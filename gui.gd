@@ -1,6 +1,8 @@
 extends CanvasLayer
 
-const MAX_FUEL = 80.0  # Le maximum de carburant correspondant à 100%
+@onready var Outro = preload("res://outro.tscn")
+
+const MAX_FUEL = 2.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
@@ -225,34 +227,10 @@ func affiche_dialogue(texts):
 func decolle_batard():
 	if IS_DECOLLING == false:
 		IS_DECOLLING = true
-		# tout masquer
-		get_node("TextureRect").visible = false
-		get_parent().get_node("Player").visible = false
-		get_parent().get_node("Tubes").visible = false
-		get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
-		get_parent().get_node("Player").get_node("AspibroyeurPlayer").stop()
-		var magrossefuseeturgecente = get_parent().get_node("Fusee")
-		# son dcollage
-		magrossefuseeturgecente.get_node("DecollagePlayer").play()
 		
-		var timer: Timer = Timer.new()
-		timer.wait_time = 5;
-		timer.one_shot = true;
-		timer.connect('timeout', func ():
-
-			var tween = create_tween()
-			tween.tween_property(
-				magrossefuseeturgecente,
-				"position",
-				magrossefuseeturgecente.position - Vector2(0, 1200),
-				10
-			)
-
-			timer.stop();
-			timer.queue_free();
-		);
-		add_child(timer);
-		timer.start();
+		var outro = Outro.instantiate()
+		get_parent().add_child(outro)
+		outro.launch_outro()
 
 func has_cut_tree():
 	$TextureRect.has_cut_tree();
