@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ey03aoew6k1"]
+
+[sub_resource type="Curve" id="Curve_qe8k2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.353375), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dhl4d"]
+offsets = PackedFloat32Array(0.00178891, 1)
+colors = PackedColorArray(0.70674, 0.7836, 0.918732, 1, 1, 1, 1, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+position = Vector2(14, 5)
+amount = 12
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(44.545, 54.145)
+gravity = Vector2(0, -30.225)
+radial_accel_min = 2.45
+radial_accel_max = 25.69
+scale_amount_min = 6.0
+scale_amount_max = 7.06
+scale_amount_curve = SubResource("Curve_qe8k2")
+color = Color(0.580346, 0.686366, 0.874449, 1)
+color_ramp = SubResource("Gradient_dhl4d")

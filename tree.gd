@@ -10,6 +10,8 @@ var HEALTH = 3
 var MAX_HEIGHT_VARIATION = 0.05
 var MIN_HEIGHT_VARIATION = 0.15
 var COLOR_VARIATION = 0.3
+var MIN_DROPPED_FRISKIES = 1
+var MAX_DROPPED_FRISKIES = 4
 
 const SQUISH_AMOUNT = 0.45  # Le facteur de squish (1.0 = normal, <1.0 = compression)
 const SQUISH_TIME = 0.150    # Temps pour animer le squish
@@ -41,6 +43,7 @@ var original_scale = Vector2(1, 1)
 var squish_timer = 0.0
 
 var is_waiting_for_player_interaction = false
+var nb_dropped_friskies = 0
 
 signal minigame_started
 signal minigame_finished
@@ -57,19 +60,21 @@ func _ready() -> void:
 	minigame.visible = false
 	leaf_spots = $LeafSpots
 	
+	nb_dropped_friskies = randi_range(MIN_DROPPED_FRISKIES, MAX_DROPPED_FRISKIES)
+	
 	var sprites = [$SpriteAlive1, $SpriteAlive2]
 	for i in sprites:
 		i.visible = false
 	tree_sprite = sprites[0]
 	#tree_sprite = sprites[randi_range(0, 1)]
 	tree_sprite.visible = true
-	_add_blobs_to_sprite(tree_sprite)
 	var variation = randf_range(MIN_HEIGHT_VARIATION, MAX_HEIGHT_VARIATION)
 	tree_sprite.scale.y += variation
 	tree_sprite.scale.x += variation
 	original_color = Color(1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1.0)
 	tree_sprite.modulate = original_color
 	original_scale = tree_sprite.scale
+	_add_blobs_to_sprite(tree_sprite)
 	
 func _process(delta: float) -> void:
 	# Déplacer la tronconneuse
@@ -219,8 +224,7 @@ func instantiate_leaf_with_delay(leaf_spot: Node2D) -> void:
 	
 func spawn_friskies() -> void:
 	var spread_distance = 150
-	var nb_friskies = randi_range(2, 4)
-	for i in range(nb_friskies):
+	for i in nb_dropped_friskies:
 		var frisk_pos = Vector2(position.x + randi_range(-spread_distance, spread_distance), position.y + randi_range(-spread_distance, spread_distance))
 		emit_signal("spawn_frisky", frisk_pos)
 
@@ -285,11 +289,10 @@ func toggle_wait_for_interaction():
 
 func _add_blobs_to_sprite(sprite: Sprite2D):
 	if sprite.name == 'SpriteAlive1':
-		var number_of_blob = randi_range(2,5)
-		for x in number_of_blob:
+		for x in nb_dropped_friskies:
 			var blob: Node2D = BlobInTreeScene.instantiate()
 			var center = Vector2(0, -480)
-			var angle = 2 * PI / number_of_blob * x
+			var angle = 2 * PI / nb_dropped_friskies * x
 			var distance = randf_range(50, 200)
 			blob.position = center + Vector2(
 				sin(angle) * distance,

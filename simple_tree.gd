@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 func _add_blobs_to_sprite(sprite: Sprite2D):
 	if sprite.name == 'SpriteAlive1':
-		var number_of_blob = randi_range(2,5)
+		var number_of_blob = randi_range(1,4)
 		for x in number_of_blob:
 			var blob: Node2D = BlobInTreeScene.instantiate()
 			var center = Vector2(0, -480)
