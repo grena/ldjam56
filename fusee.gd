@@ -11,7 +11,9 @@ var squish_timer = 0.0
 var original_color : Color
 
 var repeat_fuel_count = 0
-var max_fuel_repeats = 5
+var max_fuel_repeats = 15
+
+@onready var site_du_decollage = self.global_position
 
 func _ready() -> void:
 	original_color = Color(1.0, 1.0, 1.0, 1.0)
@@ -124,9 +126,9 @@ func decollage() -> void:
 	timer.start()
 	
 func _on_fuel_timeout() -> void:
-	var spread = 20
+	var spread = 20 + repeat_fuel_count * 20
 	if repeat_fuel_count < max_fuel_repeats:
-		var randPos = Vector2(get_position().x + randi_range(-spread, spread), get_position().y + randi_range(-spread, spread))
+		var randPos = Vector2(site_du_decollage.x + randi_range(-spread, spread), site_du_decollage.y + randi_range(-spread, spread))
 		get_parent().get_node('Floor').add_oil(randPos)
 		repeat_fuel_count += 1
 	else:
