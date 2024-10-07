@@ -38,10 +38,10 @@ gradient = SubResource("Gradient_v8o20")
 script = ExtResource("1_ha3jt")
 
 [node name="SpriteAlive1" type="Sprite2D" parent="."]
-position = Vector2(9, 151)
+position = Vector2(9, 130.37)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_bv7ex")
-offset = Vector2(0, -353.675)
+offset = Vector2(0, -449.615)
 script = ExtResource("3_wf41c")
 
 [node name="SpriteAlive2" type="Sprite2D" parent="."]
