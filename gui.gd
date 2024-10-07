@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var Outro = preload("res://outro.tscn")
+@onready var TalkPanel: TalkPanelRect = $TalkPanelRect;
 
 const MAX_FUEL = 80.0  # Le maximum de carburant correspondant à 100%
 var IS_GAME_STARTED = false
@@ -189,7 +190,7 @@ func affiche_dialogue(texts):
 	# affiche panneau
 	get_node("IntroGameRect").visible = false
 	get_node("TalkPanelRect").visible = true
-	get_node("TalkPanelRect/JackRect").visible = false
+	TalkPanel.hide_jack();
 	# affiche textes
 	var cortana_voix = [
 		$TalkPanelRect/CortanaPlayer1,
@@ -223,7 +224,7 @@ func affiche_dialogue(texts):
 	timer.wait_time = my_wait_time;
 	timer.one_shot = true;
 	timer.connect('timeout', func ():
-		get_node("TalkPanelRect/JackRect").visible = true
+		TalkPanel.show_jack();
 		$TalkPanelRect/JackDitOkPlayer.play()
 		timer.stop();
 		timer.queue_free();
