@@ -50,7 +50,21 @@ func _on_ecran_visible() -> void:
 	var fusee = get_parent().get_node("Fusee")
 	fusee.decollage()
 	
-	# Dezoom caméra
+	var timer: Timer = Timer.new()
+	timer.wait_time = 12.0
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		var target_position: Vector2 = Vector2($CanvasLayer/RichTextLabel.position.x, $CanvasLayer/RichTextLabel.position.y - 1500)
+		
+		var display_credits = create_tween()
+		display_credits.tween_property($CanvasLayer/RichTextLabel, "position", target_position, 40).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	
+		timer.stop();
+		timer.queue_free();
+	)
+	
+	add_child(timer)
+	timer.start()
 	
 func hide_objects() -> void:
 	# tout masquer
