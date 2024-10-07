@@ -78,7 +78,6 @@ func _on_minigame_started():
 	$Player.enter_minigame()
 			
 func _on_spawn_frisky(pos):
-	print_debug('ON SPOWN DU FRISKY')
 	spawn_frisky(pos)
 
 func _get_level() -> int:
@@ -99,6 +98,9 @@ func spawn_frisky(pos) -> void:
 	new_frisky.visible = true
 	#new_frisky.set_z_index(new_frisky.global_position.y / 10 + 2000 + 5)
 	self.add_child(new_frisky)
+	
+	if _get_level() > 2:
+		new_frisky.is_afraid()
 	
 func spawn_static_tree(pos) -> void:
 	var frisky_model = preload("res://simple_tree.tscn")
@@ -180,6 +182,12 @@ func update_ramassed_fuel(fuel):
 	_darken_floor(fuel)
 	_darken_glow(fuel)
 	_darken_trees(fuel)
+	
+	# on terrorise les friskies existants
+	if _get_level() > 2:
+		for c in get_children():
+			if c is Frisky:
+				c.is_afraid()
 
 func _darken_floor(fuel):
 	const max_fuel = 80
