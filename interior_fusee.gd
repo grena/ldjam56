@@ -10,7 +10,7 @@ var shouldDisplayXRay = false
 var remplissage
 
 func led_is_blinking_when_starting(led):
-	var number_of_blinks = 19
+	var number_of_blinks = 59
 	var duration_blink = 0.2
 	var blink_visible = true
 	for x in number_of_blinks:
