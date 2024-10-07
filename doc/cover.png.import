@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://bwefkpo4yn40l"
-=======
-uid="uid://5aopjustgj01"
->>>>>>> e072467 (stuff)
-path="res://.godot/imported/eyes1.png-9a682266d26ad6357cf065b9d9354c2c.ctex"
+uid="uid://dxju5ef3g5v6f"
+path="res://.godot/imported/cover.png-90b319230ab44533f96b7ad518d6e020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/eyes1.png"
-dest_files=["res://.godot/imported/eyes1.png-9a682266d26ad6357cf065b9d9354c2c.ctex"]
+source_file="res://doc/cover.png"
+dest_files=["res://.godot/imported/cover.png-90b319230ab44533f96b7ad518d6e020.ctex"]
 
 [params]
 
