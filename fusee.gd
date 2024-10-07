@@ -13,6 +13,8 @@ var original_color : Color
 func _ready() -> void:
 	original_color = Color(1.0, 1.0, 1.0, 1.0)
 	original_scale = self.scale
+	$ParticlesFire.emitting = false
+	$ParticlesFumee.emitting = false
 
 func _process(delta: float) -> void:
 	# Déplacer la tronconneuse
@@ -85,3 +87,27 @@ func squish_tree() -> void:
 	);
 	add_child(timer);
 	timer.start();
+
+func decollage() -> void:
+	$DecollagePlayer.play()
+	$ParticlesFumee.emitting = true
+	
+	var start_fire = 4.5
+	
+	var timer: Timer = Timer.new()
+	timer.wait_time = start_fire
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		timer.stop();
+		timer.queue_free();
+		$ParticlesFire.emitting = true
+		$Sprite2D.start_shake()
+		self.set_z_index(4000)
+		
+		var tween = create_tween()
+		tween.tween_property(self, "position", self.position - Vector2(0, 1600), 10).set_ease(Tween.EASE_IN)
+	)
+	
+	add_child(timer)
+	timer.start()
+	

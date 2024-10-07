@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://binblxroq7xii"]
+[gd_scene load_steps=8 format=3 uid="uid://binblxroq7xii"]
 
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="1_uq2ol"]
 [ext_resource type="Script" path="res://fusee.gd" id="2_mmhxs"]
 [ext_resource type="AudioStream" uid="uid://dh7sj3wy1tjmh" path="res://music/OUTRO .mp3" id="3_18j56"]
+[ext_resource type="Script" path="res://tronc.gd" id="3_23kts"]
+
+[sub_resource type="Gradient" id="Gradient_jucba"]
+offsets = PackedFloat32Array(0, 0.986667)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.557)
+
+[sub_resource type="Gradient" id="Gradient_ufqiy"]
+colors = PackedColorArray(0.982117, 0.750939, 0.571072, 1, 0.686535, 0.447753, 0.0584778, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_va4aw"]
 radius = 16.5159
@@ -15,7 +23,57 @@ texture = ExtResource("1_uq2ol")
 offset = Vector2(0, -200)
 script = ExtResource("2_mmhxs")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.67)
+z_index = -1
+position = Vector2(0, -198.3)
+scale = Vector2(0.994737, 0.994737)
+texture = ExtResource("1_uq2ol")
+script = ExtResource("3_23kts")
+shake_intensity = 19.0
+shake_duration = 15.0
+
+[node name="ParticlesFumee" type="CPUParticles2D" parent="."]
+z_index = -115
+position = Vector2(-35.29, 195.33)
+scale = Vector2(1, 1)
+amount = 600
+lifetime = 6.0
+emission_shape = 3
+emission_rect_extents = Vector2(374.135, 1)
+gravity = Vector2(0, 5)
+tangential_accel_min = -24.24
+tangential_accel_max = 26.26
+angle_min = -261.8
+angle_max = 160.0
+scale_amount_min = 5.0
+scale_amount_max = 35.0
+color_ramp = SubResource("Gradient_jucba")
+hue_variation_max = 0.75
+
+[node name="ParticlesFire" type="CPUParticles2D" parent="."]
+z_index = -115
+position = Vector2(-35.29, 195.33)
+scale = Vector2(1, 1)
+amount = 1000
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(374.135, 1)
+gravity = Vector2(0, 400)
+linear_accel_min = -52.53
+linear_accel_max = 64.65
+radial_accel_min = -11.7
+radial_accel_max = 19.15
+tangential_accel_min = -24.24
+tangential_accel_max = 26.26
+angle_min = -261.8
+angle_max = 160.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_ufqiy")
+hue_variation_max = 0.75
+
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 155.425)
