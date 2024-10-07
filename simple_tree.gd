@@ -9,7 +9,7 @@ var MIN_HEIGHT_VARIATION = 0.15
 var COLOR_VARIATION = 0.3
 
 var tree_sprite_var1 : Sprite2D
-var tree_sprite_var2 : Sprite2D
+var tree_sprite_var2 : Sprite2D   
 
 var tree_sprite : Sprite2D
 var original_color : Color
