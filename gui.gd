@@ -158,7 +158,7 @@ func passage_niveau_trois():
 	if LEVEL3_UPGRADED == false:
 		LEVEL3_UPGRADED = true
 		get_parent().get_node("Player").get_node("BruitDePasPlayer").stop()
-		get_parent().get_node("MusicPlayerStep2").stop()
+		get_parent().get_node("MusicPlayer  Step2").stop()
 		get_parent().get_node("MusicPlayerStep3").play()
 		get_parent().get_node("UpgradeLevelPlayer").play()
 		get_node("TextureRect").set_translator_on()
