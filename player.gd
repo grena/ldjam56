@@ -98,7 +98,6 @@ func check_collision_with_frisky(collision) -> void:
 		FUEL = FUEL + 1
 		var level_actuel = get_parent()._get_level()
 		get_parent().update_ramassed_fuel(FUEL)
-		return
 		# passage niveau 2
 		if level_actuel > level_precedent:
 			if level_actuel == 2:
