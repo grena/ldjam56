@@ -10,7 +10,7 @@ var bush_sprite : Sprite2D
 var original_color : Color
 var original_scale = Vector2(1, 1)
 
-var HEIGHT_VARIATION = 0.30
+var HEIGHT_VARIATION = 0.10
 var COLOR_VARIATION = 0.3
 
 # Called when the node enters the scene tree for the first time.
