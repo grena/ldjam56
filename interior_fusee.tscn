@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://node_2d.gd" id="1_xmxie"]
 [ext_resource type="Texture2D" uid="uid://cbiei0aj4gyvc" path="res://assets/gui_fuel_overlay.png" id="2_q5ray"]
 [ext_resource type="Texture2D" uid="uid://dxwo1gct2tii5" path="res://assets/gui_mixer.png" id="3_5y7bc"]
-[ext_resource type="Texture2D" uid="uid://d14n1yg6uoqc5" path="res://assets/toyo.png" id="3_ofxrl"]
+[ext_resource type="PackedScene" uid="uid://fcw8im231rar" path="res://toyo.tscn" id="3_dfhwh"]
 [ext_resource type="Texture2D" uid="uid://1koniiokmk4j" path="res://assets/gui_fuel.png" id="4_b68vg"]
 [ext_resource type="Texture2D" uid="uid://c7fxwn4t7xxml" path="res://assets/gui_mixer_on.png" id="4_mk27l"]
 [ext_resource type="Texture2D" uid="uid://cqh0ym42ibwqj" path="res://assets/gui_sound_on.png" id="5_3r0ar"]
@@ -23,13 +23,7 @@ script = ExtResource("1_tcvro")
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_xmxie")
 
-[node name="Toyo" type="TextureRect" parent="Node2D"]
-offset_left = -897.0
-offset_top = 225.0
-offset_right = 1407.0
-offset_bottom = 3833.0
-scale = Vector2(0.557832, 0.992878)
-texture = ExtResource("3_ofxrl")
+[node name="Toyo" parent="Node2D" instance=ExtResource("3_dfhwh")]
 
 [node name="Gui" type="TextureRect" parent="Node2D"]
 offset_right = 2304.0
@@ -129,9 +123,9 @@ polygon = PackedVector2Array(-2599, -324, -2593, 2407, -2530, 2695, -2278, 2697,
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 offset_left = -183.0
-offset_top = -268.0
+offset_top = -272.0
 offset_right = 69.0
-offset_bottom = 2096.0
+offset_bottom = 2092.0
 scale = Vector2(1.53905, 1.69483)
 texture = ExtResource("16_4srh4")
 

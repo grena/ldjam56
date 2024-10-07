@@ -222,6 +222,10 @@ func shake_cabine_when_upgrade():
 	add_child(timer);
 	timer.start();
 
+func flash_toyo():
+	var toyo = get_node("TextureRect/Node2D/Toyo")
+	toyo.flash();
+
 func shake_toyo_when_aspire():
 	var timer: Timer = Timer.new()
 	timer.wait_time = 0.1;
