@@ -143,6 +143,7 @@ func passage_niveau_deux():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func passage_niveau_trois():
 	if LEVEL3_UPGRADED == false:
@@ -160,6 +161,7 @@ func passage_niveau_trois():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func le_vaisseau_est_pret():
 	if LEVEL4_UPGRADED == false:
@@ -174,6 +176,7 @@ func le_vaisseau_est_pret():
 			"[center](Press space to close)[/center]"
 		]
 		affiche_dialogue(texts)
+		shake_cabine_when_upgrade()
 
 func affiche_dialogue(texts):
 	IS_DIALOG_OPENED = true
@@ -222,6 +225,34 @@ func affiche_dialogue(texts):
 	add_child(timer);
 	timer.start();
 
+func shake_cabine_when_upgrade():
+	var timer: Timer = Timer.new()
+	timer.wait_time = 6;
+	timer.one_shot = true;
+	timer.connect('timeout', func ():
+		# shake shake shake
+		var cabine_fusee = get_node("TextureRect/Node2D")
+		var tween = create_tween()
+		for shake in range(0, 50):
+			tween.tween_property(
+				cabine_fusee,
+				"position",
+				cabine_fusee.position - Vector2(randi_range(5, 25), 0),
+				0.05
+			)
+			tween.tween_property(
+				cabine_fusee,
+				"position",
+				cabine_fusee.position - Vector2(randi_range(-25, -5), 0),
+				0.05
+			)
+		# end shake shake shake
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+
 func decolle_batard():
 	if IS_DECOLLING == false:
 		IS_DECOLLING = true
@@ -234,12 +265,10 @@ func decolle_batard():
 		var magrossefuseeturgecente = get_parent().get_node("Fusee")
 		# son dcollage
 		magrossefuseeturgecente.get_node("DecollagePlayer").play()
-		
 		var timer: Timer = Timer.new()
 		timer.wait_time = 5;
 		timer.one_shot = true;
 		timer.connect('timeout', func ():
-
 			var tween = create_tween()
 			tween.tween_property(
 				magrossefuseeturgecente,
@@ -247,7 +276,6 @@ func decolle_batard():
 				magrossefuseeturgecente.position - Vector2(0, 1200),
 				10
 			)
-
 			timer.stop();
 			timer.queue_free();
 		);
