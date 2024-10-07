@@ -5,6 +5,9 @@ var IS_GAME_STARTED = false
 var IS_DIALOG_OPENED = false
 var IS_INTRO_LAUNCHED = false
 var IS_DECOLLING = false
+var ARRIVED_ON_PLANET = false
+var LEVEL2_UPGRADED = false
+var LEVEL3_UPGRADED = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
 
@@ -111,43 +114,49 @@ func start_game():
 	crashingTimer.start()
 
 func demarre_sur_planete():
-	get_parent().get_node('Player/AspibroyeurPlayer').play()
-	get_parent().get_node("MusicPlayerStep1").play()
-	var texts = [
-		"[center]\nLanded in emergency.\n[/center]",
-		"[center]No more fuel.\n[/center]",
-		"[center]Refill with the [color=yellow]vacuum[/color].[/center]\n",
-		"[center](press space to close)[/center]"
-	]
-	affiche_dialogue(texts)
+	if ARRIVED_ON_PLANET == false:
+		ARRIVED_ON_PLANET = true
+		get_parent().get_node('Player/AspibroyeurPlayer').play()
+		get_parent().get_node("MusicPlayerStep1").play()
+		var texts = [
+			"[center]\nLanded in emergency.\n[/center]",
+			"[center]No more fuel.\n[/center]",
+			"[center]Refill with the [color=yellow]vacuum[/color].[/center]\n",
+			"[center](press space to close)[/center]"
+		]
+		affiche_dialogue(texts)
 
 func passage_niveau_deux():
-	get_parent().get_node("MusicPlayerStep1").stop()
-	get_parent().get_node("MusicPlayerStep2").play()
-	get_parent().get_node("UpgradeLevelPlayer").play()
-	get_node("TextureRect").set_sound_on()
-	get_node("TextureRect").set_xray_on()	
-	var texts = [
-		"\n[center]Fuel level 1 reached.[/center]\n",
-		"[center]Turning on basic features.[/center]\n",
-		"[center][color=yellow]Chain saw[/color] enabled.[/center]\n",
-		"[center](Press space to close)[/center]"
-	]
-	affiche_dialogue(texts)
+	if LEVEL2_UPGRADED == false:
+		LEVEL2_UPGRADED = true
+		get_parent().get_node("MusicPlayerStep1").stop()
+		get_parent().get_node("MusicPlayerStep2").play()
+		get_parent().get_node("UpgradeLevelPlayer").play()
+		get_node("TextureRect").set_sound_on()
+		get_node("TextureRect").set_xray_on()	
+		var texts = [
+			"\n[center]Fuel level 1 reached.[/center]\n",
+			"[center]Turning on basic features.[/center]\n",
+			"[center][color=yellow]Chain saw[/color] enabled.[/center]\n",
+			"[center](Press space to close)[/center]"
+		]
+		affiche_dialogue(texts)
 
 func passage_niveau_trois():
-	get_parent().get_node("MusicPlayerStep2").stop()
-	get_parent().get_node("MusicPlayerStep3").play()
-	get_parent().get_node("UpgradeLevelPlayer").play()
-	get_node("TextureRect").set_translator_on()
-	get_node("TextureRect").set_display_blobs_in_xray()  
-	var texts = [
-		"\n[center]Fuel level 2 reached.[/center]\n",
-		"[center]Turning on advanced features.[/center]\n",
-		"[center][color=yellow]Flame thrower[/color] enabled.[/center]\n",
-		"[center](Press space to close)[/center]"
-	]
-	affiche_dialogue(texts)
+	if LEVEL3_UPGRADED == false:
+		LEVEL3_UPGRADED = true
+		get_parent().get_node("MusicPlayerStep2").stop()
+		get_parent().get_node("MusicPlayerStep3").play()
+		get_parent().get_node("UpgradeLevelPlayer").play()
+		get_node("TextureRect").set_translator_on()
+		get_node("TextureRect").set_display_blobs_in_xray()  
+		var texts = [
+			"\n[center]Fuel level 2 reached.[/center]\n",
+			"[center]Turning on advanced features.[/center]\n",
+			"[center][color=yellow]Flame thrower[/color] enabled.[/center]\n",
+			"[center](Press space to close)[/center]"
+		]
+		affiche_dialogue(texts)
 
 func le_vaisseau_est_pret():
 	get_parent().get_node("UpgradeLevelPlayer").play()
@@ -162,7 +171,6 @@ func le_vaisseau_est_pret():
 
 func affiche_dialogue(texts):
 	IS_DIALOG_OPENED = true
-	print(IS_DIALOG_OPENED)
 	# affiche panneau
 	get_node("IntroGameRect").visible = false
 	get_node("TalkPanelRect").visible = true
@@ -207,34 +215,35 @@ func affiche_dialogue(texts):
 	timer.start();
 
 func decolle_batard():
-	IS_DECOLLING = true
-	# tout masquer
-	get_node("TextureRect").visible = false
-	get_parent().get_node("Player").visible = false
-	get_parent().get_node("Tubes").visible = false
-	get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
-	get_parent().get_node("Player").get_node("AspibroyeurPlayer").stop()
-	var magrossefuseeturgecente = get_parent().get_node("Fusee")
-	# son dcollage
-	magrossefuseeturgecente.get_node("DecollagePlayer").play()
-	
-	var timer: Timer = Timer.new()
-	timer.wait_time = 5;
-	timer.one_shot = true;
-	timer.connect('timeout', func ():
+	if IS_DECOLLING == false:
+		IS_DECOLLING = true
+		# tout masquer
+		get_node("TextureRect").visible = false
+		get_parent().get_node("Player").visible = false
+		get_parent().get_node("Tubes").visible = false
+		get_parent().get_node("Player").get_node("JackDitGoPlayer").play()
+		get_parent().get_node("Player").get_node("AspibroyeurPlayer").stop()
+		var magrossefuseeturgecente = get_parent().get_node("Fusee")
+		# son dcollage
+		magrossefuseeturgecente.get_node("DecollagePlayer").play()
+		
+		var timer: Timer = Timer.new()
+		timer.wait_time = 5;
+		timer.one_shot = true;
+		timer.connect('timeout', func ():
 
-		var tween = create_tween()
-		tween.tween_property(
-			magrossefuseeturgecente,
-			"position",
-			magrossefuseeturgecente.position - Vector2(0, 1200),
-			10
-		)
+			var tween = create_tween()
+			tween.tween_property(
+				magrossefuseeturgecente,
+				"position",
+				magrossefuseeturgecente.position - Vector2(0, 1200),
+				10
+			)
 
-		timer.stop();
-		timer.queue_free();
-	);
-	add_child(timer);
-	timer.start();
+			timer.stop();
+			timer.queue_free();
+		);
+		add_child(timer);
+		timer.start();
 
 	
