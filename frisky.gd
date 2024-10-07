@@ -1,9 +1,15 @@
 extends Node2D
 class_name Frisky
 
+@onready var TextureLeft = preload('res://assets/eyes1.png')
+@onready var TextureRight = preload('res://assets/eyes2.png')
+
 var terror_activated = false
+var look_at_left = true
 
 func _ready() -> void:
+	if randf_range(0, 1) > 0.5:
+		self.scale = Vector2(-1, 1)
 	self.modulate.a = 0.8
 	
 func _process(delta: float) -> void:
@@ -40,4 +46,25 @@ func _on_jump_timeout() -> void:
 	var squish_scale = Vector2(original_scale.x, original_scale.y * 0.5)
 	squishTween.tween_property($Sprite2D, "scale", squish_scale, t / 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	squishTween.tween_property($Sprite2D, "scale", original_scale, t / 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-	
+
+func open_eyes():
+	$TimerOpenEyes.wait_time = randf_range(3, 6)
+	$TimerOpenEyes.start()
+	$TimerChangeRotaEyes.start()
+
+func _on_timer_open_eyes_timeout() -> void:
+	$Eyes1.set_visible(true);
+	$TimerCloseEyes.wait_time = randf_range(0.3, 1)
+	$TimerCloseEyes.start();
+
+func _on_timer_close_eyes_timeout() -> void:
+	$Eyes1.set_visible(false);
+	$TimerOpenEyes.wait_time = randf_range(2, 6)
+	$TimerOpenEyes.start();
+
+func _on_timer_change_rota_eyes_timeout() -> void:
+	if look_at_left:
+		$Eyes1.texture = TextureLeft
+	else:
+		$Eyes1.texture = TextureRight
+	look_at_left = !look_at_left

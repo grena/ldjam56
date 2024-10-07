@@ -183,6 +183,11 @@ func update_ramassed_fuel(fuel):
 	_darken_glow(fuel)
 	_darken_trees(fuel)
 	
+	if _get_level() > 1:
+		for c in get_children():
+			if c is Frisky:
+				c.open_eyes();
+				
 	# on terrorise les friskies existants
 	if _get_level() > 2:
 		for c in get_children():

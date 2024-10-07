@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b14dc1kdnux1n"]
+[gd_scene load_steps=7 format=3 uid="uid://b14dc1kdnux1n"]
 
 [ext_resource type="Script" path="res://frisky.gd" id="1_x0haf"]
 [ext_resource type="Texture2D" uid="uid://bfpf6sf66ifep" path="res://assets/blob.png" id="2_nx3nc"]
+[ext_resource type="Texture2D" uid="uid://byfs7gyrpb2l0" path="res://assets/eyes1.png" id="3_1oioe"]
 
 [sub_resource type="Curve" id="Curve_r5o8w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.353375), 0.0, 0.0, 0, 0]
@@ -45,3 +46,31 @@ color_ramp = SubResource("Gradient_3enaj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(15, 10)
 shape = SubResource("CircleShape2D_2761j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Eyes1" type="TextureRect" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = 11.0
+offset_right = 591.0
+offset_bottom = 695.0
+rotation = -1.29583
+scale = Vector2(0.0491046, 0.0491046)
+texture = ExtResource("3_1oioe")
+
+[node name="TimerOpenEyes" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerChangeRotaEyes" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="TimerCloseEyes" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TimerOpenEyes" to="." method="_on_timer_open_eyes_timeout"]
+[connection signal="timeout" from="TimerChangeRotaEyes" to="." method="_on_timer_change_rota_eyes_timeout"]
+[connection signal="timeout" from="TimerCloseEyes" to="." method="_on_timer_close_eyes_timeout"]
