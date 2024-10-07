@@ -42,11 +42,11 @@ scale = Vector2(0.529508, 0.292935)
 texture = ExtResource("4_b68vg")
 
 [node name="ColorRect" type="ColorRect" parent="Node2D/Fuel"]
-offset_left = 336.062
-offset_top = -112.551
-offset_right = 636.062
-offset_bottom = -12.551
-color = Color(0.760784, 0.407843, 0.156863, 1)
+offset_left = 335.06
+offset_top = -111.55
+offset_right = 635.06
+offset_bottom = -11.55
+color = Color(1, 0.603922, 0.905882, 1)
 
 [node name="FuelOverlay" type="TextureRect" parent="Node2D"]
 offset_right = 2304.0
