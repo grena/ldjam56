@@ -68,6 +68,8 @@ func run_mixer():
 	velocity += velocity_on_mixage
 	if shouldDisplayXRay:
 		display_blob()
+	if remplissage > randi_range(0, 80):
+		$Node2D/CPUParticles2D.emitting = true
 
 func display_blob():
 	var xray = XRayScene.instantiate();

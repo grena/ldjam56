@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ck5nhuxh5p4rv"]
+[gd_scene load_steps=18 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_xmxie"]
 [ext_resource type="Texture2D" uid="uid://cbiei0aj4gyvc" path="res://assets/gui_fuel_overlay.png" id="2_q5ray"]
 [ext_resource type="Texture2D" uid="uid://dxwo1gct2tii5" path="res://assets/gui_mixer.png" id="3_5y7bc"]
-[ext_resource type="PackedScene" path="res://toyo.tscn" id="3_dfhwh"]
+[ext_resource type="PackedScene" uid="uid://fcw8im231rar" path="res://toyo.tscn" id="3_dfhwh"]
 [ext_resource type="Texture2D" uid="uid://1koniiokmk4j" path="res://assets/gui_fuel.png" id="4_b68vg"]
 [ext_resource type="Texture2D" uid="uid://c7fxwn4t7xxml" path="res://assets/gui_mixer_on.png" id="4_mk27l"]
 [ext_resource type="Texture2D" uid="uid://cqh0ym42ibwqj" path="res://assets/gui_sound_on.png" id="5_3r0ar"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="15_6dkhn"]
 [ext_resource type="Texture2D" uid="uid://dkttgd6uecj1h" path="res://assets/wall.png" id="16_4srh4"]
 [ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
+[ext_resource type="Texture2D" uid="uid://r0htuak1b3e5" path="res://assets/sang.png" id="17_wjnxh"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
@@ -128,6 +129,18 @@ offset_right = 69.0
 offset_bottom = 2092.0
 scale = Vector2(1.53905, 1.69483)
 texture = ExtResource("16_4srh4")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
+position = Vector2(1840, 699)
+emitting = false
+amount = 5
+lifetime = 1.5
+one_shot = true
+randomness = 0.18
+texture = ExtResource("17_wjnxh")
+emission_shape = 3
+emission_rect_extents = Vector2(50, 5)
+gravity = Vector2(0, 200)
 
 [node name="XRayMidChange" type="Timer" parent="."]
 autostart = true
