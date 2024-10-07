@@ -81,8 +81,28 @@ func crie_bestiole():
 		var player = crie_level_2.pick_random()
 		if level == 3 or level == 4:
 			player = crie_level_3.pick_random()
+			push_text_in_translator()
 		broyeur_solo(player)
 
+func push_text_in_translator():
+	var translations = [
+		"Nooo", "Leave me alone!", "Not my child", "Get out of my house", "Stop killing my friends",
+		"You killed my dad", "You killed my mom", "My twin is dead", "What's the hell", "It's a nightmare",
+		"Arghhhh", "Fuuuu", "Don't touch me", "It hurts", "We're not fuel!"
+	]
+	var translator = get_parent().get_node("GUI").get_node('TextureRect/Node2D/RichTextLabel')
+	var timer: Timer = Timer.new()
+	timer.wait_time = duration_to_arrive_to_fusee_in_seconds;
+	timer.one_shot = true;  
+	timer.connect('timeout', func ():
+		# push text to translator
+		translator.text = "[center][color=#22aa22]"+translations.pick_random()+"[/color][/center]"	
+		timer.stop();
+		timer.queue_free();
+	);
+	add_child(timer);
+	timer.start();
+ 
 func broyeur_solo(cri_player = null):
 	var my_broyeurs = [$BroyeurPlayer, $BroyeurPlayer2, $BroyeurPlayer3, $BroyeurPlayer4]
 	var timer: Timer = Timer.new()

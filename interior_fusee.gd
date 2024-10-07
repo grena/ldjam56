@@ -49,7 +49,7 @@ func set_xray_on():
 	
 func set_display_blobs_in_xray():
 	shouldDisplayXRay = true
-		
+
 func _ready() -> void:
 	$Node2D/Fuel/ColorRect.position.y = 150
 	$Node2D/Fuel/ColorRect.position.x = 50

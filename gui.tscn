@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://stars_particles.gd" id="2_wwod6"]
 [ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="3_7ayn1"]
 [ext_resource type="AudioStream" uid="uid://cfv8m0hkbsp21" path="res://music/INTRO ECRAN NOIR.mp3" id="3_yw7e0"]
-[ext_resource type="PackedScene" path="res://talk_panel.tscn" id="5_eraxd"]
+[ext_resource type="PackedScene" uid="uid://dsteg3p8any0k" path="res://talk_panel.tscn" id="5_eraxd"]
 [ext_resource type="AudioStream" uid="uid://br4uxhvc8dojj" path="res://music/MENU.mp3" id="7_rufd3"]
 
 [sub_resource type="Gradient" id="Gradient_bjwqd"]
