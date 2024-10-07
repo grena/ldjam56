@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck5nhuxh5p4rv"]
+[gd_scene load_steps=16 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dgtodbt3jlxvu" path="res://assets/gui_world_overlay.png" id="7_nvm45"]
 [ext_resource type="Texture2D" uid="uid://y8dcww7pnqcl" path="res://assets/gui_xray_on.png" id="8_gj0es"]
 [ext_resource type="Texture2D" uid="uid://cifstch33mkai" path="res://assets/xray_mid.png" id="12_6vuy1"]
+[ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="15_6dkhn"]
 [ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -83,6 +84,19 @@ visible = false
 offset_right = 2304.0
 offset_bottom = 3608.0
 texture = ExtResource("8_gj0es")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+offset_left = 521.0
+offset_top = 2139.0
+offset_right = 1371.0
+offset_bottom = 2259.0
+rotation = 0.0239434
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("15_6dkhn")
+theme_override_font_sizes/normal_font_size = 71
+bbcode_enabled = true
+text = "[center][color=#22aa22]This is a text editor[/color][/center]"
 
 [node name="MixerCenter" type="Node2D" parent="Node2D"]
 

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dlyt5y5u1y6wt" path="res://gui.tscn" id="10_d3lci"]
 [ext_resource type="PackedScene" uid="uid://c8x8dkyiv30v4" path="res://leaf.tscn" id="11_aykir"]
 [ext_resource type="AudioStream" uid="uid://7l3vtphnmcky" path="res://music/TRANSITION AMELIORATIONS.mp3" id="11_dg3yf"]
-[ext_resource type="PackedScene" path="res://outro.tscn" id="15_0bbnw"]
+[ext_resource type="PackedScene" uid="uid://cgtvb7mod7gtl" path="res://outro.tscn" id="15_0bbnw"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ermm"]
 size = Vector2(5100, 5100)
