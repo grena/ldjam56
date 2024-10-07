@@ -66,33 +66,33 @@ position = Vector2(873.333, 1463.33)
 rotation = -0.169282
 scale = Vector2(0.381914, 0.381914)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="TreesToCut" type="Node2D" parent="."]
 
-[node name="Tree13" parent="Node2D" instance=ExtResource("1_gq7sy")]
+[node name="Tree13" parent="TreesToCut" instance=ExtResource("1_gq7sy")]
 position = Vector2(666.667, 1590)
 rotation = -0.257251
 scale = Vector2(0.947128, 0.947128)
 
-[node name="Tree14" parent="Node2D" instance=ExtResource("1_gq7sy")]
+[node name="Tree14" parent="TreesToCut" instance=ExtResource("1_gq7sy")]
 position = Vector2(1606.67, 1603.33)
 rotation = 0.152368
 scale = Vector2(0.947128, 0.947128)
 
-[node name="Tree15" parent="Node2D" instance=ExtResource("1_gq7sy")]
+[node name="Tree15" parent="TreesToCut" instance=ExtResource("1_gq7sy")]
 position = Vector2(930, 1563.33)
 rotation = -0.127413
 scale = Vector2(1.27198, 1.27198)
 
-[node name="Tree16" parent="Node2D" instance=ExtResource("1_gq7sy")]
+[node name="Tree16" parent="TreesToCut" instance=ExtResource("1_gq7sy")]
 position = Vector2(1360, 1530)
 rotation = 0.0467425
 scale = Vector2(1.27198, 1.27198)
 
-[node name="Tree17" parent="Node2D" instance=ExtResource("1_gq7sy")]
+[node name="Tree17" parent="TreesToCut" instance=ExtResource("1_gq7sy")]
 position = Vector2(1163.33, 1656.67)
 scale = Vector2(1.22153, 1.22153)
 
-[node name="PlayerShadow" type="TextureRect" parent="Node2D"]
+[node name="PlayerShadow" type="TextureRect" parent="TreesToCut"]
 offset_left = 1066.67
 offset_top = 1726.67
 offset_right = 3370.67
