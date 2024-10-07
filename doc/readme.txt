@@ -18,3 +18,4 @@ puis lancer
 
 nico@laptop:~/git/ldjam56/web$ npx local-web-server --https --cors.embedder-policy "require-corp" --cors.opener-policy "same-origin" --directory "."
 
+puis ouvrir https://127.0.0.1:8000/
