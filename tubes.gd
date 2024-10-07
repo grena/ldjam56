@@ -79,7 +79,7 @@ func crie_bestiole():
 		broyeur_solo()
 	else:
 		var player = crie_level_2.pick_random()
-		if level == 3:
+		if level == 3 or level == 4:
 			player = crie_level_3.pick_random()
 		broyeur_solo(player)
 
