@@ -64,3 +64,6 @@ func _on_x_ray_mid_change_timeout() -> void:
 func _on_xray_remove_blob_timeout() -> void:
 	$Node2D/XRay1.set_visible(false);
 	$Node2D/XRay2.set_visible(false);
+
+func has_cut_tree():
+	$Node2D/FuseeWindow.has_cut_tree();

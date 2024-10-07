@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck5nhuxh5p4rv"]
+[gd_scene load_steps=17 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cifstch33mkai" path="res://assets/xray_mid.png" id="12_6vuy1"]
 [ext_resource type="Texture2D" uid="uid://baeps0fr6pngy" path="res://assets/xray1.png" id="13_gyggj"]
 [ext_resource type="Texture2D" uid="uid://swdoox5m506e" path="res://assets/xray2.png" id="14_xg8gt"]
+[ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
@@ -126,6 +127,9 @@ rotation = -0.0329641
 scale = Vector2(0.467781, 0.467781)
 pivot_offset = Vector2(367, 367)
 texture = ExtResource("14_xg8gt")
+
+[node name="FuseeWindow" parent="Node2D" instance=ExtResource("16_e8l43")]
+scale = Vector2(1, 1)
 
 [node name="XRayMidChange" type="Timer" parent="."]
 autostart = true

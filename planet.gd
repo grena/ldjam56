@@ -70,6 +70,7 @@ func _on_minigame_finished():
 	$Floor.add_oil($Player.get_position())
 	$Floor/Fireflies.color = Color((fireflies_alpha - 0.1), (fireflies_alpha - 0.1), 0.0, 1.0)
 	fireflies_alpha -= 0.1
+	$GUI.has_cut_tree()
 	
 func _on_minigame_started():
 	$Player.enter_minigame()

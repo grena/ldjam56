@@ -254,4 +254,5 @@ func decolle_batard():
 		add_child(timer);
 		timer.start();
 
-	
+func has_cut_tree():
+	$TextureRect.has_cut_tree();
