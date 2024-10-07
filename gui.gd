@@ -8,6 +8,7 @@ var IS_DECOLLING = false
 var ARRIVED_ON_PLANET = false
 var LEVEL2_UPGRADED = false
 var LEVEL3_UPGRADED = false
+var LEVEL4_UPGRADED = false
 
 # Référence au QuadMesh qui représente la jauge de fuel
 
@@ -129,6 +130,7 @@ func demarre_sur_planete():
 func passage_niveau_deux():
 	if LEVEL2_UPGRADED == false:
 		LEVEL2_UPGRADED = true
+		get_parent().get_node("Player").get_node("BruitDePasPlayer").stop()
 		get_parent().get_node("MusicPlayerStep1").stop()
 		get_parent().get_node("MusicPlayerStep2").play()
 		get_parent().get_node("UpgradeLevelPlayer").play()
@@ -145,6 +147,7 @@ func passage_niveau_deux():
 func passage_niveau_trois():
 	if LEVEL3_UPGRADED == false:
 		LEVEL3_UPGRADED = true
+		get_parent().get_node("Player").get_node("BruitDePasPlayer").stop()
 		get_parent().get_node("MusicPlayerStep2").stop()
 		get_parent().get_node("MusicPlayerStep3").play()
 		get_parent().get_node("UpgradeLevelPlayer").play()
@@ -159,15 +162,18 @@ func passage_niveau_trois():
 		affiche_dialogue(texts)
 
 func le_vaisseau_est_pret():
-	get_parent().get_node("UpgradeLevelPlayer").play()
-	get_node("TextureRect").set_translator_on()
-	get_node("TextureRect").set_display_blobs_in_xray()  
-	var texts = [
-		"\n[center]Enough fuel to leave.[/center]\n",
-		"[center][color=yellow]Go back to the ship.[/color][/center]\n",
-		"[center](Press space to close)[/center]"
-	]
-	affiche_dialogue(texts)
+	if LEVEL4_UPGRADED == false:
+		LEVEL4_UPGRADED = true
+		get_parent().get_node("Player").get_node("BruitDePasPlayer").stop()
+		get_parent().get_node("UpgradeLevelPlayer").play()
+		get_node("TextureRect").set_translator_on()
+		get_node("TextureRect").set_display_blobs_in_xray()  
+		var texts = [
+			"\n[center]Enough fuel to leave.[/center]\n",
+			"[center][color=yellow]Go back to the ship.[/color][/center]\n",
+			"[center](Press space to close)[/center]"
+		]
+		affiche_dialogue(texts)
 
 func affiche_dialogue(texts):
 	IS_DIALOG_OPENED = true
