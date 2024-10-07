@@ -171,7 +171,10 @@ func trigger_finish() -> void:
 	
 	tree_sprite.visible = false
 	var dead_sprites = [$SpriteDead1, $SpriteDead2, $SpriteDead3]
-	dead_sprites[randi_range(0, 2)].visible = true
+	var my_dead_sprite = dead_sprites[randi_range(0, 2)]
+	original_color = Color(1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1 - randf_range(0, COLOR_VARIATION), 1.0)
+	my_dead_sprite.modulate = original_color
+	my_dead_sprite.visible = true
 	
 	for child in leaf_spots.get_children():
 		if child is Node2D:  # Assurez-vous que l'enfant est bien un Node2D
