@@ -136,6 +136,7 @@ func update_fuel_label(fuel_value: int) -> void:
 	# Accéder au Label à partir de la nouvelle hiérarchie
 	var label = get_parent().get_node("GUI").get_node("Label")
 	label.text = "FUEL = " + str(fuel_value)
+	print_debug("fuel = "+str(fuel_value))
 
 func apply_squish_effect(delta: float) -> void:
 	squish_timer += delta
