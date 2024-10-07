@@ -55,6 +55,7 @@ func _on_ecran_visible() -> void:
 func hide_objects() -> void:
 	# tout masquer
 	get_parent().get_node("GUI").get_node("TextureRect").visible = false
+	get_parent().get_node("Player").position = Vector2(-400, 0)
 	get_parent().get_node("Player").visible = false
 	get_parent().get_node("Tubes").visible = false
 	get_parent().get_node("Player").get_node("AspibroyeurPlayer").stop()

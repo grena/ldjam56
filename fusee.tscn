@@ -36,7 +36,6 @@ shake_duration = 15.0
 [node name="ParticlesFumee" type="CPUParticles2D" parent="."]
 z_index = -115
 position = Vector2(-35.29, 195.33)
-scale = Vector2(1, 1)
 amount = 600
 lifetime = 6.0
 emission_shape = 3
@@ -54,7 +53,6 @@ hue_variation_max = 0.75
 [node name="ParticlesFire" type="CPUParticles2D" parent="."]
 z_index = -115
 position = Vector2(-35.29, 195.33)
-scale = Vector2(1, 1)
 amount = 1000
 lifetime_randomness = 0.5
 emission_shape = 3
