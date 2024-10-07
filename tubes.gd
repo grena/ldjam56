@@ -84,15 +84,16 @@ func crie_bestiole():
 		broyeur_solo(player)
 
 func broyeur_solo(cri_player = null):
+	var my_broyeurs = [$BroyeurPlayer, $BroyeurPlayer2, $BroyeurPlayer3, $BroyeurPlayer4]
 	var timer: Timer = Timer.new()
 	timer.wait_time = duration_to_arrive_to_fusee_in_seconds;
-	timer.one_shot = true;
+	timer.one_shot = true;  
 	timer.connect('timeout', func ():
 		# des cris
 		if cri_player:
 			cri_player.play();
 		# du broyeur
-		$BroyeurPlayer.play()
+		my_broyeurs.pick_random().play()
 		get_parent().get_node("GUI/TextureRect").run_mixer()
 		
 		timer.stop();
