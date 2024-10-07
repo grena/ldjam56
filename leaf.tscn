@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccipvgdv7ak8a"]
+[gd_scene load_steps=4 format=3 uid="uid://c8x8dkyiv30v4"]
 
 [ext_resource type="Script" path="res://leaf.gd" id="1_kdusa"]
 [ext_resource type="Texture2D" uid="uid://d5fkrfdifj3v" path="res://assets/leaf.png" id="1_lldyr"]

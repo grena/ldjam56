@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu3vafdc0b2ug"]
+[gd_scene load_steps=5 format=3 uid="uid://le8o23lyrh3w"]
 
 [ext_resource type="Script" path="res://blob_in_tree.gd" id="1_2je1h"]
 [ext_resource type="Texture2D" uid="uid://caft2737ays2p" path="res://assets/treeblob0.png" id="1_hf30e"]
