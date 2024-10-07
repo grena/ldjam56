@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dgtodbt3jlxvu" path="res://assets/gui_world_overlay.png" id="7_nvm45"]
 [ext_resource type="Texture2D" uid="uid://y8dcww7pnqcl" path="res://assets/gui_xray_on.png" id="8_gj0es"]
 [ext_resource type="Texture2D" uid="uid://cifstch33mkai" path="res://assets/xray_mid.png" id="12_6vuy1"]
-[ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
+[ext_resource type="PackedScene" uid="uid://dvxyt5acw040n" path="res://FuseeWindow.tscn" id="16_e8l43"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
