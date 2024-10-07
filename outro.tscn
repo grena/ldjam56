@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgtvb7mod7gtl"]
+[gd_scene load_steps=3 format=3 uid="uid://cgtvb7mod7gtl"]
 
 [ext_resource type="Script" path="res://outro.gd" id="1_r2cag"]
+[ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="2_jasu3"]
 
 [node name="Outro" type="Node2D"]
 z_index = 4000
@@ -18,3 +19,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 616.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_jasu3")
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "[center][font_size=100]FUEL METAL JACQUES[/font_size]
+
+[color=gray]a game created [color=yellow]from scratch in ~72 hours[/color] for the Ludum Dare 56[/color]
+
+[color=yellow]made by[/color]
+
+Alix
+Baz
+Juxe
+Nidup
+Titou
+Pierre
+Grena
+
+[color=gray]thanks for playing![/color]
+
+[/center]"
+fit_content = true
