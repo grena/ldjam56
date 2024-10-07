@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+@onready var XRayScene = preload('res://x_ray.tscn')
+@onready var FlashGlobal: Polygon2D = $Node2D/Polygon2D
+@onready var FlashGlobalTimer: Timer = $FlashGlobalTimer;
+
 var velocity_min = 3
 var velocity_on_mixage = 50
 var velocity = velocity_min
@@ -57,6 +61,8 @@ func _process(delta: float) -> void:
 	velocity = max(velocity * 0.95, velocity_min)
 	rota = rota + delta * 2
 	$Node2D/Fuel/Fuel.position.x = cos(rota) * 50
+	
+	FlashGlobal.modulate.a = FlashGlobalTimer.time_left / FlashGlobalTimer.wait_time
 
 func run_mixer():
 	velocity += velocity_on_mixage
@@ -64,24 +70,18 @@ func run_mixer():
 		display_blob()
 
 func display_blob():
-	var blobs = [$Node2D/XRay1, $Node2D/XRay2]
-	var i = randi_range(0, blobs.size() - 1)
-	var blob: TextureRect = blobs[i]
-	blob.set_visible(true)
-	blob.rotation = randi_range(0, 3) * PI / 2
-	$XrayRemoveBlob.start();
+	var xray = XRayScene.instantiate();
+	$Node2D.add_child(xray);
+	FlashGlobalTimer.start();
 
 func _on_x_ray_mid_change_timeout() -> void:
 	$Node2D/XRayMid.rotation += PI/2
+	
 
 # FOR DEBUG
 #func _input(event: InputEvent) -> void:
 #	if event is InputEventMouseButton:
 #		run_mixer();
-
-func _on_xray_remove_blob_timeout() -> void:
-	$Node2D/XRay1.set_visible(false);
-	$Node2D/XRay2.set_visible(false);
 
 func has_cut_tree():
 	$Node2D/FuseeWindow.has_cut_tree();

@@ -6,6 +6,7 @@ var cut_trees = 0
 
 @onready var TreesToCut = $TreesToCut;
 @onready var PlayerShadow = $TreesToCut/PlayerShadow;
+@onready var RealyPlayer = get_parent().get_parent().get_parent().get_parent().find_child('Player')
 
 func _ready() -> void:
 	var shadow = 0.5
@@ -22,8 +23,8 @@ func _ready() -> void:
 		if child is SimpleTree:
 			child.get_node('SpriteAlive1').scale = Vector2(scale, scale)
 			
-func _process(delta: float) -> void: 	
-	var player = get_parent().get_parent().get_parent().get_parent().find_child('Player')
+func _process(delta: float) -> void:
+	var player = RealyPlayer
 	var position = player.global_position;
 	PlayerShadow.global_position.x = 0.2 * position.y + 1084
 	var x = PlayerShadow.global_position.x
@@ -38,7 +39,6 @@ func has_cut_tree():
 	cut_trees += 1;
 	if triggers.has(cut_trees):
 		var remaining_trees = _get_remaining_trees()
-		print_debug(remaining_trees.size())
 		var tree_to_drop = remaining_trees[randi_range(0, remaining_trees.size() - 1)]
 		tree_to_drop.queue_free();
 

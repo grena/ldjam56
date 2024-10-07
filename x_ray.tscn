@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://buaq66aw0nhkj"]
+
+[ext_resource type="Texture2D" uid="uid://baeps0fr6pngy" path="res://assets/xray1.png" id="1_tl6l4"]
+[ext_resource type="Script" path="res://x_ray.gd" id="2_2tarc"]
+
+[node name="XRay1" type="TextureRect"]
+modulate = Color(3.5, 3.5, 3.5, 1)
+offset_left = 105.0
+offset_top = 66.0
+offset_right = 840.0
+offset_bottom = 801.0
+rotation = -0.0329641
+scale = Vector2(0.467781, 0.467781)
+pivot_offset = Vector2(367, 367)
+texture = ExtResource("1_tl6l4")
+script = ExtResource("2_2tarc")
+
+[node name="XRayRemoveBlob" type="Timer" parent="."]
+one_shot = true
+
+[node name="XRayAlpha" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="XRayRemoveBlob" to="." method="_on_x_ray_remove_blob_timeout"]
+[connection signal="timeout" from="XRayAlpha" to="." method="_on_x_ray_alpha_timeout"]
