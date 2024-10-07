@@ -29,7 +29,7 @@ offset_left = -27.0
 offset_top = -532.0
 offset_right = 1293.0
 offset_bottom = 5.0
-color = Color(0, 0, 0, 0.745098)
+color = Color(0, 0, 0, 0.372549)
 
 [node name="FuseeRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(200, 200)
