@@ -47,6 +47,7 @@ scale_amount_max = 2.0
 script = ExtResource("2_wwod6")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 65.0
 offset_bottom = 23.0
 text = "FUEL = 0"
