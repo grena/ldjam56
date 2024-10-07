@@ -302,3 +302,6 @@ func _add_blobs_to_sprite(sprite: Sprite2D):
 			var scale = randf_range(0.5, 0.8)
 			blob.scale = Vector2(scale, scale)
 			sprite.add_child(blob)
+
+func darken(value):
+	$SpriteAlive1.modulate = Color(original_color.r - value, original_color.g - value, original_color.b - value, original_color.a);

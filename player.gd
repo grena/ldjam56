@@ -107,7 +107,8 @@ func check_collision_with_frisky(collision) -> void:
 			elif level_actuel == 4:
 				get_parent().get_node("GUI").le_vaisseau_est_pret()
 		# ramassage de frisky
-		$AspirePetitPlayer.play()
+		var bruits_aspiro = [$AspirePetitPlayer, $AspireGrosPlayer]
+		bruits_aspiro.pick_random().play()
 		# On détruit la Frisky
 		collider_parent.queue_free()
 		self.get_parent().find_child('Tubes').avale();

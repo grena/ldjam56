@@ -190,7 +190,7 @@ func affiche_dialogue(texts):
 		$TalkPanelRect/CortanaPlayer5,
 	]
 	get_node("TalkPanelRect/Text").text = ""
-	var my_wait_time = 1
+	var my_wait_time = 1.3
 	var voix_index = 0
 	for text in texts:
 		var timer: Timer = Timer.new()
@@ -198,7 +198,9 @@ func affiche_dialogue(texts):
 		timer.one_shot = true;
 		timer.connect('timeout', func ():
 			get_node("TalkPanelRect/Text").text = get_node("TalkPanelRect/Text").text + text
-			cortana_voix[voix_index].play()
+			cortana_voix.shuffle()
+			var voix = cortana_voix.pop_front()
+			voix.play()
 			timer.stop();
 			timer.queue_free();
 		);
@@ -252,4 +254,5 @@ func decolle_batard():
 		add_child(timer);
 		timer.start();
 
-	
+func has_cut_tree():
+	$TextureRect.has_cut_tree();

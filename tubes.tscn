@@ -20,6 +20,18 @@ script = ExtResource("1_0eq2n")
 stream = ExtResource("2_tah1l")
 volume_db = 5.0
 
+[node name="BroyeurPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tah1l")
+volume_db = 5.0
+
+[node name="BroyeurPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tah1l")
+volume_db = 5.0
+
+[node name="BroyeurPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tah1l")
+volume_db = 5.0
+
 [node name="Level2Mort1Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_r0oak")
 
@@ -31,18 +43,23 @@ stream = ExtResource("4_p2kd3")
 
 [node name="Level3Mort1Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_utbx8")
+volume_db = 5.0
 
 [node name="Level3Mort2Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8lme3")
+volume_db = 5.0
 
 [node name="Level3Mort3Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_oyc4l")
+volume_db = 5.0
 
 [node name="Level3Mort4Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_8n86b")
+volume_db = 5.0
 
 [node name="Level3Mort5Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_iueu6")
+volume_db = 5.0
 
 [node name="Tube3" parent="." instance=ExtResource("11_cdlu8")]
 z_index = 1
