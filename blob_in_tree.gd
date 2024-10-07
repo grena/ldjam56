@@ -10,3 +10,7 @@ func _ready() -> void:
 		sprites[i].set_visible(i == theone)
 	$CPUParticles2D.emitting = true
 	
+func calmos() -> void:
+	$CPUParticles2D.scale_amount_min = 0.5
+	$CPUParticles2D.scale_amount_max = 1
+	$CPUParticles2D.gravity = Vector2(0, -4)
