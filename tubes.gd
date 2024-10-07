@@ -86,9 +86,9 @@ func crie_bestiole():
 
 func push_text_in_translator():
 	var translations = [
-		"Nooo", "Leave me alone!", "Not my child", "Get out of my house", "Stop killing my friends",
-		"You killed my dad", "You killed my mom", "My twin is dead", "What's the hell", "It's a nightmare",
-		"Arghhhh", "Fuuuu", "Don't touch me", "It hurts", "We're not fuel!"
+		'"Nooo"', '"Leave me alone!"', '"Not my child"', '"Get out of my house"', '"Stop killing my friends"',
+		'"You killed my dad"', "You killed my mom", '"My bro is dead"', '"What the hell"', '"This is a nightmare!"',
+		'"Arghhhh"', '"Fuuuu"', '"Dont touch me"', '"It hurts"', '"We re not fuel!"'
 	]
 	var translator = get_parent().get_node("GUI").get_node('TextureRect/Node2D/RichTextLabel')
 	var timer: Timer = Timer.new()
