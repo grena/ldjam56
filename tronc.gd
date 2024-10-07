@@ -1,8 +1,8 @@
 extends Sprite2D
 
 # Variables pour le shake
-var shake_intensity = 5.0  # L'intensité du shake (en pixels)
-var shake_duration = 0.2  # Durée du shake (en secondes)
+@export var shake_intensity = 5.0  # L'intensité du shake (en pixels)
+@export var shake_duration = 0.2  # Durée du shake (en secondes)
 var shake_timer = 0.0
 
 func _process(delta: float) -> void:

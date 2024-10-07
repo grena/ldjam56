@@ -101,15 +101,13 @@ func decollage() -> void:
 		timer.stop();
 		timer.queue_free();
 		$ParticlesFire.emitting = true
-
+		$Sprite2D.start_shake()
+		self.set_z_index(4000)
+		
 		var tween = create_tween()
-		tween.tween_property(
-			self,
-			"position",
-			self.position - Vector2(0, 1200),
-			10
-		)
+		tween.tween_property(self, "position", self.position - Vector2(0, 1600), 10).set_ease(Tween.EASE_IN)
 	)
 	
 	add_child(timer)
 	timer.start()
+	

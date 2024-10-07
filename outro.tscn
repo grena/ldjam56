@@ -3,11 +3,15 @@
 [ext_resource type="Script" path="res://outro.gd" id="1_r2cag"]
 
 [node name="Outro" type="Node2D"]
+z_index = 4000
+z_as_relative = false
 script = ExtResource("1_r2cag")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 4000
+z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

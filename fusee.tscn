@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://binblxroq7xii"]
+[gd_scene load_steps=8 format=3 uid="uid://binblxroq7xii"]
 
 [ext_resource type="Texture2D" uid="uid://cxl4vr603ucq6" path="res://assets/ldjam_fusee.png" id="1_uq2ol"]
 [ext_resource type="Script" path="res://fusee.gd" id="2_mmhxs"]
 [ext_resource type="AudioStream" uid="uid://dh7sj3wy1tjmh" path="res://music/OUTRO .mp3" id="3_18j56"]
+[ext_resource type="Script" path="res://tronc.gd" id="3_23kts"]
 
 [sub_resource type="Gradient" id="Gradient_jucba"]
 offsets = PackedFloat32Array(0, 0.986667)
@@ -21,6 +22,16 @@ scale = Vector2(0.252278, 0.268641)
 texture = ExtResource("1_uq2ol")
 offset = Vector2(0, -200)
 script = ExtResource("2_mmhxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.67)
+z_index = -1
+position = Vector2(0, -198.3)
+scale = Vector2(0.994737, 0.994737)
+texture = ExtResource("1_uq2ol")
+script = ExtResource("3_23kts")
+shake_intensity = 19.0
+shake_duration = 15.0
 
 [node name="ParticlesFumee" type="CPUParticles2D" parent="."]
 z_index = -115

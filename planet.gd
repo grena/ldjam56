@@ -22,6 +22,8 @@ func _ready() -> void:
 	_generate_static_trees()
 	_generate_buissons()
 	
+	find_child('Fusee').set_z_index(find_child('Fusee').global_position.y / 10 + 2000)
+	
 	# reduce volume
 	$MusicPlayerStep1.volume_db = -10
 	$MusicPlayerStep2.volume_db = -10
@@ -88,9 +90,6 @@ func _get_level() -> int:
 		return 2
 	else:
 		return 1
-
-func _process(delta):
-	find_child('Fusee').set_z_index(find_child('Fusee').global_position.y / 10 + 2000)
 
 func spawn_frisky(pos) -> void:
 	var frisky_model = preload("res://frisky.tscn")
