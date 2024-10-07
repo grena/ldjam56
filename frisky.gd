@@ -5,6 +5,7 @@ class_name Frisky
 @onready var TextureRight = preload('res://assets/eyes2.png')
 
 var terror_activated = false
+var look_at_activated = false
 var look_at_left = true
 
 func _ready() -> void:
@@ -48,9 +49,13 @@ func _on_jump_timeout() -> void:
 	squishTween.tween_property($Sprite2D, "scale", original_scale, t / 2.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 func open_eyes():
-	$TimerOpenEyes.wait_time = randf_range(3, 6)
-	$TimerOpenEyes.start()
-	$TimerChangeRotaEyes.start()
+	if look_at_activated:
+		return;
+	else:
+		look_at_activated = true
+		$TimerOpenEyes.wait_time = randf_range(1, 3)
+		$TimerOpenEyes.start()
+		$TimerChangeRotaEyes.start()
 
 func _on_timer_open_eyes_timeout() -> void:
 	$Eyes1.set_visible(true);
@@ -59,7 +64,7 @@ func _on_timer_open_eyes_timeout() -> void:
 
 func _on_timer_close_eyes_timeout() -> void:
 	$Eyes1.set_visible(false);
-	$TimerOpenEyes.wait_time = randf_range(2, 6)
+	$TimerOpenEyes.wait_time = randf_range(1, 3)
 	$TimerOpenEyes.start();
 
 func _on_timer_change_rota_eyes_timeout() -> void:

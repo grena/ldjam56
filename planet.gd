@@ -164,7 +164,7 @@ func _is_too_close_from_existing_tree(position: Vector2):
 		if child is FriskyTree:
 			var other_tree_position = child.position
 			var distance_to_position = other_tree_position.distance_to(position)
-			if distance_to_position <= 200:
+			if distance_to_position <= 300:
 				return true
 	return false
 	

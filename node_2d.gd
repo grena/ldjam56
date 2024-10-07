@@ -11,6 +11,6 @@ func _process(delta: float) -> void:
 	var resizedAssetWidth = scale * assetWidth
 	self.global_position.x = windowSize.x - resizedAssetWidth + 16
 	
-	const mixerCenter = Vector2(1688, 338);
+	const mixerCenter = Vector2(1688 + 100, 338);
 	var position = mixerCenter * scale;
 	$MixerCenter.global_position = Vector2(position.x + windowSize.x - resizedAssetWidth, position.y)
