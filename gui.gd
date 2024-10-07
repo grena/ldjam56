@@ -51,10 +51,12 @@ func _process(delta: float) -> void:
 		
 	# fermer la fenetre
 	if Input.is_action_pressed("ui_accept") and IS_DIALOG_OPENED:
-		var panel_talk = get_node("TalkPanelRect")
-		if panel_talk.visible == true:
-			panel_talk.visible = false
-			IS_DIALOG_OPENED = false
+		if TalkPanel.visible == true:
+			if TalkPanel.is_saying_something():
+				TalkPanel.finish_the_line()
+			else:
+				TalkPanel.visible = false
+				IS_DIALOG_OPENED = false
 
 func stop_introduction():
 	if toussoteTimer != null:
@@ -127,10 +129,10 @@ func demarre_sur_planete():
 		get_parent().get_node('Player/AspibroyeurPlayer').play()
 		get_parent().get_node("MusicPlayerStep1").play()
 		var texts = [
-			"[center]\nLanded in emergency.\n[/center]",
-			"[center]No more fuel.\n[/center]",
-			"[center]Refill with the [color=yellow]vacuum[/color].[/center]\n",
-			"[center](press space to close)[/center]"
+			"\nLanded in emergency.\n",
+			"No more fuel.\n",
+			"Refill with the *vacuum+.\n",
+			"(press space to close)"
 		]
 		affiche_dialogue(texts)
 
@@ -144,10 +146,10 @@ func passage_niveau_deux():
 		get_node("TextureRect").set_sound_on()
 		get_node("TextureRect").set_xray_on()	
 		var texts = [
-			"\n[center]Fuel level 1 reached.[/center]\n",
-			"[center]Turning on basic features.[/center]\n",
-			"[center][color=yellow]Chain saw[/color] enabled.[/center]\n",
-			"[center](Press space to close)[/center]"
+			"\nFuel level 1 reached.\n",
+			"Turning on basic features.\n",
+			"[color=yellow]Chain saw[/color] enabled.\n",
+			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
 		shake_cabine_when_upgrade()
@@ -162,10 +164,10 @@ func passage_niveau_trois():
 		get_node("TextureRect").set_translator_on()
 		get_node("TextureRect").set_display_blobs_in_xray()  
 		var texts = [
-			"\n[center]Fuel level 2 reached.[/center]\n",
-			"[center]Turning on advanced features.[/center]\n",
-			"[center][color=yellow]Flame thrower[/color] enabled.[/center]\n",
-			"[center](Press space to close)[/center]"
+			"\nFuel level 2 reached.\n",
+			"Turning on advanced features.\n",
+			"[color=yellow]Flame thrower[/color] enabled.\n",
+			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
 		shake_cabine_when_upgrade()
@@ -178,9 +180,9 @@ func le_vaisseau_est_pret():
 		get_node("TextureRect").set_translator_on()
 		get_node("TextureRect").set_display_blobs_in_xray()  
 		var texts = [
-			"\n[center]Enough fuel to leave.[/center]\n",
-			"[center][color=yellow]Go back to the ship.[/color][/center]\n",
-			"[center](Press space to close)[/center]"
+			"\nEnough fuel to leave.\n",
+			"[color=yellow]Go back to the ship.[/color]\n",
+			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
 		shake_cabine_when_upgrade()
@@ -190,47 +192,7 @@ func affiche_dialogue(texts):
 	# affiche panneau
 	get_node("IntroGameRect").visible = false
 	get_node("TalkPanelRect").visible = true
-	TalkPanel.hide_jack();
-	# affiche textes
-	var cortana_voix = [
-		$TalkPanelRect/CortanaPlayer1,
-		$TalkPanelRect/CortanaPlayer2,
-		$TalkPanelRect/CortanaPlayer3,
-		$TalkPanelRect/CortanaPlayer4,
-		$TalkPanelRect/CortanaPlayer5,
-	]
-	get_node("TalkPanelRect/Text").text = ""
-	var my_wait_time = 1.3
-	var voix_index = 0
-	for text in texts:
-		var timer: Timer = Timer.new()
-		timer.wait_time = my_wait_time;
-		timer.one_shot = true;
-		timer.connect('timeout', func ():
-			get_node("TalkPanelRect/Text").text = get_node("TalkPanelRect/Text").text + text
-			cortana_voix.shuffle()
-			var voix = cortana_voix.pop_front()
-			voix.play()
-			timer.stop();
-			timer.queue_free();
-		);
-		add_child(timer);
-		timer.start();
-		my_wait_time = my_wait_time + 2
-		voix_index = voix_index + 1
-	# dis ok
-
-	var timer: Timer = Timer.new()
-	timer.wait_time = my_wait_time;
-	timer.one_shot = true;
-	timer.connect('timeout', func ():
-		TalkPanel.show_jack();
-		$TalkPanelRect/JackDitOkPlayer.play()
-		timer.stop();
-		timer.queue_free();
-	);
-	add_child(timer);
-	timer.start();
+	TalkPanel.affiche_dialog(texts)
 
 func shake_cabine_when_upgrade():
 	var timer: Timer = Timer.new()
