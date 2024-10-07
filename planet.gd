@@ -121,7 +121,7 @@ func _get_new_frisky_position():
 			sin(angle) * radius,
 			cos(angle) * radius
 		)
-		if !_is_too_close_from_existing_tree(position):
+		if !_is_too_close_from_existing_tree(position) && !_is_too_close_from_existing_frisky(position) && !_is_too_close_from_fusee(position):
 			return position
 	
 	return position
@@ -167,6 +167,20 @@ func _is_too_close_from_existing_tree(position: Vector2):
 			if distance_to_position <= 300:
 				return true
 	return false
+	
+
+func _is_too_close_from_existing_frisky(position: Vector2):
+	for child in get_children():
+		if child is Frisky:
+			var other_tree_position = child.position
+			var distance_to_position = other_tree_position.distance_to(position)
+			if distance_to_position <= 50:
+				return true
+	return false
+	
+func _is_too_close_from_fusee(position: Vector2):
+	var fusee_position = $Fusee.global_position;
+	return fusee_position.distance_to(position) < 150
 	
 func _is_too_close_from_existing_static_tree(position: Vector2):
 	for child in get_children():
