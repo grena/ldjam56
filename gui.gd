@@ -156,7 +156,7 @@ func passage_niveau_deux():
 
 func passage_niveau_trois():
 	if LEVEL3_UPGRADED == false:
-		LEVEL3_UPGRADED = true
+		LEVEL3_UPGRADED = true 
 		get_parent().get_node("Player").get_node("BruitDePasPlayer").stop()
 		get_parent().get_node("MusicPlayerStep2").stop()
 		get_parent().get_node("MusicPlayerStep3").play()
@@ -166,7 +166,7 @@ func passage_niveau_trois():
 		var texts = [
 			"\nFuel level 2 reached.\n",
 			"Turning on advanced features.\n",
-			"*Flame thrower+ enabled.\n",
+			"Get *more fuel+ to enable take off.\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
@@ -221,6 +221,10 @@ func shake_cabine_when_upgrade():
 	);
 	add_child(timer);
 	timer.start();
+
+func flash_toyo():
+	var toyo = get_node("TextureRect/Node2D/Toyo")
+	toyo.flash();
 
 func shake_toyo_when_aspire():
 	var timer: Timer = Timer.new()

@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck5nhuxh5p4rv"]
+[gd_scene load_steps=17 format=3 uid="uid://ck5nhuxh5p4rv"]
 
 [ext_resource type="Texture2D" uid="uid://b0nljiodulbg7" path="res://assets/gui.png" id="1_gleva"]
 [ext_resource type="Script" path="res://interior_fusee.gd" id="1_tcvro"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_xmxie"]
 [ext_resource type="Texture2D" uid="uid://cbiei0aj4gyvc" path="res://assets/gui_fuel_overlay.png" id="2_q5ray"]
 [ext_resource type="Texture2D" uid="uid://dxwo1gct2tii5" path="res://assets/gui_mixer.png" id="3_5y7bc"]
-[ext_resource type="Texture2D" uid="uid://d14n1yg6uoqc5" path="res://assets/toyo.png" id="3_ofxrl"]
+[ext_resource type="PackedScene" path="res://toyo.tscn" id="3_dfhwh"]
 [ext_resource type="Texture2D" uid="uid://1koniiokmk4j" path="res://assets/gui_fuel.png" id="4_b68vg"]
 [ext_resource type="Texture2D" uid="uid://c7fxwn4t7xxml" path="res://assets/gui_mixer_on.png" id="4_mk27l"]
 [ext_resource type="Texture2D" uid="uid://cqh0ym42ibwqj" path="res://assets/gui_sound_on.png" id="5_3r0ar"]
@@ -13,7 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://dgtodbt3jlxvu" path="res://assets/gui_world_overlay.png" id="7_nvm45"]
 [ext_resource type="Texture2D" uid="uid://y8dcww7pnqcl" path="res://assets/gui_xray_on.png" id="8_gj0es"]
 [ext_resource type="Texture2D" uid="uid://cifstch33mkai" path="res://assets/xray_mid.png" id="12_6vuy1"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://dvxyt5acw040n" path="res://FuseeWindow.tscn" id="16_e8l43"]
+=======
+[ext_resource type="FontFile" uid="uid://c3ouk7b6vaoxt" path="res://fonts/DiloWorld-mLJLv.ttf" id="15_6dkhn"]
+[ext_resource type="Texture2D" uid="uid://dkttgd6uecj1h" path="res://assets/wall.png" id="16_4srh4"]
+[ext_resource type="PackedScene" uid="uid://fn5bt763h2qf" path="res://FuseeWindow.tscn" id="16_e8l43"]
+>>>>>>> origin/main
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_tcvro")
@@ -21,13 +27,7 @@ script = ExtResource("1_tcvro")
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_xmxie")
 
-[node name="Toyo" type="TextureRect" parent="Node2D"]
-offset_left = -897.0
-offset_top = 225.0
-offset_right = 1407.0
-offset_bottom = 3833.0
-scale = Vector2(0.557832, 0.992878)
-texture = ExtResource("3_ofxrl")
+[node name="Toyo" parent="Node2D" instance=ExtResource("3_dfhwh")]
 
 [node name="Gui" type="TextureRect" parent="Node2D"]
 offset_right = 2304.0
@@ -84,6 +84,19 @@ offset_right = 2304.0
 offset_bottom = 3608.0
 texture = ExtResource("8_gj0es")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+offset_left = 521.0
+offset_top = 2139.0
+offset_right = 1371.0
+offset_bottom = 2259.0
+rotation = 0.0239434
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("15_6dkhn")
+theme_override_font_sizes/normal_font_size = 71
+bbcode_enabled = true
+text = "[center][color=#22aa22]This is a text editor[/color][/center]"
+
 [node name="MixerCenter" type="Node2D" parent="Node2D"]
 
 [node name="FuelMixer" type="TextureRect" parent="Node2D/MixerCenter"]
@@ -111,6 +124,14 @@ scale = Vector2(1, 1)
 position = Vector2(2596, 328)
 color = Color(0.45098, 0.898039, 1, 0.658824)
 polygon = PackedVector2Array(-2599, -324, -2593, 2407, -2530, 2695, -2278, 2697, -2240, 2637, -2190, 2583, -2084, 2541, -2097, 2351, -2061, 2306, -1971, 2273, -1757, 2246, -1749, 2224, -1824, 2194, -1841, 2132, -1829, 2075, -1692, 1998, -1522, 1984, -1382, 2018, -1275, 2090, -1252, 2149, -1282, 2201, -1342, 2228, -1337, 2249, -1229, 2252, -1127, 2271, -1014, 2319, -984, 2343, -997, 2428, -1011, 2578, -880, 2636, -827, 2680, -809, 2775, -456, 2759, -266, 2435, -285, -327)
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+offset_left = -183.0
+offset_top = -272.0
+offset_right = 69.0
+offset_bottom = 2092.0
+scale = Vector2(1.53905, 1.69483)
+texture = ExtResource("16_4srh4")
 
 [node name="XRayMidChange" type="Timer" parent="."]
 autostart = true
