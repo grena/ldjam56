@@ -166,7 +166,7 @@ func passage_niveau_trois():
 		var texts = [
 			"\nFuel level 2 reached.\n",
 			"Turning on advanced features.\n",
-			"*Flame thrower+ enabled.\n",
+			"Get *more fuel+ to enable take off.\n",
 			"(Press space to close)"
 		]
 		affiche_dialogue(texts)
